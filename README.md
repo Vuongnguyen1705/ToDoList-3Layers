@@ -4,7 +4,7 @@ Một công ty muốn xây dựng một ứng dụng web có chức năng quản
 2. Mỗi công việc sẽ gồm các thông tin như tiêu đề, ngày bắt đầu, ngày kết thúc, trạng thái [đang làm, đã xong, trễ hạn], phạm vi (public hoặc private), tên người làm chung, các tập tin đính kèm và bình luận.
 3. Lãnh đạo đơn vị sẽ theo dõi, xem được danh sách công việc của các nhân viên, việc đã làm, đang làm, làm chưa xong trong ngày, trong tuần để nhắc nhở. Lãnh đạo cũng có thể điều chỉnh  lại các thông tin công việc của nhân viên (quyết định thời gian, những ai tham gia làm, bình luận).
 4. Nhân viên có thể nhìn thấy công việc của mình và nhìn thấy công việc của người khác (nếu phạm vi là public) để biết thông tin.
-##Thành viên
+## Thành viên
 #### Nguyễn Hùng Vương
 #### Tsan Xướng Vấy
 #### Huỳnh Ngọc Trung
