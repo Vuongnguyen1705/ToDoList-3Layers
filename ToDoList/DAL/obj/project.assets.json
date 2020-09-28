@@ -1,0 +1,94 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "DTO/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/DTO.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DTO.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      }
+    }
+  },
+  "libraries": {
+    "DTO/1.0.0": {
+      "type": "project",
+      "path": "../DTO/DTO.csproj",
+      "msbuildProject": "../DTO/DTO.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETCoreApp,Version=v3.1": [
+      "DTO >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\HUNGVUONG\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "D:\\HK1-2020-2021\\XayDungPMTheoMoHinhPhanLop\\BaiTap\\ToDoList-3Layers\\ToDoList\\DAL\\DAL.csproj",
+      "projectName": "DAL",
+      "projectPath": "D:\\HK1-2020-2021\\XayDungPMTheoMoHinhPhanLop\\BaiTap\\ToDoList-3Layers\\ToDoList\\DAL\\DAL.csproj",
+      "packagesPath": "C:\\Users\\HUNGVUONG\\.nuget\\packages\\",
+      "outputPath": "D:\\HK1-2020-2021\\XayDungPMTheoMoHinhPhanLop\\BaiTap\\ToDoList-3Layers\\ToDoList\\DAL\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\HUNGVUONG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "netcoreapp3.1"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "projectReferences": {
+            "D:\\HK1-2020-2021\\XayDungPMTheoMoHinhPhanLop\\BaiTap\\ToDoList-3Layers\\ToDoList\\DTO\\DTO.csproj": {
+              "projectPath": "D:\\HK1-2020-2021\\XayDungPMTheoMoHinhPhanLop\\BaiTap\\ToDoList-3Layers\\ToDoList\\DTO\\DTO.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "netcoreapp3.1": {
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          },
+          "Microsoft.WindowsDesktop.App.WPF": {
+            "privateAssets": "none"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

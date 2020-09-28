@@ -1,0 +1,14 @@
+D:\HK1-2020-2021\XayDungPMTheoMoHinhPhanLop\BaiTap\ToDoList\BLL\bin\Debug\netcoreapp3.1\BLL.deps.json
+D:\HK1-2020-2021\XayDungPMTheoMoHinhPhanLop\BaiTap\ToDoList\BLL\bin\Debug\netcoreapp3.1\BLL.dll
+D:\HK1-2020-2021\XayDungPMTheoMoHinhPhanLop\BaiTap\ToDoList\BLL\bin\Debug\netcoreapp3.1\BLL.pdb
+D:\HK1-2020-2021\XayDungPMTheoMoHinhPhanLop\BaiTap\ToDoList\BLL\bin\Debug\netcoreapp3.1\DAL.dll
+D:\HK1-2020-2021\XayDungPMTheoMoHinhPhanLop\BaiTap\ToDoList\BLL\bin\Debug\netcoreapp3.1\DTO.dll
+D:\HK1-2020-2021\XayDungPMTheoMoHinhPhanLop\BaiTap\ToDoList\BLL\bin\Debug\netcoreapp3.1\DAL.pdb
+D:\HK1-2020-2021\XayDungPMTheoMoHinhPhanLop\BaiTap\ToDoList\BLL\bin\Debug\netcoreapp3.1\DTO.pdb
+D:\HK1-2020-2021\XayDungPMTheoMoHinhPhanLop\BaiTap\ToDoList\BLL\obj\Debug\netcoreapp3.1\BLL.csprojAssemblyReference.cache
+D:\HK1-2020-2021\XayDungPMTheoMoHinhPhanLop\BaiTap\ToDoList\BLL\obj\Debug\netcoreapp3.1\BLL.AssemblyInfoInputs.cache
+D:\HK1-2020-2021\XayDungPMTheoMoHinhPhanLop\BaiTap\ToDoList\BLL\obj\Debug\netcoreapp3.1\BLL.AssemblyInfo.cs
+D:\HK1-2020-2021\XayDungPMTheoMoHinhPhanLop\BaiTap\ToDoList\BLL\obj\Debug\netcoreapp3.1\BLL.csproj.CoreCompileInputs.cache
+D:\HK1-2020-2021\XayDungPMTheoMoHinhPhanLop\BaiTap\ToDoList\BLL\obj\Debug\netcoreapp3.1\BLL.csproj.CopyComplete
+D:\HK1-2020-2021\XayDungPMTheoMoHinhPhanLop\BaiTap\ToDoList\BLL\obj\Debug\netcoreapp3.1\BLL.dll
+D:\HK1-2020-2021\XayDungPMTheoMoHinhPhanLop\BaiTap\ToDoList\BLL\obj\Debug\netcoreapp3.1\BLL.pdb
