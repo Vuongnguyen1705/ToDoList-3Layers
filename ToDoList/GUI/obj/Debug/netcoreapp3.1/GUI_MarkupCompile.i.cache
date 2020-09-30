@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
 D:\HK1-2020-2021\XayDungPMTheoMoHinhPhanLop\BaiTap\ToDoList-3Layers\ToDoList\GUI\App.xaml
-22037783069
+3-2106426064
 
-61360727171
-197-817618620
-LoginWindow.xaml;MainWindow.xaml;
+71376021096
+200572939467
+ControlBarUC\UserControlToDoList.xaml;LoginWindow.xaml;MainWindow.xaml;
 
 False
 
