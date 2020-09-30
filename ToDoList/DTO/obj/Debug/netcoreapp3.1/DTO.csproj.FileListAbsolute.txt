@@ -7,3 +7,15 @@ D:\HK1-2020-2021\XayDungPMTheoMoHinhPhanLop\BaiTap\ToDoList\DTO\obj\Debug\netcor
 D:\HK1-2020-2021\XayDungPMTheoMoHinhPhanLop\BaiTap\ToDoList\DTO\obj\Debug\netcoreapp3.1\DTO.csproj.CoreCompileInputs.cache
 D:\HK1-2020-2021\XayDungPMTheoMoHinhPhanLop\BaiTap\ToDoList\DTO\obj\Debug\netcoreapp3.1\DTO.dll
 D:\HK1-2020-2021\XayDungPMTheoMoHinhPhanLop\BaiTap\ToDoList\DTO\obj\Debug\netcoreapp3.1\DTO.pdb
+D:\HK1-2020-2021\XayDungPMTheoMoHinhPhanLop\BaiTap\ToDoList-3Layers\ToDoList\DTO\bin\Debug\netcoreapp3.1\DTO.deps.json
+D:\HK1-2020-2021\XayDungPMTheoMoHinhPhanLop\BaiTap\ToDoList-3Layers\ToDoList\DTO\bin\Debug\netcoreapp3.1\DTO.dll
+D:\HK1-2020-2021\XayDungPMTheoMoHinhPhanLop\BaiTap\ToDoList-3Layers\ToDoList\DTO\bin\Debug\netcoreapp3.1\DTO.pdb
+D:\HK1-2020-2021\XayDungPMTheoMoHinhPhanLop\BaiTap\ToDoList-3Layers\ToDoList\DTO\obj\Debug\netcoreapp3.1\DTO.csprojAssemblyReference.cache
+D:\HK1-2020-2021\XayDungPMTheoMoHinhPhanLop\BaiTap\ToDoList-3Layers\ToDoList\DTO\obj\Debug\netcoreapp3.1\DTO.AssemblyInfoInputs.cache
+D:\HK1-2020-2021\XayDungPMTheoMoHinhPhanLop\BaiTap\ToDoList-3Layers\ToDoList\DTO\obj\Debug\netcoreapp3.1\DTO.AssemblyInfo.cs
+D:\HK1-2020-2021\XayDungPMTheoMoHinhPhanLop\BaiTap\ToDoList-3Layers\ToDoList\DTO\obj\Debug\netcoreapp3.1\DTO.dll
+D:\HK1-2020-2021\XayDungPMTheoMoHinhPhanLop\BaiTap\ToDoList-3Layers\ToDoList\DTO\obj\Debug\netcoreapp3.1\DTO.pdb
+D:\HK1-2020-2021\XayDungPMTheoMoHinhPhanLop\BaiTap\ToDoList-3Layers\ToDoList\DTO\bin\Debug\netcoreapp3.1\DTO.runtimeconfig.json
+D:\HK1-2020-2021\XayDungPMTheoMoHinhPhanLop\BaiTap\ToDoList-3Layers\ToDoList\DTO\bin\Debug\netcoreapp3.1\DTO.runtimeconfig.dev.json
+D:\HK1-2020-2021\XayDungPMTheoMoHinhPhanLop\BaiTap\ToDoList-3Layers\ToDoList\DTO\obj\Debug\netcoreapp3.1\DTO.genruntimeconfig.cache
+D:\HK1-2020-2021\XayDungPMTheoMoHinhPhanLop\BaiTap\ToDoList-3Layers\ToDoList\DTO\obj\Debug\netcoreapp3.1\DTO.csproj.CoreCompileInputs.cache
