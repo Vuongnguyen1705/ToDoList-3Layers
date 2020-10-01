@@ -46,9 +46,7 @@ namespace GUI
 
         private void Bold_MouseLeftButtonUp_Register(object sender, MouseButtonEventArgs e)
         {
-            var registerWindow = new RegisterWindow();
-            registerWindow.Show();
-            this.Close();
+   
         }
 
         

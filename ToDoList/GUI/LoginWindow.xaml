@@ -24,7 +24,7 @@
             <RowDefinition Height="8*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Margin="0 10 0 0">
-            <Image Source="D:\HK1-2020-2021\XayDungPMTheoMoHinhPhanLop\BaiTap\ToDoList-3Layers\ToDoList\GUI\Images\favicon.png"/>
+            <Image Source="Images\favicon.png"/>
 
         </Grid>
         <materialDesign:Card Grid.Row="1" Padding="0 0 0 20"
