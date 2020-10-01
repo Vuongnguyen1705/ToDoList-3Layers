@@ -1070,19 +1070,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\HUNGVUONG\\.nuget\\packages\\": {}
+    "C:\\Users\\vaytr\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\HK1-2020-2021\\XayDungPMTheoMoHinhPhanLop\\BaiTap\\ToDoList-3Layers\\ToDoList\\BLL\\BLL.csproj",
+      "projectUniqueName": "E:\\HocKy_1_2020\\XDPM_Theo_MoHinhPhanLop\\project_todolist\\ToDoList-3Layers\\ToDoList\\BLL\\BLL.csproj",
       "projectName": "BLL",
-      "projectPath": "D:\\HK1-2020-2021\\XayDungPMTheoMoHinhPhanLop\\BaiTap\\ToDoList-3Layers\\ToDoList\\BLL\\BLL.csproj",
-      "packagesPath": "C:\\Users\\HUNGVUONG\\.nuget\\packages\\",
-      "outputPath": "D:\\HK1-2020-2021\\XayDungPMTheoMoHinhPhanLop\\BaiTap\\ToDoList-3Layers\\ToDoList\\BLL\\obj\\",
+      "projectPath": "E:\\HocKy_1_2020\\XDPM_Theo_MoHinhPhanLop\\project_todolist\\ToDoList-3Layers\\ToDoList\\BLL\\BLL.csproj",
+      "packagesPath": "C:\\Users\\vaytr\\.nuget\\packages\\",
+      "outputPath": "E:\\HocKy_1_2020\\XDPM_Theo_MoHinhPhanLop\\project_todolist\\ToDoList-3Layers\\ToDoList\\BLL\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\HUNGVUONG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\vaytr\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1095,11 +1095,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "D:\\HK1-2020-2021\\XayDungPMTheoMoHinhPhanLop\\BaiTap\\ToDoList-3Layers\\ToDoList\\DAL\\DAL.csproj": {
-              "projectPath": "D:\\HK1-2020-2021\\XayDungPMTheoMoHinhPhanLop\\BaiTap\\ToDoList-3Layers\\ToDoList\\DAL\\DAL.csproj"
+            "E:\\HocKy_1_2020\\XDPM_Theo_MoHinhPhanLop\\project_todolist\\ToDoList-3Layers\\ToDoList\\DAL\\DAL.csproj": {
+              "projectPath": "E:\\HocKy_1_2020\\XDPM_Theo_MoHinhPhanLop\\project_todolist\\ToDoList-3Layers\\ToDoList\\DAL\\DAL.csproj"
             },
-            "D:\\HK1-2020-2021\\XayDungPMTheoMoHinhPhanLop\\BaiTap\\ToDoList-3Layers\\ToDoList\\DTO\\DTO.csproj": {
-              "projectPath": "D:\\HK1-2020-2021\\XayDungPMTheoMoHinhPhanLop\\BaiTap\\ToDoList-3Layers\\ToDoList\\DTO\\DTO.csproj"
+            "E:\\HocKy_1_2020\\XDPM_Theo_MoHinhPhanLop\\project_todolist\\ToDoList-3Layers\\ToDoList\\DTO\\DTO.csproj": {
+              "projectPath": "E:\\HocKy_1_2020\\XDPM_Theo_MoHinhPhanLop\\project_todolist\\ToDoList-3Layers\\ToDoList\\DTO\\DTO.csproj"
             }
           }
         }

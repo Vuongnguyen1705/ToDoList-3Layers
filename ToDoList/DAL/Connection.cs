@@ -9,7 +9,7 @@ namespace DAL
     public class Connection
     {
         private static SqlConnection connection;
-        private static string connectionString = @"Data Source=HUNGVUONG;Initial Catalog=ToDoList;User ID=sa;Password=Hungvuong99@";
+        private static string connectionString = @"Data Source=INTERSHIP-TSAN-\SQLEXPRESS;Initial Catalog=ToDoList; Integrated Security=True;";
 
         public static SqlConnection Instance
         {
