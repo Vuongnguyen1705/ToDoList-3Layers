@@ -31,6 +31,18 @@ namespace GUI
             ShowRange();
             ShowWork();
             Filter();
+
+            //test user
+            //BLL_User u = new BLL_User();
+            //u.AddUser(new DTO_User(99, "File hinh anh", "NVC", "0941201209", "abc@gmail.com", "123456", "Q11, TPHCM", new DateTime(1999,01,01), "Nam", true, 3));
+            //u.UpdateUser(new DTO_User(9,"File hinh", "BBB", "0934571234", "bbb@gmail.com", "123456", "Q11,  TPHCM", new DateTime(1990, 01, 01), "Nu", true, 3));
+            //u.DeleteUser(9);
+
+            //test work
+            //BLL_Work w = new BLL_Work();
+            //w.AddWork(new DTO_Work(99, "1 Viec eo nao do", new DateTime(2020, 09, 09), new DateTime(2020, 09, 10), "Đang làm", "Public", "", "", 10));
+            //w.UpdateWork(new DTO_Work(6, "Some fricking work", new DateTime(2020, 09, 05), new DateTime(2020, 09, 12), "Trễ hạn", "Private", "", "", 10));
+            //w.DeleteWork(6);
         }   
 
         private void ShowWork()

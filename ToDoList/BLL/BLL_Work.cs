@@ -23,5 +23,20 @@ namespace BLL
         {
             return dAL_Work.getRange();
         }
+
+        public void AddWork(DTO_Work w)
+        {
+            dAL_Work.AddWork(w);
+        }
+
+        public void UpdateWork(DTO_Work w)
+        {
+            dAL_Work.UpdateWork(w);
+        }
+
+        public void DeleteWork(int WorkID)
+        {
+            dAL_Work.DeleteWork(WorkID);
+        }
     }
 }
