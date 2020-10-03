@@ -4,33 +4,33 @@ using System.Text;
 
 namespace DTO
 {
-    class DTO_Work
-    {   
-        public DTO_Work(string workID, string workTitle, long workStartDate, long workEndDate, string workState, string workRange, string workCoWorker, string workAttachment, string workUserID)
+    public class DTO_Work
+    {
+        public DTO_Work()
+        {
+        }
+
+        public DTO_Work(int workID, string workTitle, DateTime workStartDate, DateTime workEndDate, string workStatus, string workRange, string workCoWorker, string workAttachment, int workUserID)
         {
             WorkID = workID;
             WorkTitle = workTitle;
             WorkStartDate = workStartDate;
             WorkEndDate = workEndDate;
-            WorkState = workState;
+            WorkStatus = workStatus;
             WorkRange = workRange;
             WorkCoWorker = workCoWorker;
             WorkAttachment = workAttachment;
             WorkUserID = workUserID;
         }
-
-        public DTO_Work()
-        {
-        }
-
-        public string WorkID { get; set; }
+        
+        public int WorkID { get; set; }
         public string WorkTitle { get; set; }
-        public long WorkStartDate { get; set; }
-        public long WorkEndDate { get; set; }
-        public string WorkState { get; set; }
+        public DateTime WorkStartDate { get; set; }
+        public DateTime WorkEndDate { get; set; }
+        public string WorkStatus { get; set; }
         public string WorkRange { get; set; }
         public string WorkCoWorker { get; set; }
         public string WorkAttachment { get; set; }
-        public string WorkUserID { get; set; }
+        public int WorkUserID { get; set; }
     }
 }

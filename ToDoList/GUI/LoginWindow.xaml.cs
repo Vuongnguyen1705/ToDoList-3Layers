@@ -12,6 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BLL;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
+using DTO;
 
 namespace GUI
 {
@@ -27,16 +29,32 @@ namespace GUI
 
         private void Button_Exit(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
         private void Button_Login(object sender, RoutedEventArgs e)
         {
             BLL_DangNhap dangNhap = new BLL_DangNhap();
-            if (dangNhap.TryLogin(Email.Text, Password.Password))
+            BLL_User bLL_User = new BLL_User();
+            General general = new General();
+            string password = Password.Password;
+            //pass encode
+            string passCode = general.passEncode;
+            string passDecode = general.EncryptString(password, passCode);
+            int roleID = bLL_User.getRoleIDByEmail(Email.Text);
+
+            if (dangNhap.TryLogin(Email.Text, passDecode))
             {
-                var mainWindow = new MainWindow();
-                mainWindow.Show();
-                this.Close();
+                if (roleID == 1)
+                {
+                    var mainAdmin = new MainAdminWindow();
+                    mainAdmin.Show();
+                }
+                else
+                {
+                    var mainWindow = new MainWindow();
+                    mainWindow.Show();
+                }
+                Close();
             }
             else
             {
@@ -50,6 +68,7 @@ namespace GUI
         }
 
         
+
     }
 }
 

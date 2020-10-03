@@ -5,12 +5,12 @@ using System.Text;
 
 namespace DTO
 {
-    class DTO_Comment
+    public class DTO_Comment
     {
         public DTO_Comment()
         {
-
         }
+
         public DTO_Comment(int commentID, int commentUserID, int commentWorkID, int commentContent)
         {
             CommentID = commentID;
