@@ -77,7 +77,7 @@ VALUES
 	N'Nguyễn Hùng Vương',       			-- U_FullName - nvarchar(50)
     '0785715880',      						-- U_Phone - varchar(11)
     N'vuong@gmail.com',       				-- U_Email - nvarchar(50)
-	'vuongnh',       						-- U_Password - varchar(30)
+	'CVJuIRIHoFQ=',       						-- U_Password - varchar(30)
     N'Q6, TPHCM',       					-- U_Address - nvarchar(100)
     '1999-01-01', 							-- U_Birthday - date
     N'Nam',       							-- U_Gender - nchar(5)
@@ -91,7 +91,7 @@ VALUES
 	N'Tsan Xướng Vấy',       				-- U_FullName - nvarchar(50)
     '0785715880',      						-- U_Phone - varchar(11)
     N'vay@gmail.com',       				-- U_Email - nvarchar(50)
-	'vaytx',       							-- U_Password - varchar(30)
+	'CVJuIRIHoFQ=',       							-- U_Password - varchar(30)
     N'Q6, TPHCM',       					-- U_Address - nvarchar(100)
     '1999-01-01', 							-- U_Birthday - date
     N'Nam',       							-- U_Gender - nchar(5)
@@ -105,7 +105,7 @@ VALUES
 	N'Huỳnh Ngọc Trung',       				-- U_FullName - nvarchar(50)
     '0785715880',      						-- U_Phone - varchar(11)
     N'trunghn@gmail.com',       			-- U_Email - nvarchar(50)
-	'trunghn',       						-- U_Password - varchar(30)
+	'CVJuIRIHoFQ=',       						-- U_Password - varchar(30)
     N'Q6, TPHCM',       					-- U_Address - nvarchar(100)
     '1999-01-01', 							-- U_Birthday - date
     N'Nam',       							-- U_Gender - nchar(5)
@@ -119,7 +119,7 @@ VALUES
 	N'Ngô Chí Trung',       				-- U_FullName - nvarchar(50)
     '0785715880',      						-- U_Phone - varchar(11)
     N'trungnc@gmail.com',       			-- U_Email - nvarchar(50)
-	'trungnc',       						-- U_Password - varchar(30)
+	'CVJuIRIHoFQ=',       						-- U_Password - varchar(30)
     N'Q6, TPHCM',       					-- U_Address - nvarchar(100)
     '1999-01-01', 							-- U_Birthday - date
     N'Nam',       							-- U_Gender - nchar(5)
@@ -133,7 +133,7 @@ VALUES
 	N'Hà Thiện Tuấn',						-- U_FullName - nvarchar(50)
     '0785715880',      						-- U_Phone - varchar(11)
     N'tuan@gmail.com',       				-- U_Email - nvarchar(50)
-	'tuanht',       						-- U_Password - varchar(30)
+	'CVJuIRIHoFQ=',       						-- U_Password - varchar(30)
     N'Q6, TPHCM',       					-- U_Address - nvarchar(100)
     '1999-01-01', 							-- U_Birthday - date
     N'Nam',       							-- U_Gender - nchar(5)
@@ -147,7 +147,7 @@ VALUES
 	N'Nhân viên 1',       					-- U_FullName - nvarchar(50)
     '0785715880',      						-- U_Phone - varchar(11)
     N'nv1@gmail.com',       				-- U_Email - nvarchar(50)
-	'nhanvien1',       						-- U_Password - varchar(30)
+	'CVJuIRIHoFQ=',       						-- U_Password - varchar(30)
     N'Q6, TPHCM',       					-- U_Address - nvarchar(100)
     '1999-01-01', 							-- U_Birthday - date
     N'Nam',       							-- U_Gender - nchar(5)
@@ -161,7 +161,7 @@ VALUES
 	N'Nhân viên 2',							-- U_FullName - nvarchar(50)
     '0785715880',      						-- U_Phone - varchar(11)
     N'nv2@gmail.com',       				-- U_Email - nvarchar(50)
-	'nhanvien2',       						-- U_Password - varchar(30)
+	'CVJuIRIHoFQ=',       						-- U_Password - varchar(30)
     N'Q6, TPHCM',       					-- U_Address - nvarchar(100)
     '1999-01-01', 							-- U_Birthday - date
     N'Khác',       							-- U_Gender - nchar(5)
@@ -175,7 +175,7 @@ VALUES
 	N'Nhân viên 3',							-- U_FullName - nvarchar(50)
     '0785715880',							-- U_Phone - varchar(11)
     N'nv3@gmail.com',						-- U_Email - nvarchar(50)
-	'nhanvien3',							-- U_Password - varchar(30)
+	'CVJuIRIHoFQ=',							-- U_Password - varchar(30)
     N'Q6, TPHCM',							-- U_Address - nvarchar(100)
     '1999-01-01',							-- U_Birthday - date
     N'Nữ',									-- U_Gender - nchar(5)
@@ -205,7 +205,7 @@ VALUES
     '2020-09-20',		  -- W_EndDate - datetime
     N'Đã xong',			  -- W_State - nchar(20)
     N'Public',			  -- W_Range - nchar(20)
-    '',					  -- W_CoWorker - varchar(50)
+    '6,8',					  -- W_CoWorker - varchar(50)
     '',					  -- W_Attachments - nvarchar(255)
     7					  -- W_User_ID - int
 )
@@ -217,8 +217,9 @@ VALUES
     '2020-09-20',		  -- W_EndDate - datetime
     N'Trễ hạn',			  -- W_State - nchar(20)
     N'Private',			  -- W_Range - nchar(20)
-    '',					  -- W_CoWorker - varchar(50)
+    '6,7',					  -- W_CoWorker - varchar(50)
     '',					  -- W_Attachments - nvarchar(255)
     8					  -- W_User_ID - int
 )
 
+Select * from [Works]
