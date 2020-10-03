@@ -11,27 +11,31 @@ namespace DTO
         {
         }
 
-        public DTO_User(int userID, string userFullName, string userPhoneNumber, string userEmail, string userpassWord, string userAddress, long userBirthday, string userGender, int userRole)
+        public DTO_User(int userID, string userAvatar, string userFullName, string userPhoneNumber, string userEmail, string userPassword, string userAddress, DateTime userBirthday, string userGender, bool userIsEnable, int userRoleID)
         {
             UserID = userID;
+            UserAvatar = userAvatar;
             UserFullName = userFullName;
             UserPhoneNumber = userPhoneNumber;
             UserEmail = userEmail;
-            UserpassWord = userpassWord;
+            UserPassword = userPassword;
             UserAddress = userAddress;
             UserBirthday = userBirthday;
             UserGender = userGender;
-            UserRole = userRole;
+            UserIsEnable = userIsEnable;
+            UserRoleID = userRoleID;
         }
 
         public int UserID { get; set; }
+        public string UserAvatar { get; set; }
         public string UserFullName { get; set; }
         public string UserPhoneNumber { get; set; }
         public string UserEmail { get; set; }
-        public string UserpassWord { get; set; }
+        public string UserPassword { get; set; }
         public string UserAddress { get; set; }
-        public long UserBirthday { get; set; }
+        public DateTime UserBirthday { get; set; }
         public string UserGender { get; set; }
-        public int UserRole { get; set; }
+        public bool UserIsEnable { get; set; }
+        public int UserRoleID { get; set; }
     }
 }
