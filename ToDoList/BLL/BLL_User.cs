@@ -2,7 +2,9 @@
 using DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
+using DTO;
 
 namespace BLL
 {
@@ -18,9 +20,29 @@ namespace BLL
         {
             return dAL_User.getRoleIDByEmail(email);
         }
+
+
+
+		public void AddUser(DTO_User u)
+		{
+			dAL_User.AddUser(u);
+		}
+
+		public void UpdateUser(DTO_User u)
+		{
+			dAL_User.UpdateUser(u);
+		}
+
+		public void DeleteUser(int UserID)
+		{
+			dAL_User.DeleteUser(UserID);
+		}
+	
+
         public DTO_User getUserByEmail(string email)
         {
             return dAL_User.getUserByEmail(email);
         }
     }
+
 }
