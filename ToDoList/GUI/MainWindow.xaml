@@ -34,18 +34,21 @@
                 Width="200"
                 Height="30"
                 FontSize="15"
-                Margin="5 0"
+                Margin="10 0"
                 VerticalContentAlignment="Center"
                 materialDesign:HintAssist.Hint="Tìm kiếm"
                 TextChanged="TextBoxSearchMain_TextChanged"/>
-          
-            <Ellipse Width="30" Height="30" Margin="10 0" Cursor="Hand">
+            <TextBlock x:Name="TextBlockHi" 
+                       VerticalAlignment="Center"
+                       Text="Xin chào: "/>
+            <Ellipse Width="30" Height="30" Margin="10 0" 
+                Cursor="Hand" MouseDown="Ellipse_MouseDown_InfoUser">
                 <Ellipse.Fill>
-                    <ImageBrush x:Name="ImageBrushAvatar" 
+                    <ImageBrush x:Name="ImageBrushAvatar"
                                 ImageSource="Images/icon-user-default.png" />
                 </Ellipse.Fill>
             </Ellipse>
-          
+
             <materialDesign:PackIcon Name="IconLogout"
                 MouseDown="IconLogout_MouseDown_Logout"
                 Kind="Logout"
@@ -59,12 +62,14 @@
         <Grid Grid.Row="1"
               Background="#f1f1f1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="8*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="37*"/>
+                <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
             <Button Name="ButtonAddWork"
                 Grid.Column="0"
-                Margin="20 0"
+                Margin="20,8,0,8"
+                Click="ButtonAddWork_Click_AddWork"
                 HorizontalAlignment="Left"
                 Style="{StaticResource MaterialDesignRaisedDarkButton}"
                 ToolTip="MaterialDesignRaisedLightDarkButton">
@@ -79,9 +84,9 @@
 
             </Button>
             <StackPanel Grid.Column="1"
-                Margin="20 0"
+                Margin="350,0,0,0"
                 Orientation="Horizontal"
-                HorizontalAlignment="Right">
+                HorizontalAlignment="Left" Grid.ColumnSpan="2">
                 <DatePicker Name="DatePickerToDay"
                     Width="100"
                     Margin="10 0"
@@ -98,6 +103,7 @@
                       SelectionChanged="ComboBoxStatus_SelectionChanged"
                       materialDesign:HintAssist.Hint="Trạng thái"
                       Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+
                 </ComboBox>
                 <ComboBox Name="ComboBoxRange"
                       Margin="10 0 10 -2"
@@ -110,19 +116,27 @@
         </Grid>
         <Grid Grid.Row="2">
             <ListView Name="ListViewWork">
+                <ListView.Resources>
+                    <Style TargetType="{x:Type GridViewColumnHeader}">
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    </Style>
+                    
+                </ListView.Resources>
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Width="150"
+                        <GridViewColumn Width="150" x:Name="a"
                             DisplayMemberBinding="{Binding WorkTitle}">
                             <GridViewColumnHeader Cursor="Hand"
                                 Content="Tên công việc" 
+                                Tag="WorkTitle"
                                 Click="GridViewColumnHeader_Click_Sort"/>
                         </GridViewColumn>
-                        
+
                         <GridViewColumn Width="150"
                             DisplayMemberBinding="{Binding WorkStartDate}">
                             <GridViewColumnHeader Cursor="Hand"
                                 Content="Ngày bắt đầu" 
+                                Tag="WorkStartDate"
                                 Click="GridViewColumnHeader_Click_Sort"/>
                         </GridViewColumn>
 
@@ -130,31 +144,39 @@
                             DisplayMemberBinding="{Binding WorkEndDate}">
                             <GridViewColumnHeader Cursor="Hand"
                                 Content="Ngày kết thúc"
+                                Tag="WorkEndDate"
                                 Click="GridViewColumnHeader_Click_Sort"/>
                         </GridViewColumn>
 
-                        <GridViewColumn Width="130"
-                            DisplayMemberBinding="{Binding WorkStatus}">
+                        <GridViewColumn Width="130">
                             <GridViewColumnHeader Cursor="Hand"
                                 Content="Trạng thái"
+                                Tag="WorkStatus"
                                 Click="GridViewColumnHeader_Click_Sort"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock x:Name="workStatus" Text="{Binding WorkStatus}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
-                        <GridViewColumn Width="130"
+                        <GridViewColumn Width="100"
                             DisplayMemberBinding="{Binding WorkRange}">
                             <GridViewColumnHeader Cursor="Hand"
                                 Content="Phạm vi"
+                                Tag="WorkRange"
                                 Click="GridViewColumnHeader_Click_Sort"/>
                         </GridViewColumn>
                         <GridViewColumn 
                             DisplayMemberBinding="{Binding WorkCoWorker}">
                             <GridViewColumnHeader Cursor="Hand"
                                 Content="Số người làm chung"
+                                Tag="WorkCoWorker"
                                 Click="GridViewColumnHeader_Click_Sort"/>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>
-                
+
             </ListView>
         </Grid>
     </Grid>
