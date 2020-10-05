@@ -7,7 +7,16 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="AddUserDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="AddWorkDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="ControlBarUC\UserControlToDoList.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="InfoUserDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="LoginWindow.xaml.cs">
@@ -18,7 +27,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="AddUserDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="AddWorkDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="ControlBarUC\UserControlToDoList.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="InfoUserDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="LoginWindow.xaml">
