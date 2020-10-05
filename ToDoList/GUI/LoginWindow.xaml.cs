@@ -14,6 +14,8 @@ using BLL;
 using System.Data.SqlClient;
 using System.Security.Cryptography;
 using DTO;
+using Microsoft.Win32;
+using System.IO;
 
 namespace GUI
 {
@@ -44,6 +46,7 @@ namespace GUI
 
             if (dangNhap.TryLogin(Email.Text, passDecode))
             {
+                UserSingleTon.Instance.User=bLL_User.getUserByEmail(Email.Text);
                 if (roleID == 1)
                 {
                     var mainAdmin = new MainAdminWindow();
@@ -54,6 +57,7 @@ namespace GUI
                     var mainWindow = new MainWindow();
                     mainWindow.Show();
                 }
+
                 Close();
             }
             else
@@ -67,8 +71,18 @@ namespace GUI
    
         }
 
-        
-
+        private void test_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                Uri fileUri = new Uri(openFileDialog.FileName);
+                test.Source = new BitmapImage(fileUri);
+                MessageBox.Show(test.Source.ToString());
+                byte[] arr= { };
+                File.WriteAllBytes("Foo.txt", arr);
+            }
+        }
     }
 }
 

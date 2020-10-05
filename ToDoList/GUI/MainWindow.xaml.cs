@@ -27,6 +27,7 @@ namespace GUI
         public MainWindow()
         {
             InitializeComponent();
+            ShowHi();
             ShowStatus();
             ShowRange();
             ShowWork();
@@ -48,14 +49,19 @@ namespace GUI
         private void ShowWork()
         {
             BLL_Work bLL_Work = new BLL_Work();
-            ListViewWork.ItemsSource = bLL_Work.getAll();            
+            ListViewWork.ItemsSource = bLL_Work.getAll();
+            GridViewColumn gridView = new GridViewColumn();
         }
 
-        public void ShowStatus()
+        private void ShowHi()
+        {
+            TextBlockHi.Text += UserSingleTon.Instance.User.UserFullName;
+        }
+
+        private void ShowStatus()
         {
             BLL_Work bLL_Work = new BLL_Work();
             ComboBoxStatus.ItemsSource = bLL_Work.getStatus();
-            
         }
 
         private void ShowRange()
@@ -68,7 +74,8 @@ namespace GUI
         {
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(ListViewWork.ItemsSource);           
 
-            view.Filter = StatusFilter;
+            view.Filter = WorkTitleFilter;
+            
             
         }
         private bool WorkTitleFilter(object item)
@@ -96,12 +103,12 @@ namespace GUI
             if (IsSort)
             {
                 view.SortDescriptions.Clear();
-                view.SortDescriptions.Add(new SortDescription(header.Content.ToString(), ListSortDirection.Descending));
+                view.SortDescriptions.Add(new SortDescription(header.Tag.ToString(), ListSortDirection.Descending));
             }
             else
             {
                 view.SortDescriptions.Clear();
-                view.SortDescriptions.Add(new SortDescription(header.Content.ToString(), ListSortDirection.Ascending));
+                view.SortDescriptions.Add(new SortDescription(header.Tag.ToString(), ListSortDirection.Ascending));
             }
             IsSort = !IsSort;
         }
@@ -120,9 +127,24 @@ namespace GUI
 
         private void ComboBoxStatus_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (ListViewWork != null)
+            {
+                CollectionViewSource.GetDefaultView(ListViewWork.ItemsSource).Refresh();
 
-            CollectionViewSource.GetDefaultView(ListViewWork.ItemsSource).Refresh();
-            //MessageBox.Show(ComboBoxStatus.SelectedIndex.ToString() + "--" + ComboBoxStatus.SelectedItem.ToString()+"--"+ComboBoxStatus.Text);
+            }else
+                MessageBox.Show(ComboBoxStatus.SelectedIndex.ToString() + "--" + ComboBoxStatus.SelectedItem.ToString() + "--" + ComboBoxStatus.Text);
+        }
+
+        private void ButtonAddWork_Click_AddWork(object sender, RoutedEventArgs e)
+        {
+            var dialogAddWork = new AddWorkDialog();
+            dialogAddWork.ShowDialog();
+        }
+
+        private void Ellipse_MouseDown_InfoUser(object sender, MouseButtonEventArgs e)
+        {
+            var info = new InfoUserDialog();
+            info.ShowDialog();
         }
     }
 }
