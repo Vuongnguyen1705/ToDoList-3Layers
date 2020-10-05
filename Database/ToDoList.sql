@@ -57,131 +57,22 @@ ALTER TABLE dbo.Comments ADD CONSTRAINT FK_Work_ID FOREIGN KEY(CMT_Work_ID) REFE
 GO 
 --Dữ liệu role
 INSERT INTO dbo.Role(R_Name) 
-VALUES(N'Admin' -- R_Name - nvarchar(10)
-)
-
-INSERT INTO dbo.Role(R_Name) 
-VALUES(N'Quản Lý' -- R_Name - nvarchar(10)
-)
-
-INSERT INTO dbo.Role(R_Name) 
-VALUES(N'Nhân viên' -- R_Name - nvarchar(10)
-)
-
+VALUES(N'Admin'),
+	(N'Quản Lý'),
+	(N'Nhân viên');
 
 GO 
 --Dữ liệu nhân viên
-INSERT INTO dbo.Users(U_Avatar, U_FullName, U_Phone, U_Email, U_Password, U_Address, U_Birthday, U_Gender, U_IsEnable, U_Role_ID)
-VALUES
-(	'/Images/icon-user-default.png',        -- U_Avartar - varchar(255)
-	N'Nguyễn Hùng Vương',       			-- U_FullName - nvarchar(50)
-    '0785715880',      						-- U_Phone - varchar(11)
-    N'vuong@gmail.com',       				-- U_Email - nvarchar(50)
-	'CVJuIRIHoFQ=',       						-- U_Password - varchar(30)
-    N'Q6, TPHCM',       					-- U_Address - nvarchar(100)
-    '1999-01-01', 							-- U_Birthday - date
-    N'Nam',       							-- U_Gender - nchar(5)
-    1,       								-- U_IsEnable - bit
-    2          								-- U_ID_Role - int
-)
-
-INSERT INTO dbo.Users(U_Avatar, U_FullName, U_Phone, U_Email, U_Password, U_Address, U_Birthday, U_Gender, U_IsEnable, U_Role_ID)
-VALUES
-(	'/Images/icon-user-default.png',        -- U_Avartar - varchar(255)
-	N'Tsan Xướng Vấy',       				-- U_FullName - nvarchar(50)
-    '0785715880',      						-- U_Phone - varchar(11)
-    N'vay@gmail.com',       				-- U_Email - nvarchar(50)
-	'CVJuIRIHoFQ=',       							-- U_Password - varchar(30)
-    N'Q6, TPHCM',       					-- U_Address - nvarchar(100)
-    '1999-01-01', 							-- U_Birthday - date
-    N'Nam',       							-- U_Gender - nchar(5)
-    1,       								-- U_IsEnable - bit
-    2          								-- U_ID_Role - int
-)
-
-INSERT INTO dbo.Users(U_Avatar, U_FullName, U_Phone, U_Email, U_Password, U_Address, U_Birthday, U_Gender, U_IsEnable, U_Role_ID)
-VALUES
-(	'/Images/icon-user-default.png',        -- U_Avartar - varchar(255)
-	N'Huỳnh Ngọc Trung',       				-- U_FullName - nvarchar(50)
-    '0785715880',      						-- U_Phone - varchar(11)
-    N'trunghn@gmail.com',       			-- U_Email - nvarchar(50)
-	'CVJuIRIHoFQ=',       						-- U_Password - varchar(30)
-    N'Q6, TPHCM',       					-- U_Address - nvarchar(100)
-    '1999-01-01', 							-- U_Birthday - date
-    N'Nam',       							-- U_Gender - nchar(5)
-    1,       								-- U_IsEnable - bit
-    2										-- U_ID_Role - int
-)
-
-INSERT INTO dbo.Users(U_Avatar, U_FullName, U_Phone, U_Email, U_Password, U_Address, U_Birthday, U_Gender, U_IsEnable, U_Role_ID)
-VALUES
-(	'/Images/icon-user-default.png',        -- U_Avartar - varchar(255)
-	N'Ngô Chí Trung',       				-- U_FullName - nvarchar(50)
-    '0785715880',      						-- U_Phone - varchar(11)
-    N'trungnc@gmail.com',       			-- U_Email - nvarchar(50)
-	'CVJuIRIHoFQ=',       						-- U_Password - varchar(30)
-    N'Q6, TPHCM',       					-- U_Address - nvarchar(100)
-    '1999-01-01', 							-- U_Birthday - date
-    N'Nam',       							-- U_Gender - nchar(5)
-    1,       								-- U_IsEnable - bit
-    2          								-- U_ID_Role - int
-)
-
-INSERT INTO dbo.Users(U_Avatar, U_FullName, U_Phone, U_Email, U_Password, U_Address, U_Birthday, U_Gender, U_IsEnable, U_Role_ID)
-VALUES
-(	'/Images/icon-user-default.png',        -- U_Avartar - varchar(255)
-	N'Hà Thiện Tuấn',						-- U_FullName - nvarchar(50)
-    '0785715880',      						-- U_Phone - varchar(11)
-    N'tuan@gmail.com',       				-- U_Email - nvarchar(50)
-	'CVJuIRIHoFQ=',       						-- U_Password - varchar(30)
-    N'Q6, TPHCM',       					-- U_Address - nvarchar(100)
-    '1999-01-01', 							-- U_Birthday - date
-    N'Nam',       							-- U_Gender - nchar(5)
-    1,       								-- U_IsEnable - bit
-    2          								-- U_ID_Role - int
-)
-
-INSERT INTO dbo.Users(U_Avatar, U_FullName, U_Phone, U_Email, U_Password, U_Address, U_Birthday, U_Gender, U_IsEnable, U_Role_ID)
-VALUES
-(	'/Images/icon-user-default.png',        -- U_Avartar - varchar(255)
-	N'Nhân viên 1',       					-- U_FullName - nvarchar(50)
-    '0785715880',      						-- U_Phone - varchar(11)
-    N'nv1@gmail.com',       				-- U_Email - nvarchar(50)
-	'CVJuIRIHoFQ=',       						-- U_Password - varchar(30)
-    N'Q6, TPHCM',       					-- U_Address - nvarchar(100)
-    '1999-01-01', 							-- U_Birthday - date
-    N'Nam',       							-- U_Gender - nchar(5)
-    1,       								-- U_IsEnable - bit
-    3          								-- U_ID_Role - int
-)
-
-INSERT INTO dbo.Users(U_Avatar, U_FullName, U_Phone, U_Email, U_Password, U_Address, U_Birthday, U_Gender, U_IsEnable, U_Role_ID)
-VALUES
-(	'/Images/icon-user-default.png',        -- U_Avartar - varchar(255)
-	N'Nhân viên 2',							-- U_FullName - nvarchar(50)
-    '0785715880',      						-- U_Phone - varchar(11)
-    N'nv2@gmail.com',       				-- U_Email - nvarchar(50)
-	'CVJuIRIHoFQ=',       						-- U_Password - varchar(30)
-    N'Q6, TPHCM',       					-- U_Address - nvarchar(100)
-    '1999-01-01', 							-- U_Birthday - date
-    N'Khác',       							-- U_Gender - nchar(5)
-    1,       								-- U_IsEnable - bit
-    3          								-- U_ID_Role - int
-)
-
-INSERT INTO dbo.Users(U_Avatar, U_FullName, U_Phone, U_Email, U_Password, U_Address, U_Birthday, U_Gender, U_IsEnable, U_Role_ID)
-VALUES
-(	'/Images/icon-user-default.png',        -- U_Avartar - varchar(255)
-	N'Nhân viên 3',							-- U_FullName - nvarchar(50)
-    '0785715880',							-- U_Phone - varchar(11)
-    N'nv3@gmail.com',						-- U_Email - nvarchar(50)
-	'CVJuIRIHoFQ=',							-- U_Password - varchar(30)
-    N'Q6, TPHCM',							-- U_Address - nvarchar(100)
-    '1999-01-01',							-- U_Birthday - date
-    N'Nữ',									-- U_Gender - nchar(5)
-    1,										-- U_IsEnable - bit
-    3										-- U_ID_Role - int
-)
+INSERT INTO dbo.Users VALUES 
+('/Images/icon-user-default.png', N'Admin', '0785715880', N'admin@gmail.com', 'GU8NJHAqP3c=', N'Q8, TPHCM', '1990-01-04', N'Nam', 1, 1),
+('/Images/icon-user-default.png', N'Nguyễn Hùng Vương', '0785715880', N'vuong@gmail.com', 'CVJuIRIHoFQ=', N'Q6, TPHCM', '1999-01-01', N'Nam', 1, 2),
+('/Images/icon-user-default.png', N'Tsan Xướng Vấy', '0785715880', N'vay@gmail.com',  'CVJuIRIHoFQ=',  N'Q6, TPHCM', '1999-01-01', N'Nam',1, 2 ),
+('/Images/icon-user-default.png', N'Huỳnh Ngọc Trung', '0785715880', N'trunghn@gmail.com',  'CVJuIRIHoFQ=',  N'Q Tân Phú, TPHCM', '1999-06-05', N'Nam',1, 2 ),
+('/Images/icon-user-default.png', N'Ngô Chí Trung', '0785715880', N'trungnc@gmail.com',  'CVJuIRIHoFQ=',  N'Q10, TPHCM', '1999-04-03', N'Nam',1, 2 ),
+('/Images/icon-user-default.png', N'Hà Thiện Tuấn', '0785715880', N'tuan@gmail.com',  'CVJuIRIHoFQ=',  N'Q6, TPHCM', '1999-01-06', N'Nam',1, 2 ),
+('/Images/icon-user-default.png', N'Nhân viên 1', '0785715880', N'nv1@gmail.com',  'CVJuIRIHoFQ=',  N'Q6, TPHCM', '1999-05-01', N'Nam',1, 3),
+('/Images/icon-user-default.png', N'Nhân viên 2', '0785715880', N'nv2@gmail.com',  'CVJuIRIHoFQ=',  N'Q6, TPHCM', '1997-01-01', N'Nam',1, 3),
+('/Images/icon-user-default.png',  N'Nhân viên 3',	'0785715880',	N'nv3@gmail.com',	'CVJuIRIHoFQ=',	N'Q6, TPHCM','1999-01-01',N'Nữ',1,3);
 
 GO 
 --Dữ liệu công việc
