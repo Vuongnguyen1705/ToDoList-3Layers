@@ -119,6 +119,41 @@ namespace DAL
             return fullName;
         }
 
+        public int getIDByFullName(string name)
+        {
+            int id=0;
+            string query = "Select U_ID from [Users] where U_FullName='" + name + "'";
+            var conn = Connection.Instance;
+            conn.Open();
+            SqlCommand command = new SqlCommand(query, conn);
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.Read())
+                id = reader.GetInt32(0);
+            conn.Close();
+            return id;
+        }
+
+        public List<string> getFullName()
+        {
+            var list = new List<string>();
+            string query = "Select U_FullName from [Users] where U_Role_ID=3";
+            var conn = Connection.Instance;
+            conn.Open();
+            SqlCommand command = new SqlCommand(query, conn);
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    list.Add(reader.GetString(0));
+                    
+                }
+                reader.NextResult();
+            }
+            conn.Close();
+            return list;
+        }
+
         public void InsertUpdateDeleteSQLString(string query)
         {
             var conn = Connection.Instance;

@@ -21,7 +21,10 @@ namespace BLL
             return dAL_User.getRoleIDByEmail(email);
         }
 
-
+        public List<string> getFullName()
+        {
+            return dAL_User.getFullName();
+        }
 
 		public void AddUser(DTO_User u)
 		{
@@ -42,6 +45,11 @@ namespace BLL
         public DTO_User getUserByEmail(string email)
         {
             return dAL_User.getUserByEmail(email);
+        }
+
+        public int getIDByFullName(string name)
+        {
+            return dAL_User.getIDByFullName(name);
         }
     }
 

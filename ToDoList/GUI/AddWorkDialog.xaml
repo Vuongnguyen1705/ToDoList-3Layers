@@ -43,18 +43,19 @@
        
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <DatePicker Margin="10 0"
-                  Name="LocaleDatePicker"
-                  Width="120"
+                  Name="DatePickerStartDate"
+                  Width="120"                        
                   materialDesign:HintAssist.Hint="Ngày bắt đầu" />
 
             <DatePicker Margin="10 0"
-                  Name="LocaleDatePicker1"
+                  Name="DatePickerEndDate"
                   Width="120"
                   materialDesign:HintAssist.Hint="Ngày kết thúc" />
         </StackPanel>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal">
             <ComboBox
+                Name="ComboBoxState"
                  materialDesign:HintAssist.Hint="Trạng thái"
                  IsEditable="True"
                  Margin="10 0"
@@ -73,7 +74,8 @@
             <TextBlock Text="Phạm vi: " VerticalAlignment="Center" Margin="10 0"></TextBlock>
             <RadioButton
                 GroupName="Range"
-                Margin="10 0"
+                Name="RadioPublic"
+                Margin="10 0" IsChecked="true"
                 Style="{StaticResource MaterialDesignRadioButton}">
                 <WrapPanel>
                     <materialDesign:PackIcon Kind="Earth" />
@@ -84,6 +86,7 @@
             </RadioButton>
             <RadioButton
                 GroupName="Range"
+                Name="RadioPrivate"
                 Margin="10 0"
                 Style="{StaticResource MaterialDesignRadioButton}">
                 
@@ -97,13 +100,15 @@
         </StackPanel>
         <StackPanel Grid.Row="4">
             <ComboBox
+                Name="ComboBoxListUser"
                 HorizontalAlignment="Left"
                 Width="120"
                 Margin="10 0"
+                Text="{Binding Name}"
                 materialDesign:HintAssist.Hint="Người làm chung"
                 IsEditable="True"
                 Style="{StaticResource MaterialDesignComboBox}">
-                <ComboBoxItem>ksdjfksd</ComboBoxItem>
+                
              
             </ComboBox>
         </StackPanel>
@@ -125,12 +130,13 @@
         </StackPanel>
         <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button
+                Click="Button_Click_Add"
                 Style="{StaticResource MaterialDesignFlatButton}"   
-                Content="ACCEPT"/>
+                Content="Đồng ý"/>
             <Button
                 Click="Button_Click_Cancel_AddWork"
                 Style="{StaticResource MaterialDesignFlatAccentButton}"                
-                Content="CANCEL"/>
+                Content="Hủy bỏ"/>
         </StackPanel>
     </Grid>
 </Window>
