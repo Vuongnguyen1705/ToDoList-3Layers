@@ -22,18 +22,14 @@ namespace DAL
             {
                 while (reader.Read())
                 {
-                    string coWorkerID = reader.GetString(6);
-                    string[] arrIdUser= { };
-                    if (!coWorkerID.Equals(""))
-                        arrIdUser =coWorkerID.Split(",");
-                    string coWorkerCount= arrIdUser.Length.ToString();
-
-                    works.Add(new DTO_Work(reader.GetInt32(0), reader.GetString(1),
-                        reader.GetDateTime(2),
-                        reader.GetDateTime(3),
-                        reader.GetString(4), reader.GetString(5), coWorkerCount, 
-                        reader.GetString(7), reader.GetInt32(8)));
+                    string coWorkerID =reader.GetString(6);
                     
+           
+                        works.Add(new DTO_Work(reader.GetInt32(0), reader.GetString(1),
+                            reader.GetDateTime(2),
+                            reader.GetDateTime(3),
+                            reader.GetString(4), reader.GetString(5), coWorkerID.ToString(),
+                            reader.GetString(7), reader.GetInt32(8)));
                 }
                 reader.NextResult();
             }
@@ -69,10 +65,10 @@ namespace DAL
             conn.Close();
         }
 
-        public void AddWork(DTO_Work w)
+        public void AddWork(string title, DateTime startDate, DateTime endDate, string state, string range, string coWorker,string attachment, int userid)
         {
             DataSet ds = new DataSet();
-            string query = "INSERT INTO dbo.Works(W_Title, W_StartDate, W_EndDate, W_State, W_Range, W_CoWorker, W_Attachments, W_User_ID) VALUES (N'" + w.WorkTitle + "','" + w.WorkStartDate + "','" + w.WorkEndDate + "',N'" + w.WorkStatus + "',N'" + w.WorkRange + "','" + w.WorkCoWorker + "','" + w.WorkAttachment + "','" + w.WorkUserID + "')";
+            string query = "INSERT INTO dbo.Works(W_Title, W_StartDate, W_EndDate, W_State, W_Range, W_CoWorker, W_Attachments, W_User_ID) VALUES (N'" + title + "','" + startDate + "','" + endDate + "',N'" + state + "',N'" + range + "','" + coWorker + "','" + attachment + "','" + userid + "')";
             InsertUpdateDeleteSQLString(query);
         }
 

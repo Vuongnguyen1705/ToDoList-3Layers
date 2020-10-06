@@ -32,6 +32,7 @@ namespace GUI
             ShowRange();
             ShowWork();
             Filter();
+            CollectionViewSource.GetDefaultView(ListViewWork.ItemsSource).Refresh();
 
             //test user
             //BLL_User u = new BLL_User();
@@ -44,13 +45,13 @@ namespace GUI
             //w.AddWork(new DTO_Work(99, "1 Viec eo nao do", new DateTime(2020, 09, 09), new DateTime(2020, 09, 10), "Đang làm", "Public", "", "", 10));
             //w.UpdateWork(new DTO_Work(6, "Some fricking work", new DateTime(2020, 09, 05), new DateTime(2020, 09, 12), "Trễ hạn", "Private", "", "", 10));
             //w.DeleteWork(6);
-        }   
+        }
 
         private void ShowWork()
         {
             BLL_Work bLL_Work = new BLL_Work();
             ListViewWork.ItemsSource = bLL_Work.getAll();
-            GridViewColumn gridView = new GridViewColumn();
+            
         }
 
         private void ShowHi()
@@ -138,13 +139,17 @@ namespace GUI
         private void ButtonAddWork_Click_AddWork(object sender, RoutedEventArgs e)
         {
             var dialogAddWork = new AddWorkDialog();
-            dialogAddWork.ShowDialog();
+            dialogAddWork.ShowDialog();            
         }
 
         private void Ellipse_MouseDown_InfoUser(object sender, MouseButtonEventArgs e)
         {
             var info = new InfoUserDialog();
             info.ShowDialog();
+        }
+        private void OnActivated(object sender, StartupEventArgs e)
+        {
+            MessageBox.Show("fsdfsdfs");
         }
     }
 }

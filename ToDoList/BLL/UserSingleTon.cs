@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BLL
 {
-    class UserSingleTon
+    public class UserSingleTon
     {
         private static readonly UserSingleTon instance = new UserSingleTon();
         private DTO_User user;
@@ -14,7 +14,7 @@ namespace BLL
         }
         private UserSingleTon()
         {
-            user = new DTO_User();
+            User = new DTO_User();
         }
         public static UserSingleTon Instance
         {
@@ -23,14 +23,7 @@ namespace BLL
                 return instance;
             }
         }
-        public DTO_User getUser()
-        {
-            return user;
-        }
 
-        public void setUser(DTO_User user)
-        {
-            this.user = user;
-        }
+        public DTO_User User { get; set; }
     }
 }

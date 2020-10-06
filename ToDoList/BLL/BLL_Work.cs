@@ -24,9 +24,9 @@ namespace BLL
             return dAL_Work.getRange();
         }
 
-        public void AddWork(DTO_Work w)
+        public void AddWork(string title, DateTime startDate, DateTime endDate, string state, string range, string coWorker, string attachment, int userid)
         {
-            dAL_Work.AddWork(w);
+            dAL_Work.AddWork(title, startDate,endDate, state,range,coWorker,attachment,userid);
         }
 
         public void UpdateWork(DTO_Work w)

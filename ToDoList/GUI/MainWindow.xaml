@@ -170,7 +170,7 @@
                         <GridViewColumn 
                             DisplayMemberBinding="{Binding WorkCoWorker}">
                             <GridViewColumnHeader Cursor="Hand"
-                                Content="Số người làm chung"
+                                Content="Người làm chung"
                                 Tag="WorkCoWorker"
                                 Click="GridViewColumnHeader_Click_Sort"/>
                         </GridViewColumn>
