@@ -3,6 +3,7 @@ using DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,7 +34,7 @@ namespace GUI
             ShowWork();
             Filter();
             CollectionViewSource.GetDefaultView(ListViewWork.ItemsSource).Refresh();
-
+            
             //test user
             //BLL_User u = new BLL_User();
             //u.AddUser(new DTO_User(99, "File hinh anh", "NVC", "0941201209", "abc@gmail.com", "123456", "Q11, TPHCM", new DateTime(1999,01,01), "Nam", true, 3));
@@ -139,7 +140,8 @@ namespace GUI
         private void ButtonAddWork_Click_AddWork(object sender, RoutedEventArgs e)
         {
             var dialogAddWork = new AddWorkDialog();
-            dialogAddWork.ShowDialog();            
+            dialogAddWork.ShowDialog();
+            ShowWork();
         }
 
         private void Ellipse_MouseDown_InfoUser(object sender, MouseButtonEventArgs e)
@@ -151,5 +153,27 @@ namespace GUI
         {
             MessageBox.Show("fsdfsdfs");
         }
+
+        private void ButtonDelete_Click_DeleteWork(object sender, RoutedEventArgs e)
+        {
+            int res=Convert.ToInt32(MessageBox.Show("Bạn thật sự muốn xóa","Confirm",MessageBoxButton.YesNo));
+            if (res == 6)
+            {
+                //MessageBox.Show("Da xoa");
+                Button button = sender as Button;
+                DTO_Work work = button.DataContext as DTO_Work;
+                int id = work.WorkID;
+                MessageBox.Show("" + id);
+                BLL_Work bLL_Work = new BLL_Work();
+                bLL_Work.DeleteWork(id);
+                ShowWork();
+            }
+            else return;
+        }
+        private void ButtonUpdate_Click_UpdateWork(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }

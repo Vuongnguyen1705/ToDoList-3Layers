@@ -9,7 +9,7 @@ namespace DAL
     public class Connection
     {
         private static SqlConnection connection;
-        private static string connectionString = @"Data Source=HUNGVUONG;Initial Catalog=ToDoList; Integrated Security=True;";
+        private static string connectionString = @"Data Source=LAPTOP-E6M8GE8F\SQLEXPRESS;Initial Catalog=ToDoList; Integrated Security=True;";
 
         public static SqlConnection Instance
         {
@@ -17,7 +17,7 @@ namespace DAL
             {
                 if(connection == null)
                 {
-                    connection = new SqlConnection(connectionString);
+                    connection = new SqlConnection(connectionString);   
                 }
                 return connection;
             }

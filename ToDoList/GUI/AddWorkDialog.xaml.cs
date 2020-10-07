@@ -74,7 +74,20 @@ namespace GUI
             bLL_Work.AddWork(TextBoxTitle.Text,Convert.ToDateTime(DatePickerStartDate.Text),Convert.ToDateTime(DatePickerEndDate.Text),ComboBoxState.Text,range,bLL_User.getIDByFullName(ComboBoxListUser.Text).ToString(),TextBlockAttachment.Text,UserSingleTon.Instance.User.UserID);
             Close();
             MessageBox.Show("Thêm thành công");
+        }
 
+        //-----------updateeee
+        public AddWorkDialog(string Id)
+        {
+            InitializeComponent();
+            BLL_Work bLL_Work = new BLL_Work();
+            DTO_Work res = new DTO_Work();
+            int id = Convert.ToInt32(Id);
+            List<DTO_Work> list=bLL_Work.getById(id);
+            foreach(var item in list)
+            {
+                res.WorkTitle=
+            }
         }
     }
 }
