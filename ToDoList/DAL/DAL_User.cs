@@ -176,7 +176,12 @@ namespace DAL
             string query = "UPDATE dbo.Users SET U_Avatar ='" + u.UserAvatar + "', U_FullName = N'" + u.UserFullName + "', U_Phone = '" + u.UserPhoneNumber + "', U_Email = N'" + u.UserEmail + "', U_Password = '" + u.UserPassword + "', U_Address = N'" + u.UserAddress + "', U_Birthday = '" + u.UserBirthday + "', U_Gender = '" + u.UserGender + "', U_IsEnable = '" + u.UserIsEnable + "', U_Role_ID = " + u.UserRoleID + " WHERE U_ID = " + u.UserID;
             InsertUpdateDeleteSQLString(query);
         }
-
+        public void UpdateUserPassword (int UserID,string UserPassword)
+        {
+            DataSet ds = new DataSet();
+            String query = "UPDATE dbo.Users SET  U_Password = '" + UserPassword + "' WHERE U_ID = " + UserID;
+            InsertUpdateDeleteSQLString(query);
+        }
         public void DeleteUser(int UserID)
         {
             DataSet ds = new DataSet();
