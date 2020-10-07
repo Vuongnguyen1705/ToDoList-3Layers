@@ -71,8 +71,7 @@
                 Margin="20,8,0,8"
                 Click="ButtonAddWork_Click_AddWork"
                 HorizontalAlignment="Left"
-                Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                ToolTip="MaterialDesignRaisedLightDarkButton">
+                Style="{StaticResource MaterialDesignRaisedDarkButton}">
                 <StackPanel Orientation="Horizontal">
                     <materialDesign:PackIcon
                         Kind="Add"
@@ -115,7 +114,7 @@
             </StackPanel>
         </Grid>
         <Grid Grid.Row="2">
-            <ListView Name="ListViewWork">
+            <ListView Name="ListViewWork" SelectionChanged="ListViewWork_SelectionChanged">
                 <ListView.Resources>
                     <Style TargetType="{x:Type GridViewColumnHeader}">
                         <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -130,6 +129,7 @@
                                 Content="Tên công việc" 
                                 Tag="WorkTitle"
                                 Click="GridViewColumnHeader_Click_Sort"/>
+                            
                         </GridViewColumn>
 
                         <GridViewColumn Width="150"

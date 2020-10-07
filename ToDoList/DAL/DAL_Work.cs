@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
@@ -8,10 +9,10 @@ namespace DAL
 {
     public class DAL_Work
     {
-        public List<DTO_Work> getAll()
+        public ObservableCollection<DTO_Work> getAll()
         {
             General general = new General();
-            List<DTO_Work> works = new List<DTO_Work>();
+            ObservableCollection<DTO_Work> works = new ObservableCollection<DTO_Work>();
             DAL_User dAL_User = new DAL_User();
             string query= "Select * from [Works]";
             var conn = Connection.Instance;
