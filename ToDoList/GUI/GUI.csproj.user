@@ -25,7 +25,7 @@
     <Compile Update="MainAdminWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="UpdateWorkDialog.xaml.cs">
+    <Compile Update="WorkDetailDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -51,7 +51,7 @@
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UpdateWorkDialog.xaml">
+    <Page Update="WorkDetailDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

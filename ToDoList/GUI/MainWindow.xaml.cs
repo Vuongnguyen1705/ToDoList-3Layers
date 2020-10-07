@@ -2,6 +2,7 @@
 using DTO;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Linq;
@@ -25,6 +26,8 @@ namespace GUI
     public partial class MainWindow : Window
     {
         private bool IsSort = false;
+        BLL_Work bLL_Work = new BLL_Work();
+        BLL_User bLL_User = new BLL_User();
         public MainWindow()
         {
             InitializeComponent();
@@ -50,9 +53,21 @@ namespace GUI
 
         private void ShowWork()
         {
-            BLL_Work bLL_Work = new BLL_Work();
-            ListViewWork.ItemsSource = bLL_Work.getAll();
-            
+            ObservableCollection<DTO_Work> w = new ObservableCollection<DTO_Work>();
+            foreach (var item in bLL_Work.getAll())
+            {
+                if (!item.WorkCoWorker.Equals(""))
+                {
+                    w.Add(new DTO_Work(item.WorkID, item.WorkTitle, item.WorkStartDate, item.WorkEndDate, item.WorkStatus, item.WorkRange, bLL_User.getFullNameByID(Int32.Parse(item.WorkCoWorker)), item.WorkAttachment, item.WorkUserID));
+                }
+                else
+                {
+                    w.Add(new DTO_Work(item.WorkID, item.WorkTitle, item.WorkStartDate, item.WorkEndDate, item.WorkStatus, item.WorkRange, item.WorkCoWorker, item.WorkAttachment, item.WorkUserID));
+                }
+            }
+
+            ListViewWork.ItemsSource = w;
+
         }
 
         private void ShowHi()
@@ -71,14 +86,14 @@ namespace GUI
             BLL_Work bLL_Work = new BLL_Work();
             ComboBoxRange.ItemsSource = bLL_Work.getRange();
         }
-        
+
         private void Filter()
         {
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(ListViewWork.ItemsSource);           
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(ListViewWork.ItemsSource);
 
             view.Filter = WorkTitleFilter;
-            
-            
+
+
         }
         private bool WorkTitleFilter(object item)
         {
@@ -90,8 +105,8 @@ namespace GUI
         }
 
         private bool StatusFilter(object item)
-        {            
-            if ( String.IsNullOrEmpty(ComboBoxStatus.Text) || ComboBoxStatus.SelectedItem.ToString().Equals("Tất cả"))
+        {
+            if (String.IsNullOrEmpty(ComboBoxStatus.Text) || ComboBoxStatus.SelectedItem.ToString().Equals("Tất cả"))
                 return true;
             else
                 return ((item as DTO_Work).WorkStatus.IndexOf(ComboBoxStatus.SelectedItem.ToString(), StringComparison.OrdinalIgnoreCase) >= 0);
@@ -133,7 +148,8 @@ namespace GUI
             {
                 CollectionViewSource.GetDefaultView(ListViewWork.ItemsSource).Refresh();
 
-            }else
+            }
+            else
                 MessageBox.Show(ComboBoxStatus.SelectedIndex.ToString() + "--" + ComboBoxStatus.SelectedItem.ToString() + "--" + ComboBoxStatus.Text);
         }
 
@@ -154,6 +170,12 @@ namespace GUI
             MessageBox.Show("fsdfsdfs");
         }
 
+        private void ListViewWork_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MessageBox.Show((ListViewWork.SelectedValue as DTO_Work).WorkTitle);
+            var detail = new WorkDetailDialog();
+            detail.ShowDialog();
+        }
         private void ButtonDelete_Click_DeleteWork(object sender, RoutedEventArgs e)
         {
             int res=Convert.ToInt32(MessageBox.Show("Bạn thật sự muốn xóa","Confirm",MessageBoxButton.YesNo));
