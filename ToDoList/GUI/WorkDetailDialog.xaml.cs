@@ -28,6 +28,7 @@ namespace GUI
         {
             InitializeComponent();
             ShowListUser();
+            ShowComment();
              
         }
         private void Button_Click_Cancel(object sender, RoutedEventArgs e)
@@ -107,28 +108,9 @@ namespace GUI
         {
             if (e.Key == Key.Enter && !TextBoxInputComment.Text.Equals(""))
             {
-                ListViewComment.Items.Add(TextBoxInputComment.Text);
+                ListViewComment.Items.Add(new DTO_Comment(1, bLL_User.getFullNameByID(Int32.Parse(UserSingleTon.Instance.User.UserID.ToString())), 2, TextBoxInputComment.Text));
                 TextBoxInputComment.Clear();    
             }
-        }
-
-        public class Comment
-        {
-            public Comment(int iD, string userName, int iDWork, string comment)
-            {
-                ID = iD;
-                UserName = userName;
-                IDWork = iDWork;
-                this.comment = comment;
-            }
-
-            public int ID { get; set; }
-
-            public string UserName { get; set; }
-
-            public int IDWork { get; set; }
-
-            public string comment { get; set; }
         }
 
     }

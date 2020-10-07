@@ -192,7 +192,7 @@
                                 Click="GridViewColumnHeader_Click_Sort"/>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="Sửa" Click="ButtonUpdate_Click_UpdateWork"></Button>
+                                    <Button Content="Chi tiết" Click="ButtonUpdate_Click_UpdateWork"></Button>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
