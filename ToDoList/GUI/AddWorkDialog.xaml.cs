@@ -86,7 +86,7 @@ namespace GUI
             List<DTO_Work> list=bLL_Work.getById(id);
             foreach(var item in list)
             {
-                res.WorkTitle=
+                //res.WorkTitle=
             }
         }
     }

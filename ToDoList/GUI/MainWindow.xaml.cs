@@ -172,9 +172,8 @@ namespace GUI
 
         private void ListViewWork_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MessageBox.Show((ListViewWork.SelectedValue as DTO_Work).WorkTitle);
-            var detail = new WorkDetailDialog();
-            detail.ShowDialog();
+            
+            
         }
         private void ButtonDelete_Click_DeleteWork(object sender, RoutedEventArgs e)
         {
@@ -194,7 +193,8 @@ namespace GUI
         }
         private void ButtonUpdate_Click_UpdateWork(object sender, RoutedEventArgs e)
         {
-
+            var detail = new WorkDetailDialog();
+            detail.ShowDialog();
         }
 
     }
