@@ -173,9 +173,32 @@
                                 Content="Người làm chung"
                                 Tag="WorkCoWorker"
                                 Click="GridViewColumnHeader_Click_Sort"/>
+                            </GridViewColumn>
+                        <GridViewColumn>
+                            <GridViewColumnHeader Cursor="Hand"
+                                Content=""
+                                Tag="Delete"
+                                Click="GridViewColumnHeader_Click_Sort"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Xóa" Click="ButtonDelete_Click_DeleteWork"></Button>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn>
+                            <GridViewColumnHeader Cursor="Hand"
+                                Content=""
+                                Tag="Update"
+                                Click="GridViewColumnHeader_Click_Sort"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Sửa" Click="ButtonUpdate_Click_UpdateWork"></Button>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>
+                
 
             </ListView>
         </Grid>
