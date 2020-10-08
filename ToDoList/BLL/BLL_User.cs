@@ -48,6 +48,10 @@ namespace BLL
 		{
 			dAL_User.DeleteUser(UserID);
 		}
+        public void UpdateUserPassword(int UserID, string UserPassword)
+        {
+            dAL_User.UpdateUserPassword(UserID,UserPassword);
+        }
 	
 
         public DTO_User getUserByEmail(string email)
@@ -59,6 +63,7 @@ namespace BLL
         {
             return dAL_User.getIDByFullName(name);
         }
+      
     }
 
 }
