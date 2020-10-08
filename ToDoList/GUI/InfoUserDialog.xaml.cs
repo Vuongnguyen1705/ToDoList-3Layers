@@ -1,7 +1,12 @@
 ﻿using BLL;
+using DAL;
+using DTO;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+
+using System.Data.SqlClient;
+using System.Reflection.Metadata;
 using System.IO;
 using System.Text;
 using System.Windows;
@@ -20,6 +25,9 @@ namespace GUI
     /// </summary>
     public partial class InfoUserDialog : Window
     {
+        General general = new General();
+        BLL_User user = new BLL_User();
+
         public InfoUserDialog()
         {
             InitializeComponent();
@@ -40,14 +48,52 @@ namespace GUI
         }
         private void Button_Click_Apply(object sender, RoutedEventArgs e)
         {
-            Close();
+            if (CheckBoxChangePass.IsChecked.Equals(false))
+            {
+                Close();
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(PasswordBoxOldPass.Password))
+                {
+                    MessageBox.Show("nhap pass di ban ei");
+                }
+                else
+                {
+                    if (!general.EncryptString( PasswordBoxOldPass.Password,general.passEncode).Equals(UserSingleTon.Instance.User.UserPassword))
+                    {
+                        MessageBox.Show("nhap sai r ba ");
+                    }
+                    else
+                    {
+                        if (!PasswordBoxNewPassConfirm.Password.Equals(PasswordBoxNewPass.Password))
+                        {
+                            MessageBox.Show("Nhap 2 pass khac nhau roi kia <('')> ");
+                        }
+                        else 
+                        {
+                            user.UpdateUserPassword(UserSingleTon.Instance.User.UserID,general.EncryptString(PasswordBoxNewPass.Password,general.passEncode));
+                            MessageBox.Show("da luu thanh cong ");
+                            Close(); 
+                        }
+                    }
+                }
+            }
+            
+            
         }
 
         private void Button_Click_Cancel(object sender, RoutedEventArgs e)
         {
             Close();
         }
-
+        private void checkChangePassWordCheckBox_Is_Check ( object sender, RoutedEventArgs e)
+        {
+            if (CheckBoxChangePass.IsChecked.Equals(true))
+            {
+                MessageBox.Show("Sai thông tin đăng nhập");
+            }
+        }
         private void CheckBoxChangePass_Unchecked_Pass(object sender, RoutedEventArgs e)
         {
             if (CheckBoxChangePass.IsChecked.Equals(false))
