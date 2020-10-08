@@ -30,7 +30,7 @@
                  VerticalAlignment="Top">
             <Ellipse.Fill>
                 <ImageBrush x:Name="ImageBrushAvatar"
-                    ImageSource="Images/icon-user-default.png" />
+                    ImageSource="Images/icon-user-default.png" Stretch="Uniform" />
             </Ellipse.Fill>
         </Ellipse>
         <Grid Grid.Row="1">

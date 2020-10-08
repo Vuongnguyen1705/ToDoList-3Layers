@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -70,7 +71,7 @@ namespace GUI
             {
                 Uri fileUri = new Uri(openFileDialog.FileName);
                 ImageBrushAvatar.ImageSource = new BitmapImage(fileUri);
-                MessageBox.Show(ImageBrushAvatar.ImageSource.ToString());
+                MessageBox.Show(fileUri+"");
                 
             }
 

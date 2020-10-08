@@ -2,6 +2,7 @@
 using DTO;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
 using System.Windows;
@@ -21,6 +22,8 @@ namespace GUI
     public partial class MainAdminWindow : Window
     {
         private bool IsSort = false;
+        BLL_User bLL_User = new BLL_User();
+        BLL_Role role = new BLL_Role();
         public MainAdminWindow()
         {
             InitializeComponent();
@@ -31,8 +34,22 @@ namespace GUI
 
         private void ShowUser()
         {
-            BLL_User bLL_User = new BLL_User();
-            ListViewUser.ItemsSource = bLL_User.getAll();
+            ObservableCollection<DTO_User> u = new ObservableCollection<DTO_User>();
+            foreach (var item in bLL_User.getUserEnable())
+            {
+                if (!item.UserRoleID.Equals(""))
+                {
+                    u.Add(new DTO_User(item.UserID, item.UserAvatar, item.UserFullName, item.UserPhoneNumber, item.UserEmail, item.UserPassword, item.UserAddress, item.UserBirthday, item.UserGender,item.UserIsEnable,role.getRoleNameByID(Int32.Parse(item.UserRoleID))));
+                }
+                else
+                {
+                    u.Add(new DTO_User(item.UserID, item.UserAvatar, item.UserFullName, item.UserPhoneNumber, item.UserEmail, item.UserPassword, item.UserAddress, item.UserBirthday, item.UserGender, item.UserIsEnable, item.UserRoleID));
+                }
+            }
+
+            ListViewUser.ItemsSource = u;
+
+            //ListViewUser.ItemsSource = bLL_User.getUserEnable();
         }
 
         private void Filter()
@@ -96,6 +113,11 @@ namespace GUI
         private void ShowHi()
         {
             TextBlockHi.Text += UserSingleTon.Instance.User.UserFullName;
+        }
+
+        private void ButtonDeleteUser_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

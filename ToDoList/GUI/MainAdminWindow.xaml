@@ -70,8 +70,7 @@
                 Margin="20,8,0,8"
                 Click="ButtonAddUser_Click"
                 HorizontalAlignment="Left"
-                Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                ToolTip="MaterialDesignRaisedLightDarkButton">
+                Style="{StaticResource MaterialDesignRaisedDarkButton}">
                 <StackPanel Orientation="Horizontal">
                     <materialDesign:PackIcon
                         Kind="Add"
@@ -158,6 +157,23 @@
                                 Content="Vai trò"
                                 Tag="UserRoleID"
                                 Click="GridViewColumnHeader_Click_Sort"/>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="80">
+                            <GridViewColumnHeader Cursor="Hand"                               
+                                Tag="UserDelete"
+                                Click="GridViewColumnHeader_Click_Sort"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button x:Name="ButtonDeleteUser"
+                                        Content="Xóa"
+                                        Foreground="Red"
+                                        BorderBrush="Red"
+                                        BorderThickness="2"
+                                        Click="ButtonDeleteUser_Click"
+                                        Style="{StaticResource MaterialDesignOutlinedButton}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>

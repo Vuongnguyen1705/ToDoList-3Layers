@@ -45,7 +45,7 @@ namespace GUI
             int roleID = bLL_User.getRoleIDByEmail(Email.Text);
 
             if (dangNhap.TryLogin(Email.Text, passDecode))
-            {
+            {                
                 UserSingleTon.Instance.User=bLL_User.getUserByEmail(Email.Text);
                 if (roleID == 1)
                 {

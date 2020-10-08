@@ -165,11 +165,6 @@ namespace GUI
             var info = new InfoUserDialog();
             info.ShowDialog();
         }
-        private void OnActivated(object sender, StartupEventArgs e)
-        {
-            MessageBox.Show("fsdfsdfs");
-        }
-
         private void ListViewWork_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             
@@ -193,7 +188,10 @@ namespace GUI
         }
         private void ButtonUpdate_Click_UpdateWork(object sender, RoutedEventArgs e)
         {
-            var detail = new WorkDetailDialog();
+            Button button = sender as Button;
+            DTO_Work work = button.DataContext as DTO_Work;
+            int id = work.WorkID;
+            var detail = new WorkDetailDialog(id);
             detail.ShowDialog();
         }
 

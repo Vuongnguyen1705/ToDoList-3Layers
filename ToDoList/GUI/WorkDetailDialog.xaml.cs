@@ -21,18 +21,20 @@ namespace GUI
     /// </summary>
     public partial class WorkDetailDialog : Window
     {
+        int idWork;
         ObservableCollection<string> names = new ObservableCollection<string>();
         BLL_Comment bLL_Comment = new BLL_Comment();
         BLL_User bLL_User = new BLL_User();
-        public WorkDetailDialog()
+        public WorkDetailDialog(int id)
         {
             InitializeComponent();
+            idWork = id;
             ShowListUser();
             ShowComment();
              
         }
         private void Button_Click_Cancel(object sender, RoutedEventArgs e)
-        {
+        {            
             Close();
         }
 
@@ -44,7 +46,7 @@ namespace GUI
         private void ShowComment()
         {
             ObservableCollection<DTO_Comment> comments = new ObservableCollection<DTO_Comment>();
-            foreach(var item in bLL_Comment.getAll())
+            foreach(var item in bLL_Comment.getCommentByIDWork(idWork))
             {
                 comments.Add(new DTO_Comment(item.CommentID, bLL_User.getFullNameByID(Int32.Parse(item.CommentUserID)), item.CommentWorkID, item.CommentContent));
             }
@@ -52,9 +54,7 @@ namespace GUI
         }
         private void ShowListUser()
         {
-            List<string> user = new List<string>();
-            
-            ComboBoxListUser.ItemsSource = bLL_User.getFullName();
+            ComboBoxListUser.ItemsSource = bLL_User.getUserEnable();         
         }
         private void Attachment_MouseDown_Upload_File(object sender, MouseButtonEventArgs e)
         {
@@ -78,28 +78,13 @@ namespace GUI
 
         private void Button_Click_Add(object sender, RoutedEventArgs e)
         {
-            BLL_Work bLL_Work = new BLL_Work();
-            BLL_User bLL_User = new BLL_User();
-            string range;
-            if (RadioPublic.IsChecked == true)
-            {
-                range = "Public";
-            }
-            else
-            {
-                range = "Private";
-            }
-            bLL_Work.AddWork(TextBoxTitle.Text, Convert.ToDateTime(DatePickerStartDate.Text), Convert.ToDateTime(DatePickerEndDate.Text), ComboBoxState.Text, range, bLL_User.getIDByFullName(ComboBoxListUser.Text).ToString(), TextBlockAttachment.Text, UserSingleTon.Instance.User.UserID);
-            Close();
-            MessageBox.Show("Thêm thành công");
 
         }
 
         
         private void Button_Click_Comment(object sender, RoutedEventArgs e)
-        {
-            string FullName = UserSingleTon.Instance.User.UserFullName;
-            ListViewComment.Items.Add(TextBoxInputComment.Text);
+        {            
+            bLL_Comment.insertComment(new DTO_Comment(1, UserSingleTon.Instance.User.UserID.ToString(), idWork, TextBoxInputComment.Text));
             TextBoxInputComment.Clear();
 
         }
@@ -108,8 +93,11 @@ namespace GUI
         {
             if (e.Key == Key.Enter && !TextBoxInputComment.Text.Equals(""))
             {
-                ListViewComment.Items.Add(new DTO_Comment(1, bLL_User.getFullNameByID(Int32.Parse(UserSingleTon.Instance.User.UserID.ToString())), 2, TextBoxInputComment.Text));
-                TextBoxInputComment.Clear();    
+                bLL_Comment.insertComment(new DTO_Comment(1,UserSingleTon.Instance.User.UserID.ToString(),idWork,TextBoxInputComment.Text));
+                //ListViewComment.Items.Add(new DTO_Comment(19, UserSingleTon.Instance.User.UserFullName, idWork, TextBoxInputComment.Text));
+                TextBoxInputComment.Clear();
+                //CollectionViewSource.GetDefaultView(ListViewComment.ItemsSource).Refresh();
+                ShowComment();
             }
         }
 
