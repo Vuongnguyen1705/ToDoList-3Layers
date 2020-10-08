@@ -120,7 +120,7 @@
                     <Style TargetType="{x:Type GridViewColumnHeader}">
                         <Setter Property="HorizontalContentAlignment" Value="Center" />
                     </Style>
-                    
+
                 </ListView.Resources>
                 <ListView.View>
                     <GridView>
@@ -130,7 +130,7 @@
                                 Content="Tên công việc" 
                                 Tag="WorkTitle"
                                 Click="GridViewColumnHeader_Click_Sort"/>
-                            
+
                         </GridViewColumn>
 
                         <GridViewColumn Width="150"
@@ -174,7 +174,7 @@
                                 Content="Người làm chung"
                                 Tag="WorkCoWorker"
                                 Click="GridViewColumnHeader_Click_Sort"/>
-                            </GridViewColumn>
+                        </GridViewColumn>
                         <GridViewColumn>
                             <GridViewColumnHeader Cursor="Hand"
                                 Content=""
@@ -199,9 +199,13 @@
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>
-                
+
 
             </ListView>
         </Grid>
+        <Label Content="" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Center" Height="28" Width="31" Background="#FF5365D6"/>
+        <Label Content="Việc làm chung" HorizontalAlignment="Left" Margin="41,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="94" Height="28"/>
+        <Label Content="" HorizontalAlignment="Left" Margin="141,0,0,0" Grid.Row="3" VerticalAlignment="Center" Height="28" Width="28" Background="#FFE8EAF9" Foreground="#DDD3C8C8" BorderBrush="Black"/>
+        <Label Content="Việc làm chính" HorizontalAlignment="Left" Margin="172,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="94" Height="28"/>
     </Grid>
 </Window>

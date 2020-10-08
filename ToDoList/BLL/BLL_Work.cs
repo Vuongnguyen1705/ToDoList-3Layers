@@ -18,6 +18,10 @@ namespace BLL
         {
             return dAL_Work.getById(id);
         }
+        public List<DTO_Work> getWorkById(int id)
+        {
+            return dAL_Work.getWorkById(id);
+        }
         public List<string> getStatus()
         {
             return dAL_Work.getStatus();
