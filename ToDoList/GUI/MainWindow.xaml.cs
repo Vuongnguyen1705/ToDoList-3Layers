@@ -85,8 +85,8 @@ namespace GUI
             }
             
             ListViewWork.ItemsSource = w;
-
-
+            //BLL_Work bLL_Work = new BLL_Work();
+            //ListViewWork.ItemsSource = bLL_Work.getAll();
         }
 
         private void ShowHi()
@@ -210,8 +210,10 @@ namespace GUI
             Button button = sender as Button;
             DTO_Work work = button.DataContext as DTO_Work;
             int id = work.WorkID;
+            MessageBox.Show("" + id);
             var detail = new WorkDetailDialog(id);
             detail.ShowDialog();
+            ShowWork();
         }
 
     }

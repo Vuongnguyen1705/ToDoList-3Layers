@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Icon="Images/favicon.png"
         
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -49,12 +50,14 @@
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <DatePicker Margin="10 0"
                   Name="DatePickerStartDate"
-                  Width="120"                        
+                  Width="120"          
+                  DisplayDateEnd="{Binding Path=Text, ElementName=DatePickerEndDate}"
                   materialDesign:HintAssist.Hint="Ngày bắt đầu" />
 
             <DatePicker Margin="10 0"
                   Name="DatePickerEndDate"
-                  Width="120"
+                  Width="120" 
+                  DisplayDateStart="{Binding Path=Text, ElementName=DatePickerStartDate}"
                   materialDesign:HintAssist.Hint="Ngày kết thúc" />
         </StackPanel>
 
@@ -74,6 +77,9 @@
                 <ComboBoxItem
                     Content="Trễ hạn"/>
             </ComboBox>
+            <TextBox                
+                x:Name="WorkId"
+                Visibility="Hidden"/>
         </StackPanel>
         <StackPanel Grid.Row="3" Orientation="Horizontal">
             <TextBlock Text="Phạm vi: " VerticalAlignment="Center" Margin="10 0"></TextBlock>
@@ -111,14 +117,9 @@
                 Margin="10 0"
                 Text="{Binding Name}"
                 materialDesign:HintAssist.Hint="Người làm chung"
-                IsEditable="False"
+                IsEditable="True"
+                DisplayMemberPath="{Binding userFullName}"
                 Style="{StaticResource MaterialDesignComboBox}">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock x:Name="abc" Text="{Binding UserFullName}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-
             </ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="5" Orientation="Horizontal" VerticalAlignment="Center">
@@ -147,7 +148,7 @@
                     HorizontalAlignment="Center">
                     <Bold FontSize="18">Bình luận</Bold>
                 </TextBlock>
-                
+
                 <ListView Name="ListViewComment"
                     Height="260">
                     <ListView.ItemTemplate>
@@ -167,7 +168,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                
+
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                 Margin="5 0"
@@ -182,14 +183,14 @@
                     Click="Button_Click_Comment"
                     Margin="10"/>
             </StackPanel>
-           
+
         </Grid>
         <StackPanel Grid.Row="6"
             Grid.Column="0"
             VerticalAlignment="Center"
             HorizontalAlignment="Center">
             <Button
-                Click="Button_Click_Add"
+                Click="Button_Click_Update"
                 Style="{StaticResource MaterialDesignRaisedAccentButton}"   
                 Content="Cập nhật"/>
         </StackPanel>

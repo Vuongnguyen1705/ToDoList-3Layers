@@ -25,14 +25,17 @@ namespace GUI
         ObservableCollection<string> names = new ObservableCollection<string>();
         BLL_Comment bLL_Comment = new BLL_Comment();
         BLL_User bLL_User = new BLL_User();
+        BLL_Work bLL_Work = new BLL_Work();
         public WorkDetailDialog(int id)
         {
             InitializeComponent();
             idWork = id;
             ShowListUser();
             ShowComment();
-             
+            ShowDetailWork();
+
         }
+
         private void Button_Click_Cancel(object sender, RoutedEventArgs e)
         {            
             Close();
@@ -40,7 +43,30 @@ namespace GUI
 
         private void ShowDetailWork()
         {
-            
+            ObservableCollection<DTO_Work> list = bLL_Work.getById(idWork);
+            foreach (var item in list)
+            {
+                TextBoxTitle.Text = item.WorkTitle;
+                DatePickerStartDate.Text = item.WorkStartDate.ToString();
+                DatePickerEndDate.Text = item.WorkEndDate.ToString();
+                ComboBoxState.Text = item.WorkStatus;
+                if (item.WorkRange.Trim().Equals("Public"))
+                {
+
+                }
+                else
+                {
+                    RadioPrivate.IsChecked = true;
+                    MessageBox.Show(item.WorkRange);
+                }
+                string tenNhanVien = bLL_User.getFullNameByID(Convert.ToInt32(item.WorkCoWorker)).Trim().ToString();
+                ComboBoxListUser.Text = tenNhanVien;
+                MessageBox.Show("--"+tenNhanVien+"--");
+                TextBlockAttachment.Text = item.WorkAttachment;
+                WorkId.Text = item.WorkID.ToString();
+                MessageBox.Show("coworker: " + bLL_User.getFullNameByID(Convert.ToInt32(item.WorkCoWorker)).ToString());
+                MessageBox.Show("da load xong");
+            }
         }
 
         private void ShowComment()
@@ -76,12 +102,36 @@ namespace GUI
 
         }
 
-        private void Button_Click_Add(object sender, RoutedEventArgs e)
+        private void Button_Click_Update(object sender, RoutedEventArgs e)
         {
-
+            MessageBox.Show("zo");
+            string id = WorkId.Text;
+            MessageBox.Show(id);
+            string range;
+            if (RadioPublic.IsChecked == true)
+            {
+                range = "Public";
+            }
+            else
+            {
+                range = "Private";
+            }
+            DTO_Work work = new DTO_Work();
+            work.WorkID = Convert.ToInt32(id);
+            work.WorkTitle = TextBoxTitle.Text;
+            work.WorkStartDate = Convert.ToDateTime(DatePickerStartDate.Text);
+            work.WorkEndDate = Convert.ToDateTime(DatePickerEndDate.Text);
+            work.WorkStatus = ComboBoxState.Text;
+            work.WorkRange = range;
+            work.WorkCoWorker = bLL_User.getIDByFullName(ComboBoxListUser.Text).ToString();
+            work.WorkAttachment = TextBlockAttachment.Text;
+            work.WorkUserID=UserSingleTon.Instance.User.UserID;
+            MessageBox.Show(ComboBoxListUser.Text);
+            bLL_Work.UpdateWork(work);
+            MessageBox.Show("Update thành công");
+            Close();
         }
 
-        
         private void Button_Click_Comment(object sender, RoutedEventArgs e)
         {            
             bLL_Comment.insertComment(new DTO_Comment(1, UserSingleTon.Instance.User.UserID.ToString(), idWork, TextBoxInputComment.Text));
@@ -93,10 +143,8 @@ namespace GUI
         {
             if (e.Key == Key.Enter && !TextBoxInputComment.Text.Equals(""))
             {
-                bLL_Comment.insertComment(new DTO_Comment(1,UserSingleTon.Instance.User.UserID.ToString(),idWork,TextBoxInputComment.Text));
-                //ListViewComment.Items.Add(new DTO_Comment(19, UserSingleTon.Instance.User.UserFullName, idWork, TextBoxInputComment.Text));
-                TextBoxInputComment.Clear();
-                //CollectionViewSource.GetDefaultView(ListViewComment.ItemsSource).Refresh();
+                bLL_Comment.insertComment(new DTO_Comment(1,UserSingleTon.Instance.User.UserID.ToString(),idWork,TextBoxInputComment.Text));                
+                TextBoxInputComment.Clear();             
                 ShowComment();
             }
         }

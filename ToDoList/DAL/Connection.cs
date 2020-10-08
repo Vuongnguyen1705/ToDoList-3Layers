@@ -9,8 +9,7 @@ namespace DAL
     public class Connection
     {
         private static SqlConnection connection;
-        private static string connectionString = @"Data Source=LAPTOP-ALG1IKKD\SQLEXPRESS;Initial Catalog=ToDoList; Integrated Security=True;";
-
+        private static string connectionString = @"Data Source=HUNGVUONG;Initial Catalog=ToDoList; Integrated Security=True;";
         public static SqlConnection Instance
         {
             get
@@ -46,8 +45,7 @@ namespace DAL
             int isChange = cmd.ExecuteNonQuery();
             Instance.Close();
             return isChange;
-        } 
-
+        }
         public void Close()
         {
             Instance.Close();

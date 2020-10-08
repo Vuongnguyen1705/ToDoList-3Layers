@@ -36,12 +36,14 @@ namespace DAL
             conn.Close();
             return works;
         }
-        public List<DTO_Work> getById(int id)
+        public ObservableCollection<DTO_Work> getById(int id)
         {
-            List<DTO_Work> works = new List<DTO_Work>();
+            General general = new General();
+            ObservableCollection<DTO_Work> works = new ObservableCollection<DTO_Work>();
+            DAL_User dAL_User = new DAL_User();
+            string query = "Select * from [Works] where W_ID=" + id;
             var conn = Connection.Instance;
             conn.Open();
-            string query = "Select * from [Works] where W_ID="+id;
             SqlCommand command = new SqlCommand(query, conn);
             SqlDataReader reader = command.ExecuteReader();
             while (reader.HasRows)
@@ -49,6 +51,8 @@ namespace DAL
                 while (reader.Read())
                 {
                     string coWorkerID = reader.GetString(6);
+
+
                     works.Add(new DTO_Work(reader.GetInt32(0), reader.GetString(1),
                         reader.GetDateTime(2),
                         reader.GetDateTime(3),
