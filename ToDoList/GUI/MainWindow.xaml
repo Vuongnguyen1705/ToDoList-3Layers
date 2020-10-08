@@ -16,6 +16,7 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         
         mc:Ignorable="d"
+        ResizeMode="CanResizeWithGrip"
         Title="MainWindow" Height="500" Width="1000"
         WindowStartupLocation="CenterScreen">
     <Grid>

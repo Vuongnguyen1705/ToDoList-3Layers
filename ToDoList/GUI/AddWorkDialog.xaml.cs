@@ -63,18 +63,35 @@ namespace GUI
             BLL_Work bLL_Work = new BLL_Work();
             BLL_User bLL_User = new BLL_User();
             string range;
-            if (RadioPublic.IsChecked==true)
+            if (Validate() == 1)
             {
-                range = "Public";
+                if (RadioPublic.IsChecked == true)
+                {
+                    range = "Public";
+                }
+                else
+                {
+                    range = "Private";
+                }
+                bLL_Work.AddWork(TextBoxTitle.Text, Convert.ToDateTime(DatePickerStartDate.Text), Convert.ToDateTime(DatePickerEndDate.Text), ComboBoxState.Text, range, bLL_User.getIDByFullName(ComboBoxListUser.Text).ToString(), TextBlockAttachment.Text, UserSingleTon.Instance.User.UserID);
+                Close();
+                MessageBox.Show("Thêm thành công");
             }
             else
             {
-                range = "Private";
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin");
             }
-            bLL_Work.AddWork(TextBoxTitle.Text,Convert.ToDateTime(DatePickerStartDate.Text),Convert.ToDateTime(DatePickerEndDate.Text),ComboBoxState.Text,range,bLL_User.getIDByFullName(ComboBoxListUser.Text).ToString(),TextBlockAttachment.Text,UserSingleTon.Instance.User.UserID);
             
-            MessageBox.Show("Thêm thành công");
-            Close();
+        }
+        private int Validate()
+        {
+            if(string.IsNullOrEmpty(TextBoxTitle.Text.Trim()) || string.IsNullOrEmpty(DatePickerStartDate.Text.Trim()) 
+                || string.IsNullOrEmpty(DatePickerEndDate.Text.Trim()) || string.IsNullOrEmpty(ComboBoxState.Text.Trim())
+                || string.IsNullOrEmpty(ComboBoxListUser.Text.Trim())){
+                
+                return 0;
+            }
+            return 1;
         }
 
     }

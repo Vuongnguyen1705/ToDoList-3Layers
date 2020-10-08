@@ -167,11 +167,6 @@ namespace GUI
             var info = new InfoUserDialog();
             info.ShowDialog();
         }
-        private void OnActivated(object sender, StartupEventArgs e)
-        {
-            MessageBox.Show("fsdfsdfs");
-        }
-
         private void ListViewWork_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             

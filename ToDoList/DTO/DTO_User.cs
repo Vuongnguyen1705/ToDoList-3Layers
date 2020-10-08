@@ -11,7 +11,7 @@ namespace DTO
         {
         }
 
-        public DTO_User(int userID, string userAvatar, string userFullName, string userPhoneNumber, string userEmail, string userPassword, string userAddress, DateTime userBirthday, string userGender, bool userIsEnable, int userRoleID)
+        public DTO_User(int userID, string userAvatar, string userFullName, string userPhoneNumber, string userEmail, string userPassword, string userAddress, DateTime userBirthday, string userGender, bool userIsEnable, string userRoleID)
         {
             UserID = userID;
             UserAvatar = userAvatar;
@@ -36,6 +36,6 @@ namespace DTO
         public DateTime UserBirthday { get; set; }
         public string UserGender { get; set; }
         public bool UserIsEnable { get; set; }
-        public int UserRoleID { get; set; }
+        public string UserRoleID { get; set; }
     }
 }
