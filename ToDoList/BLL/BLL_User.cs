@@ -12,9 +12,9 @@ namespace BLL
     {
         DAL_User dAL_User = new DAL_User();
 
-        public List<DTO_User> getAll()
+        public List<DTO_User> getUserEnable()
         {
-            return dAL_User.getAll();
+            return dAL_User.getUserEnable();
         }
         public DTO_User getUserByID(int idUser)
         {

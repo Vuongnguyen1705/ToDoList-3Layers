@@ -9,7 +9,7 @@ namespace DAL
         
         public bool TryLogin(string email, string password)
         {
-            string query = @"Select * from [Users] where [U_Email] = '" + email + "' And [U_Password] = '" + password + "'";
+            string query = @"Select * from [Users] where [U_Email] = '" + email + "' And [U_Password] = '" + password + "' and U_IsEnable=1";
             var _ = Connection.DoQuery(query);
             if (_.Rows.Count == 0)
                 return false;

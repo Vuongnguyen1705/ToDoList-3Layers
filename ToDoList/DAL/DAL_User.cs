@@ -9,12 +9,12 @@ namespace DAL
 {
     public class DAL_User
     {
-        public List<DTO_User> getAll()
+        public List<DTO_User> getUserEnable()
         {
             General general = new General();
             List<DTO_User> user = new List<DTO_User>();
             
-            string query = "Select * from [Users]";
+            string query = "Select * from [Users] where U_Role_ID not in (SELECT U_Role_ID FROM dbo.Users WHERE U_Role_ID=1) AND U_IsEnable=1";
             var conn = Connection.Instance;
             conn.Open();
             SqlCommand command = new SqlCommand(query, conn);
@@ -27,7 +27,7 @@ namespace DAL
                         reader.GetString(2),
                         reader.GetString(3),
                         reader.GetString(4), reader.GetString(5), reader.GetString(6),
-                        reader.GetDateTime(7), reader.GetString(8),reader.GetBoolean(9),reader.GetInt32(10)));
+                        reader.GetDateTime(7), reader.GetString(8),reader.GetBoolean(9),reader.GetInt32(10).ToString()));
 
                 }
                 reader.NextResult();
@@ -57,7 +57,7 @@ namespace DAL
                 user.UserBirthday = (DateTime)reader["U_Birthday"];
                 user.UserGender = reader["U_Gender"].ToString();
                 user.UserIsEnable = (bool)reader["U_IsEnable"];
-                user.UserRoleID =Int32.Parse(reader["U_Role_ID"].ToString());   
+                user.UserRoleID =reader["U_Role_ID"].ToString();   
             }
             conn.Close();
             return user;
@@ -85,7 +85,7 @@ namespace DAL
                 user.UserBirthday = (DateTime)reader["U_Birthday"];
                 user.UserGender = reader["U_Gender"].ToString();
                 user.UserIsEnable = (bool)reader["U_IsEnable"];
-                user.UserRoleID = Int32.Parse(reader["U_Role_ID"].ToString());
+                user.UserRoleID = reader["U_Role_ID"].ToString();
             }
             conn.Close();
             return user;

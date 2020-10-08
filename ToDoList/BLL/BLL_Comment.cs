@@ -14,5 +14,15 @@ namespace BLL
         {
             return dAL_Comment.getAll();
         }
+
+        public ObservableCollection<DTO_Comment> getCommentByIDWork(int idWork)
+        {
+            return dAL_Comment.getCommentByIDWork(idWork);
+        }
+
+        public void insertComment(DTO_Comment comment)
+        {
+            dAL_Comment.insertComment(comment);
+        }
     }
 }
