@@ -54,20 +54,37 @@ namespace GUI
         private void ShowWork()
         {
             ObservableCollection<DTO_Work> w = new ObservableCollection<DTO_Work>();
-            foreach (var item in bLL_Work.getAll())
+   
+            if (Convert.ToInt32(UserSingleTon.Instance.User.UserRoleID) == 3) 
             {
-                if (!item.WorkCoWorker.Equals(""))
+                foreach (var item in bLL_Work.getWorkById(UserSingleTon.Instance.User.UserID))
                 {
-                    w.Add(new DTO_Work(item.WorkID, item.WorkTitle, item.WorkStartDate, item.WorkEndDate, item.WorkStatus, item.WorkRange, bLL_User.getFullNameByID(Int32.Parse(item.WorkCoWorker)), item.WorkAttachment, item.WorkUserID));
-                }
-                else
-                {
-                    w.Add(new DTO_Work(item.WorkID, item.WorkTitle, item.WorkStartDate, item.WorkEndDate, item.WorkStatus, item.WorkRange, item.WorkCoWorker, item.WorkAttachment, item.WorkUserID));
+                    if (!item.WorkCoWorker.Equals(""))
+                    {
+                        w.Add(new DTO_Work(item.WorkID, item.WorkTitle, item.WorkStartDate, item.WorkEndDate, item.WorkStatus, item.WorkRange, bLL_User.getFullNameByID(Int32.Parse(item.WorkCoWorker)), item.WorkAttachment, item.WorkUserID));
+                    }
+                    else
+                    {
+                        w.Add(new DTO_Work(item.WorkID, item.WorkTitle, item.WorkStartDate, item.WorkEndDate, item.WorkStatus, item.WorkRange, item.WorkCoWorker, item.WorkAttachment, item.WorkUserID));
+                    }
                 }
             }
-
-            ListViewWork.ItemsSource = w;
+            else
+            {
+                foreach (var item in bLL_Work.getAll())
+                {
+                    if (!item.WorkCoWorker.Equals(""))
+                    {
+                        w.Add(new DTO_Work(item.WorkID, item.WorkTitle, item.WorkStartDate, item.WorkEndDate, item.WorkStatus, item.WorkRange, bLL_User.getFullNameByID(Int32.Parse(item.WorkCoWorker)), item.WorkAttachment, item.WorkUserID));
+                    }
+                    else
+                    {
+                        w.Add(new DTO_Work(item.WorkID, item.WorkTitle, item.WorkStartDate, item.WorkEndDate, item.WorkStatus, item.WorkRange, item.WorkCoWorker, item.WorkAttachment, item.WorkUserID));
+                    }
+                }
+            }
             
+            ListViewWork.ItemsSource = w;
             //BLL_Work bLL_Work = new BLL_Work();
             //ListViewWork.ItemsSource = bLL_Work.getAll();
         }

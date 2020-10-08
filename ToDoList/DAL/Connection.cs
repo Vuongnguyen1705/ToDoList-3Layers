@@ -10,7 +10,6 @@ namespace DAL
     {
         private static SqlConnection connection;
         private static string connectionString = @"Data Source=HUNGVUONG;Initial Catalog=ToDoList; Integrated Security=True;";
-
         public static SqlConnection Instance
         {
             get

@@ -1,6 +1,6 @@
 ﻿USE master
 GO 
-if exists(select name from sysdatabases where name='TodoList')
+if exists(select name from sysdatabases where name='ToDoList')
 	drop Database ToDoList
 GO 
 CREATE DATABASE ToDoList
