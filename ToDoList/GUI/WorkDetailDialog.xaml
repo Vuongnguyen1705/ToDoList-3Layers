@@ -73,6 +73,9 @@
                 <ComboBoxItem
                     Content="Trễ hạn"/>
             </ComboBox>
+            <TextBox                
+                x:Name="WorkId"
+                Visibility="Hidden"/>
         </StackPanel>
         <StackPanel Grid.Row="3" Orientation="Horizontal">
             <TextBlock Text="Phạm vi: " VerticalAlignment="Center" Margin="10 0"></TextBlock>
@@ -140,7 +143,7 @@
                     HorizontalAlignment="Center">
                     <Bold FontSize="18">Bình luận</Bold>
                 </TextBlock>
-                
+
                 <ListView Name="ListViewComment"
                     Height="260">
                     <ListView.ItemTemplate>
@@ -155,7 +158,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                
+
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                 VerticalAlignment="Bottom">
@@ -169,14 +172,14 @@
                     Click="Button_Click_Comment"
                     Margin="10 "/>
             </StackPanel>
-           
+
         </Grid>
         <StackPanel Grid.Row="6"
             Grid.Column="1"
             Orientation="Horizontal" 
             HorizontalAlignment="Right">
             <Button
-                Click="Button_Click_Add"
+                Click="Button_Click_Update"
                 Style="{StaticResource MaterialDesignFlatButton}"   
                 Content="Đồng ý"/>
             <Button
