@@ -16,11 +16,19 @@ namespace BLL
         {
             return dAL_User.getAll();
         }
+        public DTO_User getUserByID(int idUser)
+        {
+            return dAL_User.getUserByID(idUser);
+        }
         public int getRoleIDByEmail(string email)
         {
             return dAL_User.getRoleIDByEmail(email);
         }
 
+        public string getFullNameByID(int idUser)
+        {
+            return dAL_User.getFullNameByID(idUser);
+        }
         public List<string> getFullName()
         {
             return dAL_User.getFullName();

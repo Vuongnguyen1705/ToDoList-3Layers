@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 using DTO;
+using System.Linq;
 namespace DAL
 {
     public class DAL_Work
     {
-        public List<DTO_Work> getAll()
+        public ObservableCollection<DTO_Work> getAll()
         {
             General general = new General();
-            List<DTO_Work> works = new List<DTO_Work>();
+            ObservableCollection<DTO_Work> works = new ObservableCollection<DTO_Work>();
             DAL_User dAL_User = new DAL_User();
             string query= "Select * from [Works]";
             var conn = Connection.Instance;
@@ -36,7 +38,30 @@ namespace DAL
             conn.Close();
             return works;
         }
-
+        public List<DTO_Work> getById(int id)
+        {
+            List<DTO_Work> works = new List<DTO_Work>();
+            var conn = Connection.Instance;
+            conn.Open();
+            string query = "Select * from [Works] where WorkID="+id;
+            SqlCommand command = new SqlCommand(query, conn);
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    string coWorkerID = reader.GetString(6);
+                    works.Add(new DTO_Work(reader.GetInt32(0), reader.GetString(1),
+                        reader.GetDateTime(2),
+                        reader.GetDateTime(3),
+                        reader.GetString(4), reader.GetString(5), coWorkerID.ToString(),
+                        reader.GetString(7), reader.GetInt32(8)));
+                }
+                reader.NextResult();
+            }
+            conn.Close();
+            return works;
+        }
         public List<string> getStatus()
         {
             var statusList = new List<string>();
@@ -82,7 +107,7 @@ namespace DAL
         public void DeleteWork(int WorkID)
         {
             DataSet ds = new DataSet();
-            string query = "DELETE FROM dbo.Users WHERE W_ID = '" + WorkID + "' ";
+            string query = "DELETE FROM dbo.Works WHERE W_ID = '" + WorkID + "' ";
             InsertUpdateDeleteSQLString(query);
         }
     }

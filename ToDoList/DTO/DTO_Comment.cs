@@ -11,7 +11,7 @@ namespace DTO
         {
         }
 
-        public DTO_Comment(int commentID, int commentUserID, int commentWorkID, int commentContent)
+        public DTO_Comment(int commentID, string commentUserID, int commentWorkID, string commentContent)
         {
             CommentID = commentID;
             CommentUserID = commentUserID;
@@ -20,8 +20,8 @@ namespace DTO
         }
 
         public int CommentID { get; set; }
-        public int CommentUserID { get; set; }
+        public string CommentUserID { get; set; }
         public int CommentWorkID { get; set; }
-        public int CommentContent { get; set; }
+        public string CommentContent { get; set; }
     }
 }

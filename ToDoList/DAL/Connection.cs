@@ -17,7 +17,7 @@ namespace DAL
             {
                 if(connection == null)
                 {
-                    connection = new SqlConnection(connectionString);
+                    connection = new SqlConnection(connectionString);   
                 }
                 return connection;
             }
