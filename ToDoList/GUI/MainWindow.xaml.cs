@@ -196,6 +196,7 @@ namespace GUI
             MessageBox.Show("" + id);
             var detail = new WorkDetailDialog(id);
             detail.ShowDialog();
+            ShowWork();
         }
 
     }

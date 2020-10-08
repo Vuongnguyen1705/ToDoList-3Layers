@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Icon="Images/favicon.png"
         
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -49,12 +50,14 @@
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <DatePicker Margin="10 0"
                   Name="DatePickerStartDate"
-                  Width="120"                        
+                  Width="120"          
+                  DisplayDateEnd="{Binding Path=Text, ElementName=DatePickerEndDate}"
                   materialDesign:HintAssist.Hint="Ngày bắt đầu" />
 
             <DatePicker Margin="10 0"
                   Name="DatePickerEndDate"
-                  Width="120"
+                  Width="120" 
+                  DisplayDateStart="{Binding Path=Text, ElementName=DatePickerStartDate}"
                   materialDesign:HintAssist.Hint="Ngày kết thúc" />
         </StackPanel>
 
@@ -114,14 +117,9 @@
                 Margin="10 0"
                 Text="{Binding Name}"
                 materialDesign:HintAssist.Hint="Người làm chung"
-                IsEditable="False"
+                IsEditable="True"
+                DisplayMemberPath="{Binding userFullName}"
                 Style="{StaticResource MaterialDesignComboBox}">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock x:Name="abc" Text="{Binding UserFullName}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-
             </ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="5" Orientation="Horizontal" VerticalAlignment="Center">

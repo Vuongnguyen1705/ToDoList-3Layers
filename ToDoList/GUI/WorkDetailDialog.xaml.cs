@@ -32,8 +32,10 @@ namespace GUI
             idWork = id;
             ShowListUser();
             ShowComment();
-             
+            ShowDetailWork();
+
         }
+
         private void Button_Click_Cancel(object sender, RoutedEventArgs e)
         {            
             Close();
@@ -41,7 +43,30 @@ namespace GUI
 
         private void ShowDetailWork()
         {
-            
+            ObservableCollection<DTO_Work> list = bLL_Work.getById(idWork);
+            foreach (var item in list)
+            {
+                TextBoxTitle.Text = item.WorkTitle;
+                DatePickerStartDate.Text = item.WorkStartDate.ToString();
+                DatePickerEndDate.Text = item.WorkEndDate.ToString();
+                ComboBoxState.Text = item.WorkStatus;
+                if (item.WorkRange.Trim().Equals("Public"))
+                {
+
+                }
+                else
+                {
+                    RadioPrivate.IsChecked = true;
+                    MessageBox.Show(item.WorkRange);
+                }
+                string tenNhanVien = bLL_User.getFullNameByID(Convert.ToInt32(item.WorkCoWorker)).Trim().ToString();
+                ComboBoxListUser.Text = tenNhanVien;
+                MessageBox.Show("--"+tenNhanVien+"--");
+                TextBlockAttachment.Text = item.WorkAttachment;
+                WorkId.Text = item.WorkID.ToString();
+                MessageBox.Show("coworker: " + bLL_User.getFullNameByID(Convert.ToInt32(item.WorkCoWorker)).ToString());
+                MessageBox.Show("da load xong");
+            }
         }
 
         private void ShowComment()
@@ -103,35 +128,8 @@ namespace GUI
             work.WorkUserID=UserSingleTon.Instance.User.UserID;
             MessageBox.Show(ComboBoxListUser.Text);
             bLL_Work.UpdateWork(work);
-            MessageBox.Show("end");
-        }
-        public WorkDetailDialog(int id)
-        {
-            InitializeComponent();
-            ShowListUser();
-            ShowComment();
-            ObservableCollection<DTO_Work> list = bLL_Work.getById(id);
-            foreach (var item in list)
-            {
-                TextBoxTitle.Text = item.WorkTitle;
-                DatePickerStartDate.Text = item.WorkStartDate.ToString();
-                DatePickerEndDate.Text = item.WorkEndDate.ToString();
-                ComboBoxState.Text = item.WorkStatus;
-                if (item.WorkRange == "Public")
-                {
-                    RadioPublic.IsChecked=true;
-                }
-                else
-                {
-                    RadioPrivate.IsChecked = true;
-                }
-                string tenNhanVien= bLL_User.getFullNameByID(Convert.ToInt32(item.WorkCoWorker)).ToString();
-                ComboBoxListUser.Text = tenNhanVien;
-                TextBlockAttachment.Text = item.WorkAttachment;
-                WorkId.Text = item.WorkID.ToString();
-                MessageBox.Show("coworker: "+ bLL_User.getFullNameByID(Convert.ToInt32(item.WorkCoWorker)).ToString());
-                MessageBox.Show("da load xong");
-            }
+            MessageBox.Show("Update thành công");
+            Close();
         }
 
         private void Button_Click_Comment(object sender, RoutedEventArgs e)
@@ -145,10 +143,8 @@ namespace GUI
         {
             if (e.Key == Key.Enter && !TextBoxInputComment.Text.Equals(""))
             {
-                bLL_Comment.insertComment(new DTO_Comment(1,UserSingleTon.Instance.User.UserID.ToString(),idWork,TextBoxInputComment.Text));
-                //ListViewComment.Items.Add(new DTO_Comment(19, UserSingleTon.Instance.User.UserFullName, idWork, TextBoxInputComment.Text));
-                TextBoxInputComment.Clear();
-                //CollectionViewSource.GetDefaultView(ListViewComment.ItemsSource).Refresh();
+                bLL_Comment.insertComment(new DTO_Comment(1,UserSingleTon.Instance.User.UserID.ToString(),idWork,TextBoxInputComment.Text));                
+                TextBoxInputComment.Clear();             
                 ShowComment();
             }
         }
