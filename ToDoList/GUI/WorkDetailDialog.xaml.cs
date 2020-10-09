@@ -33,7 +33,6 @@ namespace GUI
             ShowListUser();
             ShowComment();
             ShowDetailWork();
-
         }
 
         private void Button_Click_Cancel(object sender, RoutedEventArgs e)
@@ -59,6 +58,7 @@ namespace GUI
                     RadioPrivate.IsChecked = true;
                     //MessageBox.Show(item.WorkRange);
                 }
+
                 //MessageBox.Show(item.WorkCoWorker);
                 if (item.WorkCoWorker == "")
                 {
@@ -92,21 +92,37 @@ namespace GUI
         private void Attachment_MouseDown_Upload_File(object sender, MouseButtonEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Multiselect = true;
             openFileDialog.Filter = "Text files (*.txt, *.doc, *.docx, *.pdf, *.ppt,*.pptx, *.ppsx)|*.txt; *.doc; *.docx; *.pdf; *.ppt; *.pptx; *.ppsx" +
                 "|Image files (*.png, *jpg)|*.png; *jpg";
             //"|All files (*.*)|*.*";
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             if (openFileDialog.ShowDialog() == true)
             {
-                foreach (string filename in openFileDialog.FileNames)
-                    TextBlockAttachment.Text = System.IO.Path.GetFileName(filename);
+
+                Uri fileUri = new Uri(openFileDialog.FileName);
+                string filePath = fileUri.ToString().Remove(0, 8);
+                TextBlockAttachment.Text = System.IO.Path.GetFileName(filePath);
+                string destinationDir = "..\\Attachments\\";
+                System.IO.File.Copy(filePath, destinationDir + System.IO.Path.GetFileName(filePath), true);
             }
         }
 
         private void TextBlockAttachment_Click_File(object sender, RoutedEventArgs e)
         {
+            if (TextBlockAttachment.Text != null)
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Text files (*.txt, *.doc, *.docx, *.pdf, *.ppt,*.pptx, *.ppsx)|*.txt; *.doc; *.docx; *.pdf; *.ppt; *.pptx; *.ppsx" +
+                    "|Image files (*.png, *jpg)|*.png; *jpg";                
 
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    Uri fileUri = new Uri(saveFileDialog.FileName);
+                    string destinationDir = fileUri.ToString().Remove(0, 8); //path + filename
+                    string filePath = "..\\Attachments\\" + TextBlockAttachment.Text;
+                    System.IO.File.Copy(filePath, destinationDir, true);
+                }
+            }
         }
 
         private void Button_Click_Update(object sender, RoutedEventArgs e)
@@ -124,7 +140,7 @@ namespace GUI
                 range = "Private";
             }
             DTO_Work work = new DTO_Work();
-            work.WorkID = Convert.ToInt32(id);
+            work.WorkID = Convert.ToInt32(id);           
             work.WorkTitle = TextBoxTitle.Text;
             work.WorkStartDate = Convert.ToDateTime(DatePickerStartDate.Text);
             work.WorkEndDate = Convert.ToDateTime(DatePickerEndDate.Text);
@@ -152,9 +168,13 @@ namespace GUI
         }
 
         private void Button_Click_Comment(object sender, RoutedEventArgs e)
-        {            
-            bLL_Comment.insertComment(new DTO_Comment(1, UserSingleTon.Instance.User.UserID.ToString(), idWork, TextBoxInputComment.Text));
-            TextBoxInputComment.Clear();
+        {
+            if (!TextBoxInputComment.Text.Equals(""))
+            {
+                bLL_Comment.insertComment(new DTO_Comment(1, UserSingleTon.Instance.User.UserID.ToString(), idWork, TextBoxInputComment.Text));
+                TextBoxInputComment.Clear();
+                ShowComment();
+            }
 
         }
 

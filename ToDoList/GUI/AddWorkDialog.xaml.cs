@@ -21,6 +21,8 @@ namespace GUI
     /// </summary>
     public partial class AddWorkDialog : Window
     {
+        BLL_Work bLL_Work = new BLL_Work();
+        BLL_User bLL_User = new BLL_User();
         public AddWorkDialog()
         {
             InitializeComponent();
@@ -34,22 +36,23 @@ namespace GUI
 
         private void ShowListUser()
         {
-            List<string> user = new List<string>();
-            BLL_User bLL_User = new BLL_User();
             ComboBoxListUser.ItemsSource = bLL_User.getFullName();
         }
         private void Attachment_MouseDown_Upload_File(object sender, MouseButtonEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Multiselect = true;
             openFileDialog.Filter = "Text files (*.txt, *.doc, *.docx, *.pdf, *.ppt,*.pptx, *.ppsx)|*.txt; *.doc; *.docx; *.pdf; *.ppt; *.pptx; *.ppsx" +
                 "|Image files (*.png, *jpg)|*.png; *jpg";
-                //"|All files (*.*)|*.*";
+            //"|All files (*.*)|*.*";
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             if (openFileDialog.ShowDialog() == true)
             {
-                foreach (string filename in openFileDialog.FileNames)
-                    TextBlockAttachment.Text = System.IO.Path.GetFileName(filename);
+
+                Uri fileUri = new Uri(openFileDialog.FileName);
+                string filePath = fileUri.ToString().Remove(0, 8);
+                TextBlockAttachment.Text = System.IO.Path.GetFileName(filePath);
+                string destinationDir = "..\\Attachments\\";
+                System.IO.File.Copy(filePath, destinationDir + System.IO.Path.GetFileName(filePath), true);
             }
         }
 
@@ -59,9 +62,7 @@ namespace GUI
         }
 
         private void Button_Click_Add(object sender, RoutedEventArgs e)
-        {
-            BLL_Work bLL_Work = new BLL_Work();
-            BLL_User bLL_User = new BLL_User();
+        {            
             string range;
             if (Validate() == 1)
             {

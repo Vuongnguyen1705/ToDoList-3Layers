@@ -35,7 +35,7 @@ namespace GUI
         private void ShowUser()
         {
             ObservableCollection<DTO_User> u = new ObservableCollection<DTO_User>();
-            foreach (var item in bLL_User.getUserEnable())
+            foreach (var item in bLL_User.getAll())
             {
                 if (!item.UserRoleID.Equals(""))
                 {
@@ -48,7 +48,7 @@ namespace GUI
             }
 
             ListViewUser.ItemsSource = u;
-
+            
             //ListViewUser.ItemsSource = bLL_User.getUserEnable();
         }
 
@@ -70,6 +70,7 @@ namespace GUI
         {
             var addUser = new AddUserDialog();
             addUser.ShowDialog();
+            
         }
 
         private void IconLogout_MouseDown_Logout(object sender, MouseButtonEventArgs e)
@@ -109,15 +110,27 @@ namespace GUI
         {
             var info = new InfoUserDialog();
             info.ShowDialog();
+            ShowHi();
         }
         private void ShowHi()
         {
-            TextBlockHi.Text += UserSingleTon.Instance.User.UserFullName;
+            TextBlockHi.Text = UserSingleTon.Instance.User.UserFullName;
         }
 
-        private void ButtonDeleteUser_Click(object sender, RoutedEventArgs e)
+        private void ToggleButton_Checked_Active(object sender, RoutedEventArgs e)
         {
+            System.Windows.Controls.Primitives.ToggleButton button = sender as System.Windows.Controls.Primitives.ToggleButton;
+            DTO_User user = button.DataContext as DTO_User;
+            int id = user.UserID;
+            bLL_User.EnableUser(id);
+        }
 
+        private void ToggleButton_Unchecked_DeActive(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Controls.Primitives.ToggleButton button = sender as System.Windows.Controls.Primitives.ToggleButton;
+            DTO_User user = button.DataContext as DTO_User;
+            int id = user.UserID;
+            bLL_User.DisableUser(id);           
         }
     }
 }

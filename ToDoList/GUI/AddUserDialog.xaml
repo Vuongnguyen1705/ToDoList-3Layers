@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Icon="Images/favicon.png"
         
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -142,7 +143,7 @@
                         HorizontalAlignment="Left"
                         Name="DatePickerBirthday"
                         Width="200"
-                        Text="12/12/2012"
+                        DisplayDateEnd="{x:Static sys:DateTime.Today}"
                         Style="{StaticResource MaterialDesignOutlinedDatePicker}"
                         materialDesign:HintAssist.Hint="Ngày sinh" />
                 </StackPanel>
@@ -166,7 +167,7 @@
                         HorizontalAlignment="Left">
                         <Button
                             Style="{StaticResource MaterialDesignRaisedAccentButton}"
-                            Click="Button_Click_Apply"
+                            Click="Button_Click_Add"
                             Content="Đồng ý"/>
 
                         <Button
