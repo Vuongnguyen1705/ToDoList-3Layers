@@ -18,6 +18,34 @@ namespace BLL
         {
             return dAL_Work.getById(id);
         }
+        public List<DTO_Work> getWorkById(int id)
+        {
+            return dAL_Work.getWorkById(id);
+        }
+        public List<DTO_Work> getPartnerWorkPublic(int id)
+        {
+            return dAL_Work.getPartnerWorkPublic(id);
+        }
+        public List<DTO_Work> FillterRange(string range)
+        {
+            return dAL_Work.FillterRange(range);
+        }
+        public List<DTO_Work> FillterStatus(string status)
+        {
+            return dAL_Work.FillterStatus(status);
+        }
+        public List<DTO_Work> FillterDateStart(DateTime datetime)
+        {
+            return dAL_Work.FillterDateStart(datetime);
+        }
+        public List<DTO_Work> FillterDateEnd(DateTime datetime)
+        {
+            return dAL_Work.FillterDateEnd(datetime);
+        }
+        public List<DTO_Work> FillterAll(string range,string state,DateTime dateStart,DateTime dateEnd)
+        {
+            return dAL_Work.FillterAll(range, state, dateStart, dateEnd);
+        }
         public List<string> getStatus()
         {
             return dAL_Work.getStatus();

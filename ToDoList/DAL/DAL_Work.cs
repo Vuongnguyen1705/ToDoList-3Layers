@@ -24,14 +24,12 @@ namespace DAL
             {
                 while (reader.Read())
                 {
-                    string coWorkerID =reader.GetString(6);
-                    
-           
+                    string coWorkerID = reader.GetString(6);
                         works.Add(new DTO_Work(reader.GetInt32(0), reader.GetString(1),
                             reader.GetDateTime(2),
                             reader.GetDateTime(3),
                             reader.GetString(4), reader.GetString(5), coWorkerID.ToString(),
-                            reader.GetString(7), reader.GetInt32(8)));
+                            reader.GetString(7), reader.GetInt32(8).ToString()));
                 }
                 reader.NextResult();
             }
@@ -59,7 +57,194 @@ namespace DAL
                         reader.GetDateTime(2),
                         reader.GetDateTime(3),
                         reader.GetString(4), reader.GetString(5), coWorkerID.ToString(),
-                        reader.GetString(7), reader.GetInt32(8)));
+                        reader.GetString(7), reader.GetInt32(8).ToString()));
+                }
+                reader.NextResult();
+            }
+            conn.Close();
+            return works;
+        }
+
+        public List<DTO_Work> getWorkById(int id)
+        {
+            List<DTO_Work> works = new List<DTO_Work>();
+            var conn = Connection.Instance;
+            conn.Open();
+            string query = "Select * from [Works] where W_User_ID=" + id + "OR W_CoWorker ="+id;
+            SqlCommand command = new SqlCommand(query, conn);
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    string coWorkerID = reader.GetString(6);
+                    works.Add(new DTO_Work(reader.GetInt32(0), reader.GetString(1),
+                        reader.GetDateTime(2),
+                        reader.GetDateTime(3),
+                        reader.GetString(4), reader.GetString(5), coWorkerID.ToString(),
+                        reader.GetString(7), reader.GetInt32(8).ToString()));
+                }
+                reader.NextResult();
+            }
+            conn.Close();
+            return works;
+        }
+        public List<DTO_Work> getPartnerWorkPublic(int id)
+        {
+            List<DTO_Work> works = new List<DTO_Work>();
+            var conn = Connection.Instance;
+            conn.Open();
+            string query = "Select * from [Works] where W_User_ID!=" + id + "AND W_Range ='Public'";
+            SqlCommand command = new SqlCommand(query, conn);
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    string coWorkerID = reader.GetString(6);
+                    works.Add(new DTO_Work(reader.GetInt32(0), reader.GetString(1),
+                        reader.GetDateTime(2),
+                        reader.GetDateTime(3),
+                        reader.GetString(4), reader.GetString(5), coWorkerID.ToString(),
+                        reader.GetString(7), reader.GetInt32(8).ToString()));
+                }
+                reader.NextResult();
+            }
+            conn.Close();
+            return works;
+        }
+        public List<DTO_Work> FillterRange(string range)
+        {
+            List<DTO_Work> works = new List<DTO_Work>();
+            var conn = Connection.Instance;
+            conn.Open();
+            string query;
+            if (range.Equals("Tất cả"))
+            {
+                query = "Select * from [Works]";
+            }
+            else {
+                query = "Select * from [Works] where W_Range='" + range + "'"; 
+            }
+            SqlCommand command = new SqlCommand(query, conn);
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    string coWorkerID = reader.GetString(6);
+                    works.Add(new DTO_Work(reader.GetInt32(0), reader.GetString(1),
+                        reader.GetDateTime(2),
+                        reader.GetDateTime(3),
+                        reader.GetString(4), reader.GetString(5), coWorkerID.ToString(),
+                        reader.GetString(7), reader.GetInt32(8).ToString()));
+                }
+                reader.NextResult();
+            }
+            conn.Close();
+            return works;
+        }
+        public List<DTO_Work> FillterStatus(string status)
+        {
+            List<DTO_Work> works = new List<DTO_Work>();
+            var conn = Connection.Instance;
+            conn.Open();
+            string query;
+            if (status.Equals("Tất cả"))
+            {
+                query = "Select * from [Works]";
+            }
+            else
+            {
+                query = "Select * from [Works] where W_State=N'" + status + "'";
+            }
+            SqlCommand command = new SqlCommand(query, conn);
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    string coWorkerID = reader.GetString(6);
+                    works.Add(new DTO_Work(reader.GetInt32(0), reader.GetString(1),
+                        reader.GetDateTime(2),
+                        reader.GetDateTime(3),
+                        reader.GetString(4), reader.GetString(5), coWorkerID.ToString(),
+                        reader.GetString(7), reader.GetInt32(8).ToString()));
+                }
+                reader.NextResult();
+            }
+            conn.Close();
+            return works;
+        }
+        public List<DTO_Work> FillterDateStart(DateTime datetime)
+        {
+            List<DTO_Work> works = new List<DTO_Work>();
+            var conn = Connection.Instance;
+            conn.Open();
+            string query;
+            query = "Select * from [Works] where W_StartDate >'" + datetime + "'";
+            SqlCommand command = new SqlCommand(query, conn);
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    string coWorkerID = reader.GetString(6);
+                    works.Add(new DTO_Work(reader.GetInt32(0), reader.GetString(1),
+                        reader.GetDateTime(2),
+                        reader.GetDateTime(3),
+                        reader.GetString(4), reader.GetString(5), coWorkerID.ToString(),
+                        reader.GetString(7), reader.GetInt32(8).ToString()));
+                }
+                reader.NextResult();
+            }
+            conn.Close();
+            return works;
+        }
+        public List<DTO_Work> FillterDateEnd(DateTime datetime)
+        {
+            List<DTO_Work> works = new List<DTO_Work>();
+            var conn = Connection.Instance;
+            conn.Open();
+            string query;
+            query = "Select * from [Works] where W_EndDate <'" + datetime + "'";
+            SqlCommand command = new SqlCommand(query, conn);
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    string coWorkerID = reader.GetString(6);
+                    works.Add(new DTO_Work(reader.GetInt32(0), reader.GetString(1),
+                        reader.GetDateTime(2),
+                        reader.GetDateTime(3),
+                        reader.GetString(4), reader.GetString(5), coWorkerID.ToString(),
+                        reader.GetString(7), reader.GetInt32(8).ToString()));
+                }
+                reader.NextResult();
+            }
+            conn.Close();
+            return works;
+        }
+        public List<DTO_Work> FillterAll(string range,string state,DateTime dateStart,DateTime dateEnd)
+        {
+            List<DTO_Work> works = new List<DTO_Work>();
+            var conn = Connection.Instance;
+            conn.Open();
+            string query;
+            query = "Select * from [Works] where W_StartDate >='" + dateStart + "' and W_EndDate <='"+dateEnd+"' and W_State= "+state+" and W_Range="+range;
+            SqlCommand command = new SqlCommand(query, conn);
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    string coWorkerID = reader.GetString(6);
+                    works.Add(new DTO_Work(reader.GetInt32(0), reader.GetString(1),
+                        reader.GetDateTime(2),
+                        reader.GetDateTime(3),
+                        reader.GetString(4), reader.GetString(5), coWorkerID.ToString(),
+                        reader.GetString(7), reader.GetInt32(8).ToString()));
                 }
                 reader.NextResult();
             }
@@ -80,8 +265,8 @@ namespace DAL
         {
             var rangeList = new List<string>();
             rangeList.Add("Tất cả");
-            rangeList.Add("Công khai");
-            rangeList.Add("Riêng tư");
+            rangeList.Add("Public");
+            rangeList.Add("Private");
             return rangeList;
         }
 

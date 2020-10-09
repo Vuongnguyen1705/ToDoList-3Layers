@@ -90,10 +90,12 @@
                 <DatePicker Name="DatePickerToDay"
                     Width="100"
                     Margin="10 0"
+                    SelectedDateChanged="DatePickerToDay_SelectedDateChanged"
                     materialDesign:HintAssist.Hint="Từ ngày"
-                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"  />
                 <DatePicker Name="DatePickerFromDay"
                     Width="100"
+                    SelectedDateChanged="DatePickerFromDay_SelectedDateChanged"
                     Margin="10 0"
                     materialDesign:HintAssist.Hint="Tới ngày"
                     Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
@@ -110,9 +112,13 @@
                       Width="80"
                       Cursor="Hand"
                       materialDesign:HintAssist.Hint="Phạm vi"
+                      SelectionChanged="ComboBoxRange_SelectionChanged"
                       Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                 </ComboBox>
             </StackPanel>
+            <Button Name="Myjob" Content="My job" Grid.Column="1" HorizontalAlignment="Left" Margin="25,0,0,0" VerticalAlignment="Center" Click="ButtonViewMyJob" />
+            <Button Name="Partnerjob" Content="Partner job" Grid.Column="1" HorizontalAlignment="Left" Margin="144,0,0,0" VerticalAlignment="Center" Click="ButtonViewPartnerJob"/>
+            <Button Name="Loc" Content="Lọc" Grid.Column="1" HorizontalAlignment="Left" Margin="263,10,0,0" VerticalAlignment="Top" Click=""/>
         </Grid>
         <Grid Grid.Row="2">
             <ListView Name="ListViewWork" SelectionChanged="ListViewWork_SelectionChanged">
@@ -120,7 +126,7 @@
                     <Style TargetType="{x:Type GridViewColumnHeader}">
                         <Setter Property="HorizontalContentAlignment" Value="Center" />
                     </Style>
-                    
+
                 </ListView.Resources>
                 <ListView.View>
                     <GridView>
@@ -130,7 +136,7 @@
                                 Content="Tên công việc" 
                                 Tag="WorkTitle"
                                 Click="GridViewColumnHeader_Click_Sort"/>
-                            
+
                         </GridViewColumn>
 
                         <GridViewColumn Width="150"
@@ -169,12 +175,12 @@
                                 Click="GridViewColumnHeader_Click_Sort"/>
                         </GridViewColumn>
                         <GridViewColumn 
-                            DisplayMemberBinding="{Binding WorkCoWorker}">
+                            DisplayMemberBinding="{Binding WorkUserID}">
                             <GridViewColumnHeader Cursor="Hand"
-                                Content="Người làm chung"
+                                Content="Người làm"
                                 Tag="WorkCoWorker"
                                 Click="GridViewColumnHeader_Click_Sort"/>
-                            </GridViewColumn>
+                        </GridViewColumn>
                         <GridViewColumn>
                             <GridViewColumnHeader Cursor="Hand"
                                 Content=""
@@ -199,7 +205,7 @@
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>
-                
+
 
             </ListView>
         </Grid>

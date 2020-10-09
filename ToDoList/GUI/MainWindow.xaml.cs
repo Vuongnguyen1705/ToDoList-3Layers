@@ -28,6 +28,7 @@ namespace GUI
         private bool IsSort = false;
         BLL_Work bLL_Work = new BLL_Work();
         BLL_User bLL_User = new BLL_User();
+        General general = new General();
         public MainWindow()
         {
             InitializeComponent();
@@ -54,24 +55,79 @@ namespace GUI
         private void ShowWork()
         {
             ObservableCollection<DTO_Work> w = new ObservableCollection<DTO_Work>();
-            foreach (var item in bLL_Work.getAll())
+            //List<DTO_Work> list = bLL_Work.getWorkById(UserSingleTon.Instance.User.UserID);
+            //List<int> listID = new List<int>();
+
+            if (Convert.ToInt32(UserSingleTon.Instance.User.UserRoleID) == 3)
+            {
+                foreach (var item in bLL_Work.getWorkById(UserSingleTon.Instance.User.UserID))
+                {
+                    if (!item.WorkCoWorker.Equals(""))
+                    {
+                        w.Add(new DTO_Work(item.WorkID, item.WorkTitle, item.WorkStartDate, item.WorkEndDate, item.WorkStatus, item.WorkRange, bLL_User.getFullNameByID(Int32.Parse(item.WorkCoWorker)), item.WorkAttachment, bLL_User.getFullNameByID(Int32.Parse(item.WorkUserID))));
+                    }
+                    else
+                    {
+                        w.Add(new DTO_Work(item.WorkID, item.WorkTitle, item.WorkStartDate, item.WorkEndDate, item.WorkStatus, item.WorkRange, item.WorkCoWorker, item.WorkAttachment, bLL_User.getFullNameByID(Int32.Parse(item.WorkUserID))));
+                    }
+                }
+            }
+            else
+            {
+                Partnerjob.Visibility = Visibility.Hidden;
+                Myjob.Visibility = Visibility.Hidden;
+                foreach (var item in bLL_Work.getAll())
+                {
+                    if (!item.WorkCoWorker.Equals(""))
+                    {
+                        w.Add(new DTO_Work(item.WorkID, item.WorkTitle, item.WorkStartDate, item.WorkEndDate, item.WorkStatus, item.WorkRange, bLL_User.getFullNameByID(Int32.Parse(item.WorkCoWorker)), item.WorkAttachment, bLL_User.getFullNameByID(Int32.Parse(item.WorkUserID))));
+                    }
+                    else
+                    {
+                        w.Add(new DTO_Work(item.WorkID, item.WorkTitle, item.WorkStartDate, item.WorkEndDate, item.WorkStatus, item.WorkRange, item.WorkCoWorker, item.WorkAttachment, bLL_User.getFullNameByID(Int32.Parse(item.WorkUserID))));
+                    }
+                }
+            }
+            //Foreground
+            //ListViewWork. = new System.Windows.Media.SolidColorBrush(Colors.Green);
+            ListViewWork.ItemsSource = w;
+            
+
+            //BLL_Work bLL_Work = new BLL_Work();
+            //ListViewWork.ItemsSource = bLL_Work.getAll();
+        }
+        private void showPublicPartnerJob(int id)
+        {
+            List<DTO_Work> list= bLL_Work.getPartnerWorkPublic(id);
+            ObservableCollection<DTO_Work> w = new ObservableCollection<DTO_Work>();
+            foreach (var item in list)
             {
                 if (!item.WorkCoWorker.Equals(""))
                 {
-                    w.Add(new DTO_Work(item.WorkID, item.WorkTitle, item.WorkStartDate, item.WorkEndDate, item.WorkStatus, item.WorkRange, bLL_User.getFullNameByID(Int32.Parse(item.WorkCoWorker)), item.WorkAttachment, item.WorkUserID));
+                    w.Add(new DTO_Work(item.WorkID, item.WorkTitle, item.WorkStartDate, item.WorkEndDate, item.WorkStatus, item.WorkRange, bLL_User.getFullNameByID(Int32.Parse(item.WorkCoWorker)), item.WorkAttachment,bLL_User.getFullNameByID(Int32.Parse(item.WorkUserID))));
                 }
                 else
                 {
                     w.Add(new DTO_Work(item.WorkID, item.WorkTitle, item.WorkStartDate, item.WorkEndDate, item.WorkStatus, item.WorkRange, item.WorkCoWorker, item.WorkAttachment, item.WorkUserID));
                 }
             }
-
             ListViewWork.ItemsSource = w;
-            
-            //BLL_Work bLL_Work = new BLL_Work();
-            //ListViewWork.ItemsSource = bLL_Work.getAll();
         }
-
+        private void ButtonViewMyJob(object sender, RoutedEventArgs e)
+        {
+            ShowWork();
+        }
+        private void ButtonViewPartnerJob(object sender, RoutedEventArgs e)
+        {
+            showPublicPartnerJob(UserSingleTon.Instance.User.UserID);
+        }
+        /*private void ChangeRowColor(int RowIndex)
+        {
+            SolidColorBrush NewBackground = new SolidColorBrush();
+            NewBackground.Color = Colors.Blue;
+            //ITEMS[RowIndex].Background = NewBackground;
+            ListViewWork.Items.Refresh();
+        }*/
         private void ShowHi()
         {
             TextBlockHi.Text += UserSingleTon.Instance.User.UserFullName;
@@ -115,6 +171,7 @@ namespace GUI
 
         }
 
+
         private void GridViewColumnHeader_Click_Sort(object sender, RoutedEventArgs e)
         {
             GridViewColumnHeader header = sender as GridViewColumnHeader;
@@ -144,16 +201,7 @@ namespace GUI
             Close();
         }
 
-        private void ComboBoxStatus_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (ListViewWork != null)
-            {
-                CollectionViewSource.GetDefaultView(ListViewWork.ItemsSource).Refresh();
-
-            }
-            else
-                MessageBox.Show(ComboBoxStatus.SelectedIndex.ToString() + "--" + ComboBoxStatus.SelectedItem.ToString() + "--" + ComboBoxStatus.Text);
-        }
+        
 
         private void ButtonAddWork_Click_AddWork(object sender, RoutedEventArgs e)
         {
@@ -198,6 +246,79 @@ namespace GUI
             detail.ShowDialog();
             ShowWork();
         }
+        //----------------------Fillter
+        private void ComboBoxStatus_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string status = ComboBoxStatus.SelectedItem.ToString().Trim();
+            List<DTO_Work> fil = bLL_Work.FillterStatus(status);
+            ListViewWork.ItemsSource = fil;
+        }
+        private void ComboBoxRange_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string range = ComboBoxRange.SelectedItem.ToString();
+            List<DTO_Work> fil=bLL_Work.FillterRange(range);
+            ShowList(fil);
+        }
 
+        private void DatePickerFromDay_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DateTime dateEnd=Convert.ToDateTime(DatePickerFromDay.SelectedDate);
+            string query = "Select * from [Works] where W_EndDate >'" + dateEnd + "'";
+            MessageBox.Show(query);
+            List<DTO_Work> fil = bLL_Work.FillterDateEnd(dateEnd);
+            ShowList(fil);
+        }
+
+        private void DatePickerToDay_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DateTime dateStart = Convert.ToDateTime(DatePickerToDay.SelectedDate);
+            string query = "Select * from [Works] where W_StartDate <'" + dateStart + "'";
+            MessageBox.Show(query);
+            List<DTO_Work> fil = bLL_Work.FillterDateStart(dateStart);
+            ListViewWork.ItemsSource = fil;
+        }
+        public void ShowList(List<DTO_Work> list)
+        {
+            ObservableCollection<DTO_Work> w = new ObservableCollection<DTO_Work>();
+            foreach (var item in list)
+            {
+                if (!item.WorkCoWorker.Equals(""))
+                {
+                    w.Add(new DTO_Work(item.WorkID, item.WorkTitle, item.WorkStartDate, item.WorkEndDate, item.WorkStatus, item.WorkRange, bLL_User.getFullNameByID(Int32.Parse(item.WorkCoWorker)), item.WorkAttachment,bLL_User.getFullNameByID(Int32.Parse(item.WorkUserID))));
+                }
+                else
+                {
+                    w.Add(new DTO_Work(item.WorkID, item.WorkTitle, item.WorkStartDate, item.WorkEndDate, item.WorkStatus, item.WorkRange, item.WorkCoWorker, item.WorkAttachment, item.WorkUserID));
+                }
+            }
+            ListViewWork.ItemsSource = w;
+        }
+
+        private void Loc_Click(object sender, RoutedEventArgs e)
+        {
+            //string status = "",range="";
+            //DateTime dateStart = "";
+            MessageBox.Show("zo");
+            if (ComboBoxStatus.SelectedItem.ToString() != "" && ComboBoxRange.SelectedItem.ToString() != "" && Convert.ToDateTime(DatePickerFromDay.SelectedDate).ToString() != "" && Convert.ToDateTime(DatePickerFromDay.SelectedDate).ToString() != "")
+            {
+                string status = ComboBoxStatus.SelectedItem.ToString().Trim();
+                MessageBox.Show(status);
+                string range = ComboBoxRange.SelectedItem.ToString();
+                MessageBox.Show(range);
+                DateTime dateStart = Convert.ToDateTime(DatePickerFromDay.SelectedDate);
+                MessageBox.Show(dateStart.ToString());
+                DateTime dateEnd = Convert.ToDateTime(DatePickerFromDay.SelectedDate);
+                MessageBox.Show(dateEnd.ToString());
+                string query = "Select * from [Works] where W_StartDate >='" + dateStart + "' and W_EndDate <='" + dateEnd + "' and W_State= " + status + " and W_Range=" + range;
+                MessageBox.Show(query);
+            }
+            else
+            {
+                MessageBox.Show("loi");
+                return;
+                
+            }
+
+        }
     }
 }
