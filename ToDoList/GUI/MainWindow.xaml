@@ -22,7 +22,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1.2*"/>
             <RowDefinition Height="7*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
@@ -67,30 +67,46 @@
         <Grid Grid.Row="1"
               Background="#f1f1f1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10*"/>
-                <ColumnDefinition Width="37*"/>
+                <ColumnDefinition Width="2*"/>
+                
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <Button Name="ButtonAddWork"
-                Grid.Column="0"
-                Margin="20,8,0,8"
-                Click="ButtonAddWork_Click_AddWork"
-                HorizontalAlignment="Left"
-                Style="{StaticResource MaterialDesignRaisedDarkButton}">
-                <StackPanel Orientation="Horizontal">
-                    <materialDesign:PackIcon
+            <StackPanel Grid.Column="0"
+                Orientation="Horizontal">
+                <Button Name="ButtonAddWork"                
+                    Margin="20,8,0,8"
+                    Click="ButtonAddWork_Click_AddWork"
+                    HorizontalAlignment="Left"
+                    Style="{StaticResource MaterialDesignRaisedDarkButton}">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon
                         Kind="Add"
                         Height="24"
                         Width="24" />
-                    <TextBlock Text="Thêm công việc"
+                        <TextBlock Text="Thêm công việc"
                         VerticalAlignment="Center"/>
-                </StackPanel>
+                    </StackPanel>
+                </Button>
 
-            </Button>
+                <Button Name="Myjob"
+                    Content="My job" 
+                    Grid.Column="1" 
+                    HorizontalAlignment="Left" 
+                    Margin="10 0"
+                    VerticalAlignment="Center" 
+                    Click="ButtonViewMyJob" />
+                <Button Name="Partnerjob" 
+                    Content="Partner job" 
+                    Grid.Column="1" 
+                    HorizontalAlignment="Left"
+                    Margin="0 0" 
+                    VerticalAlignment="Center"
+                    Click="ButtonViewPartnerJob"/>
+            </StackPanel>
+
             <StackPanel Grid.Column="1"
-                Margin="350,0,0,0"
-                Orientation="Horizontal"
-                HorizontalAlignment="Left" Grid.ColumnSpan="2">
+                Orientation="Horizontal" 
+                HorizontalAlignment="Right">
                 <DatePicker Name="DatePickerToDay"
                     Width="100"
                     Margin="10 0"
@@ -119,10 +135,14 @@
                       SelectionChanged="ComboBoxRange_SelectionChanged"
                       Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                 </ComboBox>
+
+                <Button Name="Loc" 
+                    Content="Lọc" 
+                    Grid.Column="1" 
+                    VerticalAlignment="Center"
+                    Margin="10 0"                     
+                    Click="Loc_Click"/>
             </StackPanel>
-            <Button Name="Myjob" Content="My job" Grid.Column="1" HorizontalAlignment="Left" Margin="25,0,0,0" VerticalAlignment="Center" Click="ButtonViewMyJob" />
-            <Button Name="Partnerjob" Content="Partner job" Grid.Column="1" HorizontalAlignment="Left" Margin="144,0,0,0" VerticalAlignment="Center" Click="ButtonViewPartnerJob"/>
-            <Button Name="Loc" Content="Lọc" Grid.Column="1" HorizontalAlignment="Left" Margin="263,10,0,0" VerticalAlignment="Top" Click="Loc_Click"/>
         </Grid>
         <Grid Grid.Row="2">
             <ListView Name="ListViewWork" SelectionChanged="ListViewWork_SelectionChanged">
@@ -159,7 +179,7 @@
                                 Click="GridViewColumnHeader_Click_Sort"/>
                         </GridViewColumn>
 
-                        <GridViewColumn Width="130">
+                        <GridViewColumn Width="100">
                             <GridViewColumnHeader Cursor="Hand"
                                 Content="Trạng thái"
                                 Tag="WorkStatus"

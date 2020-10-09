@@ -24,6 +24,9 @@ namespace GUI
     /// </summary>
     public partial class LoginWindow : Window
     {
+        BLL_DangNhap dangNhap = new BLL_DangNhap();
+        BLL_User bLL_User = new BLL_User();
+        General general = new General();
         public LoginWindow()
         {
             InitializeComponent();
@@ -36,10 +39,7 @@ namespace GUI
             Close();
         }
         private void Button_Login(object sender, RoutedEventArgs e)
-        {
-            BLL_DangNhap dangNhap = new BLL_DangNhap();
-            BLL_User bLL_User = new BLL_User();
-            General general = new General();
+        {            
             string password = Password.Password;
             //pass encode
             string passCode = general.passEncode;
@@ -67,11 +67,7 @@ namespace GUI
                 MessageBox.Show("Sai thông tin đăng nhập");
             }
         }
-
-        private void Bold_MouseLeftButtonUp_Register(object sender, MouseButtonEventArgs e)
-        {
-   
-        }
+       
 
         private void test_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -83,6 +79,39 @@ namespace GUI
                 MessageBox.Show(test.Source.ToString());
                 byte[] arr= { };
                 File.WriteAllBytes("Foo.txt", arr);
+            }
+        }
+
+        private void Grid_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                string password = Password.Password;
+                //pass encode
+                string passCode = general.passEncode;
+                string passDecode = general.EncryptString(password, passCode);
+                int roleID = bLL_User.getRoleIDByEmail(Email.Text);
+
+                if (dangNhap.TryLogin(Email.Text, passDecode))
+                {
+                    UserSingleTon.Instance.User = bLL_User.getUserByEmail(Email.Text);
+                    if (roleID == 1)
+                    {
+                        var mainAdmin = new MainAdminWindow();
+                        mainAdmin.Show();
+                    }
+                    else
+                    {
+                        var mainWindow = new MainWindow();
+                        mainWindow.Show();
+                    }
+
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show("Sai thông tin đăng nhập");
+                }
             }
         }
     }
