@@ -91,7 +91,7 @@ namespace GUI
 
         private void ShowHi()
         {
-            TextBlockHi.Text += UserSingleTon.Instance.User.UserFullName;
+            TextBlockHi.Text = UserSingleTon.Instance.User.UserFullName;
         }
 
         private void ShowStatus()
@@ -183,6 +183,7 @@ namespace GUI
         {
             var info = new InfoUserDialog();
             info.ShowDialog();
+            ShowHi();
         }
         private void ListViewWork_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -198,7 +199,7 @@ namespace GUI
                 Button button = sender as Button;
                 DTO_Work work = button.DataContext as DTO_Work;
                 int id = work.WorkID;
-                MessageBox.Show("" + id);
+                //MessageBox.Show("" + id);
                 BLL_Work bLL_Work = new BLL_Work();
                 bLL_Work.DeleteWork(id);
                 ShowWork();
@@ -210,7 +211,7 @@ namespace GUI
             Button button = sender as Button;
             DTO_Work work = button.DataContext as DTO_Work;
             int id = work.WorkID;
-            MessageBox.Show("" + id);
+            //MessageBox.Show("" + id);
             var detail = new WorkDetailDialog(id);
             detail.ShowDialog();
             ShowWork();

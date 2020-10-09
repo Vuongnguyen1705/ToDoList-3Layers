@@ -37,9 +37,11 @@
                 VerticalContentAlignment="Center"
                 materialDesign:HintAssist.Hint="Tìm kiếm"
                 TextChanged="TextBoxSearchMainAdmin_TextChanged"/>
-            <TextBlock x:Name="TextBlockHi" 
+            <TextBlock  
                        VerticalAlignment="Center"
                        Text="Xin chào: "/>
+            <TextBlock x:Name="TextBlockHi"
+                VerticalAlignment="Center"/>
             <Ellipse Width="30" Height="30" Margin="10 0" 
                 Cursor="Hand" MouseDown="Ellipse_MouseDown_InfoUser">
                 <Ellipse.Fill>
@@ -81,19 +83,7 @@
                 </StackPanel>
 
             </Button>
-            <StackPanel Grid.Column="1"
-                Margin="350,0,0,0"
-                Orientation="Horizontal"
-                HorizontalAlignment="Right" Grid.ColumnSpan="2">
-                <ComboBox Name="ComboBoxGender"
-                      Margin="10 0 10 -2"
-                      Width="80"
-                      Cursor="Hand"
-                      IsEditable="True"
-                      materialDesign:HintAssist.Hint="Giới tính"
-                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                </ComboBox>
-            </StackPanel>
+            
         </Grid>
         <Grid Grid.Row="2">
             <ListView Name="ListViewUser">
@@ -159,19 +149,19 @@
                                 Click="GridViewColumnHeader_Click_Sort"/>
                         </GridViewColumn>
 
-                        <GridViewColumn Width="80">
+                        <GridViewColumn Width="150">
                             <GridViewColumnHeader Cursor="Hand"                               
                                 Tag="UserDelete"
+                                Content="Trạng thái hoạt động"
                                 Click="GridViewColumnHeader_Click_Sort"/>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button x:Name="ButtonDeleteUser"
-                                        Content="Xóa"
-                                        Foreground="Red"
-                                        BorderBrush="Red"
-                                        BorderThickness="2"
-                                        Click="ButtonDeleteUser_Click"
-                                        Style="{StaticResource MaterialDesignOutlinedButton}"/>
+                                    <ToggleButton
+                                        Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                                        x:Name="ToggleButton_Enable"
+                                        IsChecked="{Binding UserIsEnable}"
+                                        Checked="ToggleButton_Checked_Active"
+                                        Unchecked="ToggleButton_Unchecked_DeActive"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

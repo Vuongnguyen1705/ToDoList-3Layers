@@ -9,12 +9,12 @@ namespace DAL
 {
     public class DAL_User
     {
-        public List<DTO_User> getUserEnable()
+        public List<DTO_User> getAll()
         {
             General general = new General();
             List<DTO_User> user = new List<DTO_User>();
             
-            string query = "Select * from [Users] where U_Role_ID not in (SELECT U_Role_ID FROM dbo.Users WHERE U_Role_ID=1) AND U_IsEnable=1";
+            string query = "Select * from [Users] where U_Role_ID not in (SELECT U_Role_ID FROM dbo.Users WHERE U_Role_ID=1)";
             var conn = Connection.Instance;
             conn.Open();
             SqlCommand command = new SqlCommand(query, conn);
@@ -28,6 +28,33 @@ namespace DAL
                         reader.GetString(3),
                         reader.GetString(4), reader.GetString(5), reader.GetString(6),
                         reader.GetDateTime(7), reader.GetString(8),reader.GetBoolean(9),reader.GetInt32(10).ToString()));
+
+                }
+                reader.NextResult();
+            }
+            conn.Close();
+            return user;
+        }
+
+        public List<DTO_User> getUserEnable()
+        {
+            General general = new General();
+            List<DTO_User> user = new List<DTO_User>();
+
+            string query = "Select * from [Users] where U_Role_ID not in (SELECT U_Role_ID FROM dbo.Users WHERE U_Role_ID=1) and U_IsEnable=1";
+            var conn = Connection.Instance;
+            conn.Open();
+            SqlCommand command = new SqlCommand(query, conn);
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    user.Add(new DTO_User(reader.GetInt32(0), reader.GetString(1),
+                        reader.GetString(2),
+                        reader.GetString(3),
+                        reader.GetString(4), reader.GetString(5), reader.GetString(6),
+                        reader.GetDateTime(7), reader.GetString(8), reader.GetBoolean(9), reader.GetInt32(10).ToString()));
 
                 }
                 reader.NextResult();
@@ -182,10 +209,17 @@ namespace DAL
             String query = "UPDATE dbo.Users SET  U_Password = '" + UserPassword + "' WHERE U_ID = " + UserID;
             InsertUpdateDeleteSQLString(query);
         }
-        public void DeleteUser(int UserID)
+        public void DisableUser(int UserID)
         {
             DataSet ds = new DataSet();
-            string query = "DELETE FROM dbo.Users WHERE U_ID = '" + UserID + "' ";
+            string query = "UPDATE dbo.Users SET U_IsEnable=0 WHERE U_ID = '" + UserID + "'";
+            InsertUpdateDeleteSQLString(query);
+        }
+
+        public void EnableUser(int UserID)
+        {
+            DataSet ds = new DataSet();
+            string query = "UPDATE dbo.Users SET U_IsEnable=1 WHERE U_ID = '" + UserID + "'";
             InsertUpdateDeleteSQLString(query);
         }
     }

@@ -39,9 +39,13 @@
                 VerticalContentAlignment="Center"
                 materialDesign:HintAssist.Hint="Tìm kiếm"
                 TextChanged="TextBoxSearchMain_TextChanged"/>
-            <TextBlock x:Name="TextBlockHi" 
+            <TextBlock 
                        VerticalAlignment="Center"
                        Text="Xin chào: "/>
+            <TextBlock x:Name="TextBlockHi"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center">
+            </TextBlock>
             <Ellipse Width="30" Height="30" Margin="10 0" 
                 Cursor="Hand" MouseDown="Ellipse_MouseDown_InfoUser">
                 <Ellipse.Fill>
@@ -203,9 +207,5 @@
 
             </ListView>
         </Grid>
-        <Label Content="" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Center" Height="28" Width="31" Background="#FF5365D6"/>
-        <Label Content="Việc làm chung" HorizontalAlignment="Left" Margin="41,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="94" Height="28"/>
-        <Label Content="" HorizontalAlignment="Left" Margin="141,0,0,0" Grid.Row="3" VerticalAlignment="Center" Height="28" Width="28" Background="#FFE8EAF9" Foreground="#DDD3C8C8" BorderBrush="Black"/>
-        <Label Content="Việc làm chính" HorizontalAlignment="Left" Margin="172,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="94" Height="28"/>
     </Grid>
 </Window>

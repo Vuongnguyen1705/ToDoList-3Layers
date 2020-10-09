@@ -21,6 +21,8 @@ namespace GUI
     /// </summary>
     public partial class AddWorkDialog : Window
     {
+        BLL_Work bLL_Work = new BLL_Work();
+        BLL_User bLL_User = new BLL_User();
         public AddWorkDialog()
         {
             InitializeComponent();
@@ -34,8 +36,6 @@ namespace GUI
 
         private void ShowListUser()
         {
-            List<string> user = new List<string>();
-            BLL_User bLL_User = new BLL_User();
             ComboBoxListUser.ItemsSource = bLL_User.getFullName();
         }
         private void Attachment_MouseDown_Upload_File(object sender, MouseButtonEventArgs e)
@@ -59,9 +59,7 @@ namespace GUI
         }
 
         private void Button_Click_Add(object sender, RoutedEventArgs e)
-        {
-            BLL_Work bLL_Work = new BLL_Work();
-            BLL_User bLL_User = new BLL_User();
+        {            
             string range;
             if (Validate() == 1)
             {

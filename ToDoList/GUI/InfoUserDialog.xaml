@@ -4,7 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Icon="Images/favicon.png"
+        
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -62,6 +64,7 @@
                         Width="200"                
                         FontSize="15"
                         Margin="0 5"
+                        IsEnabled="False"
                         VerticalAlignment="Top"
                         HorizontalAlignment="Left"
                         Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
@@ -77,20 +80,20 @@
                         Content="Thay đổi mật khẩu"/>
                     <PasswordBox
                         Name="PasswordBoxOldPass"
-                        Margin="0 5"
-                        IsEnabled="False"
+                        Margin="0 5"                        
                         HorizontalAlignment="Left"
                         Style="{StaticResource MaterialDesignOutlinedPasswordFieldPasswordBox}"
                         VerticalAlignment="Top"
                         Width="200"
                         PasswordChar="@"
+                        IsEnabled="{Binding Path=IsChecked, ElementName=CheckBoxChangePass}"
                         materialDesign:HintAssist.Hint="Mật khẩu cũ"/>
                 </StackPanel>
 
                 <StackPanel Grid.Row="4">
                     <PasswordBox
                         Name="PasswordBoxNewPass"
-                        IsEnabled="False"
+                        IsEnabled="{Binding Path=IsChecked, ElementName=CheckBoxChangePass}"
                         Margin="0 5"
                         HorizontalAlignment="Left"
                         Style="{StaticResource MaterialDesignOutlinedPasswordFieldPasswordBox}"
@@ -102,7 +105,7 @@
                     <PasswordBox
                         Name="PasswordBoxNewPassConfirm"
                         Margin="0 5"
-                        IsEnabled="False"                        
+                        IsEnabled="{Binding Path=IsChecked, ElementName=CheckBoxChangePass}"                        
                         HorizontalAlignment="Left"
                         Style="{StaticResource MaterialDesignOutlinedPasswordFieldPasswordBox}"
                         VerticalAlignment="Top"
@@ -125,7 +128,7 @@
                     <TextBox Name="TextBoxPhone"
                         Width="200"                
                         FontSize="15"
-                        Margin="0 5"
+                        Margin="0 5"                       
                         HorizontalAlignment="Left"
                         Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
                         materialDesign:HintAssist.Hint="Số điện thoại"/>
@@ -147,6 +150,7 @@
                         HorizontalAlignment="Left"
                         Name="DatePickerBirthday"
                         Width="200"
+                        DisplayDateEnd="{x:Static sys:DateTime.Today}"
                         Text="12/12/2012"
                         Style="{StaticResource MaterialDesignOutlinedDatePicker}"
                         materialDesign:HintAssist.Hint="Ngày sinh" />
