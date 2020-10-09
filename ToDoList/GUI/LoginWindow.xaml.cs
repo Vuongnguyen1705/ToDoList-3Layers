@@ -27,6 +27,8 @@ namespace GUI
         public LoginWindow()
         {
             InitializeComponent();
+            System.IO.Directory.CreateDirectory("..\\Attachments");
+            System.IO.Directory.CreateDirectory("..\\Avatar");
         }
 
         private void Button_Exit(object sender, RoutedEventArgs e)

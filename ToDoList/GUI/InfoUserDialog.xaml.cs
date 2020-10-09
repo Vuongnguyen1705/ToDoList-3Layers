@@ -37,7 +37,7 @@ namespace GUI
         private void SetInfo()
         {
             //ImageBrushAvatar.ImageSource = new ImageBrush();
-            //ImageBrushAvatar.ImageSource = new BitmapImage(new Uri(@"Images/favicon.png"));
+            ImageBrushAvatar.ImageSource = new BitmapImage(new Uri(@UserSingleTon.Instance.User.UserAvatar));
             TextBoxFullName.Text = UserSingleTon.Instance.User.UserFullName;
             TextBoxPhone.Text = UserSingleTon.Instance.User.UserPhoneNumber;
             TextBoxAddress.Text = UserSingleTon.Instance.User.UserAddress;
@@ -111,16 +111,14 @@ namespace GUI
         private void Ellipse_MouseDown_Change_Avatar(object sender, MouseButtonEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Multiselect = true;
-            openFileDialog.Filter ="Image files (*.png, *jpg)|*.png; *jpg";
-            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             if (openFileDialog.ShowDialog() == true)
             {
+
                 Uri fileUri = new Uri(openFileDialog.FileName);
-                
                 ImageBrushAvatar.ImageSource = new BitmapImage(fileUri);
-                MessageBox.Show(fileUri+"");
-                
+                string filePath = fileUri.ToString().Remove(0, 8);
+                string destinationDir = "..\\Avatar\\";
+                System.IO.File.Copy(filePath, destinationDir + System.IO.Path.GetFileName(filePath), true);
             }
 
         }
