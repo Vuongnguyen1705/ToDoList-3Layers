@@ -67,7 +67,7 @@
                  materialDesign:HintAssist.Hint="Trạng thái"
                  IsEditable="True"
                  Margin="10 0"
-                 VerticalAlignment="Top"
+                 VerticalAlignment="Center"
                   Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                 <ComboBoxItem
                     Content="Đang làm"

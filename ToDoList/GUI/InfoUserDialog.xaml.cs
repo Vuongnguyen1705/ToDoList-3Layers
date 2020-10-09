@@ -37,7 +37,7 @@ namespace GUI
         private void SetInfo()
         {
             //ImageBrushAvatar.ImageSource = new ImageBrush();
-            ImageBrushAvatar.ImageSource = new BitmapImage(new Uri(@UserSingleTon.Instance.User.UserAvatar));
+            //ImageBrushAvatar.ImageSource = new BitmapImage(new Uri(@UserSingleTon.Instance.User.UserAvatar));
             TextBoxFullName.Text = UserSingleTon.Instance.User.UserFullName;
             TextBoxPhone.Text = UserSingleTon.Instance.User.UserPhoneNumber;
             TextBoxAddress.Text = UserSingleTon.Instance.User.UserAddress;
@@ -52,7 +52,7 @@ namespace GUI
             {
                 user.UpdateUser(new DTO_User(UserSingleTon.Instance.User.UserID, UserSingleTon.Instance.User.UserAvatar, TextBoxFullName.Text.Trim(), TextBoxPhone.Text.Trim(), UserSingleTon.Instance.User.UserEmail, UserSingleTon.Instance.User.UserPassword, TextBoxAddress.Text.Trim(), DatePickerBirthday.DisplayDate, ComboBoxGender.Text, true, UserSingleTon.Instance.User.UserRoleID));
                 UserSingleTon.Instance.User = user.getUserByEmail(UserSingleTon.Instance.User.UserEmail);
-                MessageBox.Show("Đã lưu"+UserSingleTon.Instance.User.UserFullName);                
+                MessageBox.Show("Đã lưu");                
                 Close();
             }
             else

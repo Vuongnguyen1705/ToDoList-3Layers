@@ -74,6 +74,7 @@ namespace GUI
             }
             else
             {
+                
                 Partnerjob.Visibility = Visibility.Hidden;
                 Myjob.Visibility = Visibility.Hidden;
                 foreach (var item in bLL_Work.getAll())
