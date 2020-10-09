@@ -12,5 +12,10 @@ namespace BLL
         {
             return role.getRoleNameByID(idRole);
         }
+
+        public int getIDByRoleName(string RoleName)
+        {
+            return role.getIDByRoleName(RoleName);
+        }
     }
 }

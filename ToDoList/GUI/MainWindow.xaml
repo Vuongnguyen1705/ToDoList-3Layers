@@ -39,9 +39,13 @@
                 VerticalContentAlignment="Center"
                 materialDesign:HintAssist.Hint="Tìm kiếm"
                 TextChanged="TextBoxSearchMain_TextChanged"/>
-            <TextBlock x:Name="TextBlockHi" 
+            <TextBlock 
                        VerticalAlignment="Center"
                        Text="Xin chào: "/>
+            <TextBlock x:Name="TextBlockHi"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center">
+            </TextBlock>
             <Ellipse Width="30" Height="30" Margin="10 0" 
                 Cursor="Hand" MouseDown="Ellipse_MouseDown_InfoUser">
                 <Ellipse.Fill>

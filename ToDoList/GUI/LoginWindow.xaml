@@ -26,7 +26,7 @@
             <RowDefinition Height="8*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Margin="0 10 0 0">
-            <Image MouseDown="test_MouseDown" x:Name="test" Source="Images\favicon.png"/>
+            <Image MouseDown="test_MouseDown" x:Name="test" Source="\bin\Debug\Avatar\bg.jpeg"/>
         </Grid>
         <materialDesign:Card Grid.Row="1" Padding="0 0 0 20"
                              HorizontalAlignment="Center" 
