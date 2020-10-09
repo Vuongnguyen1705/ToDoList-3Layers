@@ -118,7 +118,7 @@
             </StackPanel>
             <Button Name="Myjob" Content="My job" Grid.Column="1" HorizontalAlignment="Left" Margin="25,0,0,0" VerticalAlignment="Center" Click="ButtonViewMyJob" />
             <Button Name="Partnerjob" Content="Partner job" Grid.Column="1" HorizontalAlignment="Left" Margin="144,0,0,0" VerticalAlignment="Center" Click="ButtonViewPartnerJob"/>
-            <Button Name="Loc" Content="Lọc" Grid.Column="1" HorizontalAlignment="Left" Margin="263,10,0,0" VerticalAlignment="Top" Click=""/>
+            <Button Name="Loc" Content="Lọc" Grid.Column="1" HorizontalAlignment="Left" Margin="263,10,0,0" VerticalAlignment="Top" Click="Loc_Click"/>
         </Grid>
         <Grid Grid.Row="2">
             <ListView Name="ListViewWork" SelectionChanged="ListViewWork_SelectionChanged">
