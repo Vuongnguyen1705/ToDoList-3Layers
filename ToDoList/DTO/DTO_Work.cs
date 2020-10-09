@@ -10,7 +10,7 @@ namespace DTO
         {
         }
 
-        public DTO_Work(int workID, string workTitle, DateTime workStartDate, DateTime workEndDate, string workStatus, string workRange, string workCoWorker, string workAttachment, int workUserID)
+        public DTO_Work(int workID, string workTitle, DateTime workStartDate, DateTime workEndDate, string workStatus, string workRange, string workCoWorker, string workAttachment, string workUserID)
         {
             WorkID = workID;
             WorkTitle = workTitle;
@@ -31,6 +31,6 @@ namespace DTO
         public string WorkRange { get; set; }
         public string WorkCoWorker { get; set; }
         public string WorkAttachment { get; set; }
-        public int WorkUserID { get; set; }
+        public string WorkUserID { get; set; }
     }
 }

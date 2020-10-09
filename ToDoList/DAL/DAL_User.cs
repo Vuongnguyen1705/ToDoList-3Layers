@@ -149,7 +149,7 @@ namespace DAL
         public int getIDByFullName(string name)
         {
             int id=0;
-            string query = "Select U_ID from [Users] where U_FullName='" + name + "'";
+            string query = "Select U_ID from [Users] where U_FullName=N'" + name + "'";
             var conn = Connection.Instance;
             conn.Open();
             SqlCommand command = new SqlCommand(query, conn);

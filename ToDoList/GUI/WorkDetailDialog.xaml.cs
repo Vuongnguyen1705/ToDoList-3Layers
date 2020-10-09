@@ -56,10 +56,18 @@ namespace GUI
                 else
                 {
                     RadioPrivate.IsChecked = true;
-                    MessageBox.Show(item.WorkRange);
+                    //MessageBox.Show(item.WorkRange);
                 }
-                string tenNhanVien = bLL_User.getFullNameByID(Convert.ToInt32(item.WorkCoWorker)).Trim().ToString();
-                ComboBoxListUser.Text = tenNhanVien;
+
+                //MessageBox.Show(item.WorkCoWorker);
+                if (item.WorkCoWorker == "")
+                {
+                    MessageBox.Show("bi null");
+                    item.WorkCoWorker = "0";
+                }
+                string tenNhanVien=bLL_User.getFullNameByID(Convert.ToInt32(item.WorkCoWorker)).ToString();
+                //ComboBoxListUser.Text = tenNhanVien;
+                NguoiLamChung.Text = tenNhanVien;
                 //MessageBox.Show("--"+tenNhanVien+"--");
                 TextBlockAttachment.Text = item.WorkAttachment;
                 WorkId.Text = item.WorkID.ToString();
@@ -121,7 +129,7 @@ namespace GUI
         {
             //MessageBox.Show("zo");
             string id = WorkId.Text;
-            MessageBox.Show(id);
+            //MessageBox.Show(id);
             string range;
             if (RadioPublic.IsChecked == true)
             {
@@ -138,10 +146,22 @@ namespace GUI
             work.WorkEndDate = Convert.ToDateTime(DatePickerEndDate.Text);
             work.WorkStatus = ComboBoxState.Text;
             work.WorkRange = range;
-            work.WorkCoWorker = bLL_User.getIDByFullName(ComboBoxListUser.Text).ToString();
+            if (ComboBoxListUser.Text.Equals(""))
+            {
+                //MessageBox.Show("cbb user rong");
+                //MessageBox.Show(NguoiLamChung.Text);
+                work.WorkCoWorker = bLL_User.getIDByFullName(NguoiLamChung.Text).ToString();
+                //MessageBox.Show(work.WorkCoWorker);
+            }
+            else
+            {
+                //MessageBox.Show("cbb user khac rong");
+                //MessageBox.Show(NguoiLamChungHT.Text);
+                work.WorkCoWorker = bLL_User.getIDByFullName(NguoiLamChungHT.Text).ToString();
+                //MessageBox.Show(work.WorkCoWorker);
+            }
             work.WorkAttachment = TextBlockAttachment.Text;
-            work.WorkUserID=UserSingleTon.Instance.User.UserID;
-            //MessageBox.Show(ComboBoxListUser.Text);
+            work.WorkUserID=UserSingleTon.Instance.User.UserID.ToString();
             bLL_Work.UpdateWork(work);
             MessageBox.Show("Update thành công");
             Close();
@@ -166,6 +186,13 @@ namespace GUI
                 TextBoxInputComment.Clear();             
                 ShowComment();
             }
+        }
+
+        private void ComboBoxListUser_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int id = ComboBoxListUser.SelectedIndex;
+            id = id + 2;
+            NguoiLamChungHT.Text = bLL_User.getFullNameByID(id);
         }
 
     }

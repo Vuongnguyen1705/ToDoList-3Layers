@@ -109,18 +109,33 @@
                 </WrapPanel>
             </RadioButton>
         </StackPanel>
-        <StackPanel Grid.Row="4">
+        <StackPanel Grid.Row="4"
+            Orientation="Horizontal">
             <ComboBox
                 Name="ComboBoxListUser"
                 HorizontalAlignment="Left"
                 Width="120"
                 Margin="10 0"
-                Text="{Binding Name}"
+                IsEditable="False"
+                SelectionChanged="ComboBoxListUser_SelectionChanged"
                 materialDesign:HintAssist.Hint="Người làm chung"
-                IsEditable="True"
-                DisplayMemberPath="{Binding userFullName}"
+                Text="{Binding UserFullName}"                
                 Style="{StaticResource MaterialDesignComboBox}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock x:Name="UserName" Text="{Binding UserFullName}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
             </ComboBox>
+            <TextBlock Name="NguoiLamChung"
+                VerticalAlignment="Center" 
+                TextWrapping="Wrap"
+                Width="auto"/>
+            <TextBlock Name="NguoiLamChungHT"
+                VerticalAlignment="Center" 
+                TextWrapping="Wrap"
+                Visibility="Hidden"       
+                Width="auto"/>
         </StackPanel>
         <StackPanel Grid.Row="5" Orientation="Horizontal" VerticalAlignment="Center">
             <TextBlock Margin="10 0" 
@@ -137,6 +152,7 @@
                 Cursor="Hand"
                 MouseDown="TextBlockAttachment_Click_File"               
                 Margin="10 0"/>
+            
         </StackPanel>
         <Grid Grid.Column="1" Grid.RowSpan="7" 
               Background="#bebebe"/>
