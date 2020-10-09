@@ -42,9 +42,9 @@ namespace GUI
         {
             if (Validate() == 0)
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin");                
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin");
             }
-            else if(Validate() == 2)
+            else if (Validate() == 2)
             {
                 MessageBox.Show("Mật khẩu không khớp");
                 PasswordBoxPassCofirm.Focus();
@@ -53,17 +53,25 @@ namespace GUI
             {
                 MessageBox.Show("Email không đúng định dạng");
                 TextBoxEmail.Focus();
-            }else if (Validate() == 4)
+            }
+            else if (Validate() == 4)
             {
                 MessageBox.Show("Số điện thoại không hợp lệ");
+                TextBoxPhone.Focus();
             }
-            
+            else
+            {
+                bLL_User.AddUser(new DTO_User(1, "Images/icon-user-default.png", TextBoxFullName.Text, TextBoxPhone.Text, TextBoxEmail.Text, PasswordBoxPassCofirm.Password, TextBoxAddress.Text, Convert.ToDateTime(DatePickerBirthday.Text), ComboBoxGender.Text, true, bLL_Role.getIDByRoleName(ComboBoxRole.Text).ToString()));
+                Close();
+                MessageBox.Show("Thêm thành công");
+            }
+
 
         }
 
         private int Validate()
         {
-            Regex regexMail =new Regex(@"^[a-z][a-z0-9_\.]{4,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$");
+            Regex regexMail = new Regex(@"^[a-z][a-z0-9_\.]{4,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$");
             Regex regexPhone = new Regex(@"^(03|07|08|09|01[2|6|8|9])+([0-9]{8})$");
             if (string.IsNullOrEmpty(TextBoxFullName.Text.Trim()) || string.IsNullOrEmpty(TextBoxPhone.Text.Trim())
                 || string.IsNullOrEmpty(TextBoxEmail.Text.Trim()) || string.IsNullOrEmpty(PasswordBoxPass.Password.Trim())
@@ -80,7 +88,8 @@ namespace GUI
             else if (!regexMail.IsMatch(TextBoxEmail.Text))
             {
                 return 3;//sai mail
-            }else if (!regexPhone.IsMatch(TextBoxPhone.Text))
+            }
+            else if (!regexPhone.IsMatch(TextBoxPhone.Text))
             {
                 return 4;//sai sdt
             }

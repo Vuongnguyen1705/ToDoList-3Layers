@@ -135,7 +135,7 @@
             <TextBlock x:Name="TextBlockAttachment" 
                 VerticalAlignment="Center"
                 Cursor="Hand"
-                Hyperlink.Click="TextBlockAttachment_Click_File"
+                MouseDown="TextBlockAttachment_Click_File"               
                 Margin="10 0"/>
         </StackPanel>
         <Grid Grid.Column="1" Grid.RowSpan="7" 
