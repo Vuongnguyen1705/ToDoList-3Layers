@@ -12,6 +12,11 @@ namespace BLL
     {
         DAL_User dAL_User = new DAL_User();
 
+        public List<DTO_User> getAll()
+        {
+            return dAL_User.getAll();
+        }
+
         public List<DTO_User> getUserEnable()
         {
             return dAL_User.getUserEnable();
@@ -44,10 +49,16 @@ namespace BLL
 			dAL_User.UpdateUser(u);
 		}
 
-		public void DeleteUser(int UserID)
+		public void DisableUser(int UserID)
 		{
-			dAL_User.DeleteUser(UserID);
+			dAL_User.DisableUser(UserID);
 		}
+
+        public void EnableUser(int UserID)
+        {
+            dAL_User.EnableUser(UserID);
+        }
+
         public void UpdateUserPassword(int UserID, string UserPassword)
         {
             dAL_User.UpdateUserPassword(UserID,UserPassword);

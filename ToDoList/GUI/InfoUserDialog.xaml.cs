@@ -50,32 +50,41 @@ namespace GUI
         {
             if (CheckBoxChangePass.IsChecked.Equals(false))
             {
+                user.UpdateUser(new DTO_User(UserSingleTon.Instance.User.UserID, UserSingleTon.Instance.User.UserAvatar, TextBoxFullName.Text.Trim(), TextBoxPhone.Text.Trim(), UserSingleTon.Instance.User.UserEmail, UserSingleTon.Instance.User.UserPassword, TextBoxAddress.Text.Trim(), DatePickerBirthday.DisplayDate, ComboBoxGender.Text, true, UserSingleTon.Instance.User.UserRoleID));
+                UserSingleTon.Instance.User = user.getUserByEmail(UserSingleTon.Instance.User.UserEmail);
+                MessageBox.Show("Đã lưu"+UserSingleTon.Instance.User.UserFullName);                
                 Close();
             }
             else
             {
                 if (string.IsNullOrEmpty(PasswordBoxOldPass.Password))
                 {
-                    MessageBox.Show("nhap pass di ban ei");
+                    MessageBox.Show("Vui lòng nhập mật khẩu cũ");
                 }
                 else
                 {
                     if (!general.EncryptString( PasswordBoxOldPass.Password,general.passEncode).Equals(UserSingleTon.Instance.User.UserPassword))
                     {
-                        MessageBox.Show("nhap sai r ba ");
+                        MessageBox.Show("Mật khẩu cũ không chính xác");
                     }
                     else
                     {
-                        if (!PasswordBoxNewPassConfirm.Password.Equals(PasswordBoxNewPass.Password))
+                        if (PasswordBoxNewPass.Password.Equals(""))
                         {
-                            MessageBox.Show("Nhap 2 pass khac nhau roi kia <('')> ");
-                        }
-                        else 
-                        {
-                            user.UpdateUserPassword(UserSingleTon.Instance.User.UserID,general.EncryptString(PasswordBoxNewPass.Password,general.passEncode));
-                            MessageBox.Show("da luu thanh cong ");
-                            Close(); 
-                        }
+                            MessageBox.Show("Vui lòng nhập mật khẩu mới");
+
+                        }else
+                            if (!PasswordBoxNewPassConfirm.Password.Equals(PasswordBoxNewPass.Password))
+                            {
+                                MessageBox.Show("Mật khẩu không khớp");
+                            }
+                            else 
+                            {
+                                user.UpdateUser(new DTO_User(UserSingleTon.Instance.User.UserID, UserSingleTon.Instance.User.UserAvatar, TextBoxFullName.Text.Trim(), TextBoxPhone.Text.Trim(), UserSingleTon.Instance.User.UserEmail, general.EncryptString(PasswordBoxNewPass.Password.Trim(),general.passEncode), TextBoxAddress.Text.Trim(), DatePickerBirthday.DisplayDate, ComboBoxGender.Text, true, UserSingleTon.Instance.User.UserRoleID));
+                                UserSingleTon.Instance.User = user.getUserByEmail(UserSingleTon.Instance.User.UserEmail);
+                                MessageBox.Show("Đã lưu");
+                                Close(); 
+                            }
                     }
                 }
             }
@@ -96,26 +105,19 @@ namespace GUI
         }
         private void CheckBoxChangePass_Unchecked_Pass(object sender, RoutedEventArgs e)
         {
-            if (CheckBoxChangePass.IsChecked.Equals(false))
-            {
-                PasswordBoxOldPass.IsEnabled = false;
-                PasswordBoxNewPass.IsEnabled = false;
-                PasswordBoxNewPassConfirm.IsEnabled = false;
-            }
-            else
-            {
-                PasswordBoxOldPass.IsEnabled = true;
-                PasswordBoxNewPass.IsEnabled = true;
-                PasswordBoxNewPassConfirm.IsEnabled = true;
-            }
+           
         }
 
         private void Ellipse_MouseDown_Change_Avatar(object sender, MouseButtonEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Multiselect = true;
+            openFileDialog.Filter ="Image files (*.png, *jpg)|*.png; *jpg";
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             if (openFileDialog.ShowDialog() == true)
             {
                 Uri fileUri = new Uri(openFileDialog.FileName);
+                
                 ImageBrushAvatar.ImageSource = new BitmapImage(fileUri);
                 MessageBox.Show(fileUri+"");
                 

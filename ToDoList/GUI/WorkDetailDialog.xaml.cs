@@ -61,11 +61,11 @@ namespace GUI
                 }
                 string tenNhanVien = bLL_User.getFullNameByID(Convert.ToInt32(item.WorkCoWorker)).Trim().ToString();
                 ComboBoxListUser.Text = tenNhanVien;
-                MessageBox.Show("--"+tenNhanVien+"--");
+                //MessageBox.Show("--"+tenNhanVien+"--");
                 TextBlockAttachment.Text = item.WorkAttachment;
                 WorkId.Text = item.WorkID.ToString();
-                MessageBox.Show("coworker: " + bLL_User.getFullNameByID(Convert.ToInt32(item.WorkCoWorker)).ToString());
-                MessageBox.Show("da load xong");
+                //MessageBox.Show("coworker: " + bLL_User.getFullNameByID(Convert.ToInt32(item.WorkCoWorker)).ToString());
+                //MessageBox.Show("da load xong");
             }
         }
 
@@ -104,7 +104,7 @@ namespace GUI
 
         private void Button_Click_Update(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("zo");
+            //MessageBox.Show("zo");
             string id = WorkId.Text;
             MessageBox.Show(id);
             string range;
@@ -126,16 +126,20 @@ namespace GUI
             work.WorkCoWorker = bLL_User.getIDByFullName(ComboBoxListUser.Text).ToString();
             work.WorkAttachment = TextBlockAttachment.Text;
             work.WorkUserID=UserSingleTon.Instance.User.UserID;
-            MessageBox.Show(ComboBoxListUser.Text);
+            //MessageBox.Show(ComboBoxListUser.Text);
             bLL_Work.UpdateWork(work);
             MessageBox.Show("Update thành công");
             Close();
         }
 
         private void Button_Click_Comment(object sender, RoutedEventArgs e)
-        {            
-            bLL_Comment.insertComment(new DTO_Comment(1, UserSingleTon.Instance.User.UserID.ToString(), idWork, TextBoxInputComment.Text));
-            TextBoxInputComment.Clear();
+        {
+            if (!TextBoxInputComment.Text.Equals(""))
+            {
+                bLL_Comment.insertComment(new DTO_Comment(1, UserSingleTon.Instance.User.UserID.ToString(), idWork, TextBoxInputComment.Text));
+                TextBoxInputComment.Clear();
+                ShowComment();
+            }
 
         }
 
