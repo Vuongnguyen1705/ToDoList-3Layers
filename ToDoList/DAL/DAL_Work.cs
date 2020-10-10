@@ -226,13 +226,80 @@ namespace DAL
             conn.Close();
             return works;
         }
-        public List<DTO_Work> FillterAll(string range,string state,DateTime dateStart,DateTime dateEnd)
+        public List<DTO_Work> FillterAll(string range, string state, DateTime dateStart, DateTime dateEnd)
         {
             List<DTO_Work> works = new List<DTO_Work>();
             var conn = Connection.Instance;
             conn.Open();
             string query;
-            query = "Select * from [Works] where W_StartDate >='" + dateStart + "' and W_EndDate <='"+dateEnd+"' and W_State= "+state+" and W_Range="+range;
+            string startDate = "", endDate = "";
+            /*if (range!="")
+            {
+                if (state != "")
+                {
+                    if (dateStart.ToString() != "")
+                    {
+                        if (dateEnd.ToString() != "")
+                        {
+                            query = "Select * from [Works] where W_StartDate >='" + dateStart + "' and W_EndDate <='" + dateEnd + "' and W_State=N'" + state + "' and W_Range='" + range+"'";
+                        }
+                        else
+                        {
+                            query = "Select * from [Works] where  W_Range= " + range + "and W_State=N'" + state + "'";
+                        }
+                    }
+                    else if (dateEnd.ToString() != "")
+                    {
+                        query = "Select * from [Works] where W_EndDate <='" + dateEnd + "' and W_State=N'" + state + "' and W_Range='" + range + "'";
+                    }
+                    else
+                    {
+                        query = "Select * from [Works] where  W_Range= " + range + "and W_State=N'" + state + "' and W_StartDate <='" + dateStart + "'";
+                    }
+                }
+                else if (dateStart.ToString() != "")
+                {
+                    if (dateEnd.ToString() != "")
+                    {
+                        query = "Select * from [Works] where W_StartDate >='" + dateStart + "' and W_EndDate <='" + dateEnd + "' and W_Range='" + range + "'";
+                    }
+                    else
+                    {
+                        query = "Select * from [Works] where W_StartDate >='" + dateStart + "' and W_Range='" + range + "'";
+                    }
+                }
+                else if (dateEnd.ToString() != "")
+                {
+
+                }
+                else
+                {
+                    query = "Select * from [Works] where  W_Range= '" + range+"'";
+                }
+            }*/
+            query = "Select * from [Works] where 1=1";
+            if (range != "")
+            {
+                range = " and W_Range='" + range+"'";
+                query += range;
+            }
+            if (state != "")
+            {
+                state = " and W_State=N'" + state + "'";
+                query += state;
+            }
+            if (dateStart.ToString() != "")
+            {
+                startDate = " and W_StartDate >='" + dateStart + "'";
+                query += startDate;
+            }
+            if (dateEnd.ToString() != "")
+            {
+                endDate = " and W_EndDate <='" + dateEnd + "'";
+                query += endDate;
+            }
+            //query = "Select * from [Works] where W_StartDate >='" + dateStart + "' and W_EndDate <='"+dateEnd+"' and W_State=N'"+state+"' and W_Range="+range;
+            //query = "Select * from [Works] where 1=1 " + range + " " + state + " " + startDate + " " + endDate + " ";
             SqlCommand command = new SqlCommand(query, conn);
             SqlDataReader reader = command.ExecuteReader();
             while (reader.HasRows)
