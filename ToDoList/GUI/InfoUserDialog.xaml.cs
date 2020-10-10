@@ -37,7 +37,7 @@ namespace GUI
         private void SetInfo()
         {
             //ImageBrushAvatar.ImageSource = new ImageBrush();
-            //ImageBrushAvatar.ImageSource = new BitmapImage(new Uri(@UserSingleTon.Instance.User.UserAvatar));
+            //ImageBrushAvatar.ImageSource = new BitmapImage(new Uri(@"Images/icon-user-default.png",UriKind.RelativeOrAbsolute));
             TextBoxFullName.Text = UserSingleTon.Instance.User.UserFullName;
             TextBoxPhone.Text = UserSingleTon.Instance.User.UserPhoneNumber;
             TextBoxAddress.Text = UserSingleTon.Instance.User.UserAddress;
@@ -116,9 +116,11 @@ namespace GUI
 
                 Uri fileUri = new Uri(openFileDialog.FileName);
                 ImageBrushAvatar.ImageSource = new BitmapImage(fileUri);
-                string filePath = fileUri.ToString().Remove(0, 8);
-                string destinationDir = "..\\Avatar\\";
-                System.IO.File.Copy(filePath, destinationDir + System.IO.Path.GetFileName(filePath), true);
+                string filePath = fileUri.ToString().Remove(0, 8); 
+                string destinationDir = "..\\..\\..\\Avatar\\";
+                File.Copy(filePath, destinationDir + System.IO.Path.GetFileName(filePath), true);
+                System.Resources.ResourceWriter rsxw = new System.Resources.ResourceWriter("en-GB.resx");
+                rsxw.AddResource(System.IO.Path.GetFileName(filePath), destinationDir + System.IO.Path.GetFileName(filePath));
             }
 
         }

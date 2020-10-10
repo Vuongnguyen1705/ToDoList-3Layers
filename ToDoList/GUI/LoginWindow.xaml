@@ -68,7 +68,7 @@
                         Text="vuong@gmail.com"
                         materialDesign:HintAssist.Hint="Email"
                         Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"/>
-                                        
+
                 </Grid>
                 <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
@@ -108,20 +108,8 @@
                         Content="Thoát"
                         Background="Red"                       
                         Click="Button_Exit"/>
-
                 </Grid>
             </Grid>
         </materialDesign:Card>
-        <ToggleButton
-  Style="{StaticResource MaterialDesignFlatAccentBgButton}"
-  Width="100"
-            Height="30">
-            <ToggleButton.Content>
-                <TextBlock Text="Cá nhân"/>
-            </ToggleButton.Content>
-            <materialDesign:ToggleButtonAssist.OnContent>
-                <TextBlock Text="Public"/>
-            </materialDesign:ToggleButtonAssist.OnContent>
-        </ToggleButton>
     </Grid>
 </Window>

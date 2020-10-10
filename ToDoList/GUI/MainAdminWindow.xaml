@@ -167,7 +167,6 @@
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>
-
             </ListView>
         </Grid>
     </Grid>

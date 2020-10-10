@@ -102,7 +102,7 @@ namespace GUI
                 Uri fileUri = new Uri(openFileDialog.FileName);
                 string filePath = fileUri.ToString().Remove(0, 8);
                 TextBlockAttachment.Text = System.IO.Path.GetFileName(filePath);
-                string destinationDir = "..\\Attachments\\";
+                string destinationDir = "..\\..\\..\\Attachments\\";
                 System.IO.File.Copy(filePath, destinationDir + System.IO.Path.GetFileName(filePath), true);
             }
         }
@@ -119,7 +119,7 @@ namespace GUI
                 {
                     Uri fileUri = new Uri(saveFileDialog.FileName);
                     string destinationDir = fileUri.ToString().Remove(0, 8); //path + filename
-                    string filePath = "..\\Attachments\\" + TextBlockAttachment.Text;
+                    string filePath = "..\\..\\..\\Attachments\\" + TextBlockAttachment.Text;
                     System.IO.File.Copy(filePath, destinationDir, true);
                 }
             }
