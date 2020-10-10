@@ -29,9 +29,11 @@ namespace GUI
         General general = new General();
         public LoginWindow()
         {
-            InitializeComponent();
-            System.IO.Directory.CreateDirectory("..\\Attachments");
-            System.IO.Directory.CreateDirectory("..\\Avatar");
+            InitializeComponent();            
+            Directory.CreateDirectory("..\\..\\..\\Attachments");
+            Directory.CreateDirectory("..\\..\\..\\Avatar");            
+            //string destinationDir = "..\\Avatar\\";
+            //File.Copy("../../../Images/favicon.png", destinationDir + "favicon.png", true);
         }
 
         private void Button_Exit(object sender, RoutedEventArgs e)

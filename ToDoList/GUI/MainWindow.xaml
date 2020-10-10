@@ -96,7 +96,7 @@
                     VerticalAlignment="Center" 
                     Click="ButtonViewMyJob" />
                 <Button Name="Partnerjob" 
-                    Content="Partner job" 
+                    Content="Public job" 
                     Grid.Column="1" 
                     HorizontalAlignment="Left"
                     Margin="0 0" 
@@ -139,6 +139,7 @@
                 <Button Name="Loc" 
                     Content="Lọc" 
                     Grid.Column="1" 
+                        Visibility="Hidden"
                     VerticalAlignment="Center"
                     Margin="10 0"                     
                     Click="Loc_Click"/>
