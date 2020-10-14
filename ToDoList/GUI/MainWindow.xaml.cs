@@ -301,7 +301,7 @@ namespace GUI
             string status="", range="";
             DateTime dateStart= Convert.ToDateTime("2000-09-20 08:00:00.000");
             DateTime dateEnd= Convert.ToDateTime("3000-09-20 08:00:00.000");  
-            MessageBox.Show("zo");
+            //MessageBox.Show("zo");
             /*if(ComboBoxStatus.SelectedItem.ToString()!=""&& ComboBoxRange.SelectedItem.ToString()!=""&&DatePickerFromDay.SelectedDate.ToString()!="" && DatePickerToDay.SelectedDate.ToString() != "")
             {*/
             if(ComboBoxStatus.Text.ToString()!="")
@@ -312,7 +312,7 @@ namespace GUI
             {
                 status = "";
             }
-            MessageBox.Show(status);
+            //MessageBox.Show(status);
             if(ComboBoxRange.Text.ToString()!="")
             {
                 range = ComboBoxRange.Text.ToString();
@@ -321,47 +321,26 @@ namespace GUI
             {
                 range = "";
             }
-                MessageBox.Show(range);
+                //MessageBox.Show(range);
             if(!(DatePickerToDay.Text).Equals(""))
             {
-                MessageBox.Show("zo if");
-                dateStart = Convert.ToDateTime(DatePickerFromDay.SelectedDate);
-                MessageBox.Show("zo if1");
+                //MessageBox.Show("zo if");
+                dateStart = DateTime.Parse((DatePickerToDay.Text));
+                //MessageBox.Show("zo if1");
             }
-                MessageBox.Show(dateStart.ToString());
+                //MessageBox.Show(dateStart.ToString());
             if(!(DatePickerFromDay.Text).Equals(""))
             {
-                MessageBox.Show("zo date 2");
-                dateEnd = Convert.ToDateTime(DatePickerFromDay.SelectedDate);
+                //MessageBox.Show("zo date 2");
+                dateEnd = Convert.ToDateTime(DatePickerFromDay.Text);
             }
-                MessageBox.Show(dateEnd.ToString());
+            //MessageBox.Show(dateEnd.ToString());
 
-            string query;
-            string startdate = "",enddate="";
-            query = "Select * from [Works] where 1=1";
-            if (range != "")
-            {
-                range = " and W_Range='" + range+"'";
-                query += range;
-            }
-            if (status != "")
-            {
-                status = " and W_State=N'" + status + "'";
-                query += status;
-            }
-            if (dateStart.ToString() != "")
-            {
-                startdate = " and W_StartDate >='" + dateStart + "'";
-                query += startdate;
-            }
-            if (dateEnd.ToString() != "")
-            {
-                enddate = " and W_EndDate <='" + dateEnd + "'";
-                query += enddate;
-            }
-            MessageBox.Show(query);
+      
+
             List<DTO_Work> fil = bLL_Work.FillterAll(range, status, dateStart, dateEnd);
                 ListViewWork.ItemsSource = fil;
+            Filter();
             //}
             
 

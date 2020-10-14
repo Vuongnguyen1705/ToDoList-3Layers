@@ -23,6 +23,7 @@ namespace GUI
         BLL_Work bLL_Work = new BLL_Work();
         BLL_User bLL_User = new BLL_User();
         BLL_Role bLL_Role = new BLL_Role();
+        General general = new General();
         public AddUserDialog()
         {
             InitializeComponent();
@@ -61,7 +62,7 @@ namespace GUI
             }
             else
             {
-                bLL_User.AddUser(new DTO_User(1, "Images/icon-user-default.png", TextBoxFullName.Text, TextBoxPhone.Text, TextBoxEmail.Text, PasswordBoxPassCofirm.Password, TextBoxAddress.Text, Convert.ToDateTime(DatePickerBirthday.Text), ComboBoxGender.Text, true, bLL_Role.getIDByRoleName(ComboBoxRole.Text).ToString()));
+                bLL_User.AddUser(new DTO_User(1, "Images/icon-user-default.png", TextBoxFullName.Text, TextBoxPhone.Text, TextBoxEmail.Text,general.EncryptString( PasswordBoxPassCofirm.Password,general.passEncode), TextBoxAddress.Text, Convert.ToDateTime(DatePickerBirthday.Text), ComboBoxGender.Text, true, bLL_Role.getIDByRoleName(ComboBoxRole.Text).ToString()));
                 Close();
                 MessageBox.Show("Thêm thành công");
             }

@@ -192,33 +192,28 @@ namespace DAL
 
         public void AddUser(DTO_User u)
         {
-            DataSet ds = new DataSet();
             string query = "INSERT INTO dbo.Users(U_Avatar, U_FullName, U_Phone, U_Email, U_Password, U_Address, U_Birthday, U_Gender,U_IsEnable, U_Role_ID) VALUES ('" + u.UserAvatar + "',N'" + u.UserFullName + "','" + u.UserPhoneNumber + "',N'" + u.UserEmail + "','" + u.UserPassword + "','" + u.UserAddress + "','" + u.UserBirthday + "','" + u.UserGender + "','" + u.UserIsEnable + "','" + u.UserRoleID + "')";
             InsertUpdateDeleteSQLString(query);
         }
 
         public void UpdateUser(DTO_User u)
-        {
-            DataSet ds = new DataSet();           
+        {     
             string query = "UPDATE dbo.Users SET U_Avatar ='" + u.UserAvatar + "', U_FullName = N'" + u.UserFullName + "', U_Phone = '" + u.UserPhoneNumber + "', U_Email = N'" + u.UserEmail + "', U_Password = '" + u.UserPassword + "', U_Address = N'" + u.UserAddress + "', U_Birthday = '" + u.UserBirthday + "', U_Gender = '" + u.UserGender + "', U_IsEnable = '" + u.UserIsEnable + "', U_Role_ID = " + u.UserRoleID + " WHERE U_ID = " + u.UserID;
             InsertUpdateDeleteSQLString(query);
         }
         public void UpdateUserPassword (int UserID,string UserPassword)
         {
-            DataSet ds = new DataSet();
             String query = "UPDATE dbo.Users SET  U_Password = '" + UserPassword + "' WHERE U_ID = " + UserID;
             InsertUpdateDeleteSQLString(query);
         }
         public void DisableUser(int UserID)
-        {
-            DataSet ds = new DataSet();
+        {            
             string query = "UPDATE dbo.Users SET U_IsEnable=0 WHERE U_ID = '" + UserID + "'";
             InsertUpdateDeleteSQLString(query);
         }
 
         public void EnableUser(int UserID)
         {
-            DataSet ds = new DataSet();
             string query = "UPDATE dbo.Users SET U_IsEnable=1 WHERE U_ID = '" + UserID + "'";
             InsertUpdateDeleteSQLString(query);
         }
