@@ -30,8 +30,8 @@ namespace GUI
         public LoginWindow()
         {
             InitializeComponent();            
-            Directory.CreateDirectory("..\\..\\..\\Attachments");
-            Directory.CreateDirectory("..\\..\\..\\Avatar");            
+            //Directory.CreateDirectory("..\\..\\..\\Attachments");
+            //Directory.CreateDirectory("..\\..\\..\\Avatar");            
             //string destinationDir = "..\\Avatar\\";
             //File.Copy("../../../Images/favicon.png", destinationDir + "favicon.png", true);
         }

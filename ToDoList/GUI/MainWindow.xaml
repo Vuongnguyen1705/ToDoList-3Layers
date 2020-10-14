@@ -139,7 +139,7 @@
                 <Button Name="Loc" 
                     Content="Lọc" 
                     Grid.Column="1" 
-                        Visibility="Hidden"
+                        
                     VerticalAlignment="Center"
                     Margin="10 0"                     
                     Click="Loc_Click"/>

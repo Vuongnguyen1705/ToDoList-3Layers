@@ -51,7 +51,7 @@ namespace GUI
                 Uri fileUri = new Uri(openFileDialog.FileName);
                 string filePath = fileUri.ToString().Remove(0, 8);
                 TextBlockAttachment.Text = System.IO.Path.GetFileName(filePath);
-                string destinationDir = "..\\Attachments\\";
+                string destinationDir = "..\\..\\..\\Attachments\\";
                 System.IO.File.Copy(filePath, destinationDir + System.IO.Path.GetFileName(filePath), true);
             }
         }
@@ -74,7 +74,7 @@ namespace GUI
                 {
                     range = "Private";
                 }
-                bLL_Work.AddWork(TextBoxTitle.Text, Convert.ToDateTime(DatePickerStartDate.Text), Convert.ToDateTime(DatePickerEndDate.Text), ComboBoxState.Text, range, bLL_User.getIDByFullName(ComboBoxListUser.Text).ToString(), TextBlockAttachment.Text, UserSingleTon.Instance.User.UserID);
+                bLL_Work.AddWork(new DTO_Work(1,TextBoxTitle.Text, Convert.ToDateTime(DatePickerStartDate.Text), Convert.ToDateTime(DatePickerEndDate.Text), ComboBoxState.Text, range, bLL_User.getIDByFullName(ComboBoxListUser.Text).ToString(), TextBlockAttachment.Text, UserSingleTon.Instance.User.UserID.ToString()));
                 Close();
                 MessageBox.Show("Thêm thành công");
             }

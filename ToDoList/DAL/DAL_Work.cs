@@ -278,12 +278,12 @@ namespace DAL
                 }
             }*/
             query = "Select * from [Works] where 1=1";
-            if (range != "")
+            if (range != ""&&!range.Equals("Tất cả"))
             {
-                range = " and W_Range='" + range+"'";
+                range = " and W_Range=N'" + range+"'";
                 query += range;
             }
-            if (state != "")
+            if (state != "" && !state.Equals("Tất cả"))
             {
                 state = " and W_State=N'" + state + "'";
                 query += state;
@@ -346,23 +346,20 @@ namespace DAL
             conn.Close();
         }
 
-        public void AddWork(string title, DateTime startDate, DateTime endDate, string state, string range, string coWorker,string attachment, int userid)
+        public void AddWork(DTO_Work w)
         {
-            DataSet ds = new DataSet();
-            string query = "INSERT INTO dbo.Works(W_Title, W_StartDate, W_EndDate, W_State, W_Range, W_CoWorker, W_Attachments, W_User_ID) VALUES (N'" + title + "','" + startDate + "','" + endDate + "',N'" + state + "',N'" + range + "','" + coWorker + "','" + attachment + "','" + userid + "')";
+            string query = "INSERT INTO dbo.Works(W_Title, W_StartDate, W_EndDate, W_State, W_Range, W_CoWorker, W_Attachments, W_User_ID) VALUES (N'" + w.WorkTitle + "','" + w.WorkStartDate + "','" + w.WorkEndDate + "',N'" + w.WorkStatus + "',N'" + w.WorkRange + "','" + w.WorkCoWorker + "','" + w.WorkAttachment + "','" + w.WorkUserID + "')";
             InsertUpdateDeleteSQLString(query);
         }
 
         public void UpdateWork(DTO_Work w)
         {
-            DataSet ds = new DataSet();
             string query = "UPDATE dbo.Works SET W_Title = N'" + w.WorkTitle + "', W_StartDate = '" + w.WorkStartDate + "', W_EndDate = '" + w.WorkEndDate + "', W_State = N'" + w.WorkStatus + "', W_Range = N'" + w.WorkRange + "', W_CoWorker = '" + w.WorkCoWorker + "', W_Attachments = '" + w.WorkAttachment + "', W_User_ID = '" + w.WorkUserID + "' WHERE W_ID = " + w.WorkID;
             InsertUpdateDeleteSQLString(query);
         }
 
         public void DeleteWork(int WorkID)
         {
-            DataSet ds = new DataSet();
             string query = "DELETE FROM dbo.Works WHERE W_ID = '" + WorkID + "' ";
             InsertUpdateDeleteSQLString(query);
         }

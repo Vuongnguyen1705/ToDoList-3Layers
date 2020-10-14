@@ -22,6 +22,7 @@ namespace GUI
     public partial class WorkDetailDialog : Window
     {
         int idWork;
+        string iduser;
         ObservableCollection<string> names = new ObservableCollection<string>();
         BLL_Comment bLL_Comment = new BLL_Comment();
         BLL_User bLL_User = new BLL_User();
@@ -42,6 +43,11 @@ namespace GUI
 
         private void ShowDetailWork()
         {
+            if (Int32.Parse(UserSingleTon.Instance.User.UserRoleID) == 3)
+            {
+                DatePickerStartDate.IsEnabled = false ;
+                DatePickerEndDate.IsEnabled = false;
+            }
             ObservableCollection<DTO_Work> list = bLL_Work.getById(idWork);
             foreach (var item in list)
             {
@@ -71,6 +77,7 @@ namespace GUI
                 //MessageBox.Show("--"+tenNhanVien+"--");
                 TextBlockAttachment.Text = item.WorkAttachment;
                 WorkId.Text = item.WorkID.ToString();
+                iduser =item.WorkUserID;
                 //MessageBox.Show("coworker: " + bLL_User.getFullNameByID(Convert.ToInt32(item.WorkCoWorker)).ToString());
                 //MessageBox.Show("da load xong");
             }
@@ -161,7 +168,7 @@ namespace GUI
                 //MessageBox.Show(work.WorkCoWorker);
             }
             work.WorkAttachment = TextBlockAttachment.Text;
-            work.WorkUserID=UserSingleTon.Instance.User.UserID.ToString();
+            work.WorkUserID = iduser;
             bLL_Work.UpdateWork(work);
             MessageBox.Show("Update thành công");
             Close();

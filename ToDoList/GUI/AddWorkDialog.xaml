@@ -44,12 +44,14 @@
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <DatePicker Margin="10 0"
                   Name="DatePickerStartDate"
-                  Width="120"                        
+                  Width="120"     
+                  DisplayDateEnd="{Binding Path=Text, ElementName=DatePickerEndDate}"
                   materialDesign:HintAssist.Hint="Ngày bắt đầu" />
 
             <DatePicker Margin="10 0"
                   Name="DatePickerEndDate"
                   Width="120"
+                  DisplayDateStart="{Binding Path=Text, ElementName=DatePickerStartDate}"
                   materialDesign:HintAssist.Hint="Ngày kết thúc" />
         </StackPanel>
 
@@ -131,12 +133,17 @@
         <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button
                 Click="Button_Click_Add"
-                Style="{StaticResource MaterialDesignFlatButton}"   
-                Content="Đồng ý"/>
+                Style="{StaticResource MaterialDesignRaisedAccentButton}"   
+                Content="Thêm"/>
             <Button
                 Click="Button_Click_Cancel_AddWork"
-                Style="{StaticResource MaterialDesignFlatAccentButton}"                
+                Foreground="Red"
+                BorderBrush="Red"
+                BorderThickness="2"
+                Margin="10 0"
+                Style="{StaticResource MaterialDesignOutlinedButton}"                
                 Content="Hủy bỏ"/>
+            
         </StackPanel>
     </Grid>
 </Window>

@@ -65,7 +65,7 @@
                         Margin="4"/>
                     <TextBox Grid.Column="1"
                         x:Name="Email"
-                        Text="vuong@gmail.com"
+                       
                         materialDesign:HintAssist.Hint="Email"
                         Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"/>
 
@@ -82,7 +82,7 @@
                     <PasswordBox
                         Grid.Column="1"
                         PasswordChar="@"
-                        Password="123456"
+                        
                         x:Name="Password" 
                         materialDesign:HintAssist.Hint="Mật khẩu"
                         Style="{StaticResource MaterialDesignOutlinedPasswordFieldPasswordBox}" />
@@ -112,4 +112,5 @@
             </Grid>
         </materialDesign:Card>
     </Grid>
+    
 </Window>

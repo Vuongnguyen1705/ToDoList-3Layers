@@ -70,7 +70,7 @@ namespace GUI
         {
             var addUser = new AddUserDialog();
             addUser.ShowDialog();
-            
+            ShowUser();
         }
 
         private void IconLogout_MouseDown_Logout(object sender, MouseButtonEventArgs e)
