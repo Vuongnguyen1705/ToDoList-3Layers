@@ -16,10 +16,10 @@ CREATE TABLE Users(
 	U_Email NVARCHAR(50) NOT NULL,
 	U_Password VARCHAR(30) NOT NULL,
 	U_Address NVARCHAR(100),
-	U_Birthday DATE,
+	U_Birthday DATETIME,
 	U_Gender NCHAR(5),
 	U_IsEnable bit NOT NULL,
-	U_Role_ID INT 
+	U_Role_ID INT NOT NULL
 );
 
 CREATE TABLE Role(
@@ -51,7 +51,7 @@ GO
 ALTER TABLE dbo.Users ADD CONSTRAINT FK_User_Role_ID FOREIGN KEY(U_Role_ID) REFERENCES dbo.Role(R_ID);
 ALTER TABLE dbo.Works ADD CONSTRAINT FK_Work_User_ID FOREIGN KEY(W_User_ID) REFERENCES dbo.Users(U_ID);
 ALTER TABLE dbo.Comments ADD CONSTRAINT FK_User_ID FOREIGN KEY(CMT_User_ID) REFERENCES dbo.Users(U_ID);
-ALTER TABLE dbo.Comments ADD CONSTRAINT FK_Work_ID FOREIGN KEY(CMT_Work_ID) REFERENCES dbo.Works(W_ID);
+--ALTER TABLE dbo.Comments ADD CONSTRAINT FK_Work_ID FOREIGN KEY(CMT_Work_ID) REFERENCES dbo.Works(W_ID);
 
 
 GO 
@@ -99,4 +99,6 @@ VALUES(7, 1, N'Comment 1'),
 	  (10, 2, N'Comment 9'),
 	  (8, 6, N'Comment 10');
 
-Select * from Works
+Select * from Works where 1=1 and W_CoWorker=7 and W_Range='public'
+Select * from works where W_StartDate >'10/10/2020 '
+Select * from [Works] where 1=1 and W_Range=N' and W_Range='Public'' and W_StartDate >='09/20/2000 8:00:00 AM' and W_EndDate <='09/20/3000 8:00:00 AM'"
